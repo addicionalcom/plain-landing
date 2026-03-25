@@ -1,227 +1,240 @@
 "use client";
 import { useState } from "react";
-import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield } from "lucide-react";
+import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles } from "lucide-react";
 
-const DASHBOARD_URL = "https://dashboard.plainsocial.app";
+const D = "https://dashboard.plainsocial.app";
 
 export default function Home() {
-  const [billingAnnual, setBillingAnnual] = useState(true);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const prices = { starter: billingAnnual ? 24 : 29, pro: billingAnnual ? 66 : 79, agency: billingAnnual ? 124 : 149 };
+  const [annual, setAnnual] = useState(true);
+  const [faq, setFaq] = useState<number | null>(null);
+  const p = { s: annual ? 24 : 29, m: annual ? 66 : 79, a: annual ? 124 : 149 };
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "Inter, sans-serif" }}>
-      {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="mx-auto px-8 flex items-center justify-between h-16" style={{ maxWidth: "1900px" }}>
-          <a href="/" className="text-xl font-black tracking-tight text-gray-900">plain<span className="text-indigo-600">·</span></a>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <a href="#features" className="hover:text-gray-900 transition-colors">Funciones</a>
-            <a href="#comparativa" className="hover:text-gray-900 transition-colors">Comparativa</a>
-            <a href="#precios" className="hover:text-gray-900 transition-colors">Precios</a>
-            <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
+    <div style={{ fontFamily: "var(--font-geist, system-ui, sans-serif)", color: "#0a0a0a", background: "#fff" }}>
+
+      {/* ── NAV ── */}
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(255,255,255,0.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid #f0f0f0" }}>
+        <div style={{ maxWidth: 1900, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
+          <a href="/" style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.5px", textDecoration: "none", color: "#0a0a0a" }}>
+            plain<span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>·</span>
+          </a>
+          <div style={{ display: "flex", gap: 28, fontSize: 14, fontWeight: 500, color: "#555" }}>
+            {[["#features","Funciones"],["#comparativa","Comparativa"],["#precios","Precios"],["#faq","FAQ"]].map(([h,l])=>(
+              <a key={h} href={h} style={{ textDecoration: "none", color: "inherit" }}>{l}</a>
+            ))}
           </div>
-          <div className="flex items-center gap-3">
-            <a href={`${DASHBOARD_URL}/login`} className="hidden md:block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Iniciar sesión</a>
-            <a href={`${DASHBOARD_URL}/register`} className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">Prueba gratis 14 días</a>
+          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            <a href={`${D}/login`} style={{ fontSize: 14, fontWeight: 500, color: "#555", textDecoration: "none" }}>Iniciar sesión</a>
+            <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 14, fontWeight: 600, padding: "9px 20px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
+              Prueba gratis 14 días
+            </a>
           </div>
         </div>
       </nav>
 
-      {/* HERO */}
-      <section className="pt-32 pb-20 overflow-hidden relative" style={{ background: "linear-gradient(160deg, #0f0f1a 0%, #111827 60%, #0f172a 100%)" }}>
-        <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(ellipse 70% 40% at 50% 10%, #6366f1, transparent)" }} />
-        <div className="mx-auto px-8 relative" style={{ maxWidth: "1900px" }}>
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 border border-indigo-500/25 rounded-full px-4 py-1.5 text-sm text-indigo-300 mb-8" style={{ background: "rgba(99,102,241,0.08)" }}>
-              <Zap size={14} /><span>La herramienta de Instagram para agencias en España y LATAM</span>
+      {/* ── HERO ── */}
+      <section style={{ paddingTop: 140, paddingBottom: 100, textAlign: "center", position: "relative", overflow: "hidden" }}>
+        {/* Bg blobs */}
+        <div style={{ position: "absolute", top: -80, left: "50%", transform: "translateX(-50%)", width: 800, height: 500, background: "radial-gradient(ellipse, rgba(168,85,247,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 100, left: "10%", width: 300, height: 300, background: "radial-gradient(ellipse, rgba(244,63,94,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: 80, right: "10%", width: 300, height: 300, background: "radial-gradient(ellipse, rgba(6,182,212,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+        <div style={{ maxWidth: 1900, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
+          {/* Badge */}
+          <div className="badge anim-up" style={{ marginBottom: 28 }}>
+            <Sparkles size={13} style={{ color: "#a855f7" }} />
+            Programación · Automatización · Multi-cliente
+          </div>
+
+          <h1 className="anim-up-1" style={{ fontSize: "clamp(44px, 6vw, 80px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-2px", marginBottom: 24, maxWidth: 900, margin: "0 auto 24px" }}>
+            Deja de pagar dos herramientas<br />
+            <span className="grad-text">para hacer el trabajo de una.</span>
+          </h1>
+
+          <p className="anim-up-2" style={{ fontSize: 20, color: "#555", maxWidth: 600, margin: "0 auto 36px", lineHeight: 1.6 }}>
+            Plain combina programación de Instagram con automatización comentario→DM en un solo panel para agencias.
+          </p>
+
+          <div className="anim-up-3" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 16, fontWeight: 700, padding: "14px 28px", borderRadius: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
+              Empieza gratis — sin tarjeta <ArrowRight size={18} />
+            </a>
+            <a href="#features" style={{ fontSize: 16, fontWeight: 600, padding: "14px 28px", borderRadius: 12, textDecoration: "none", border: "1px solid #e5e7eb", color: "#333", display: "inline-block", background: "white" }}>
+              Ver cómo funciona
+            </a>
+          </div>
+          <p style={{ marginTop: 14, fontSize: 13, color: "#aaa" }}>14 días gratis · Sin tarjeta · Cancela cuando quieras</p>
+
+          {/* Hero card mockup */}
+          <div className="float" style={{ marginTop: 60, maxWidth: 860, marginLeft: "auto", marginRight: "auto" }}>
+            <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 24, overflow: "hidden", boxShadow: "0 24px 80px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04)" }}>
+              {/* Window bar */}
+              <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 18px", display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#ff5f57" }} />
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#febc2e" }} />
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#28c840" }} />
+                <span style={{ marginLeft: 12, fontSize: 12, color: "#aaa", fontWeight: 500 }}>dashboard.plainsocial.app — Automatizaciones</span>
+              </div>
+              {/* Content */}
+              <div style={{ padding: 24, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+                {/* Trigger panel */}
+                <div style={{ gridColumn: "span 2", background: "#fafafa", borderRadius: 16, padding: 20, border: "1px solid #f0f0f0" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
+                    <span style={{ fontSize: 11, fontWeight: 600, color: "#666", textTransform: "uppercase", letterSpacing: "0.8px" }}>Automatización activa</span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                    <div style={{ display: "flex", gap: 10 }}>
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: "linear-gradient(135deg,#fce7f3,#f3e8ff)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <MessageCircle size={14} style={{ color: "#a855f7" }} />
+                      </div>
+                      <div>
+                        <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>Comentario recibido</div>
+                        <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 10, padding: "8px 12px", fontSize: 13, fontWeight: 500 }}>"INFO" 🙌</div>
+                      </div>
+                    </div>
+                    <div style={{ paddingLeft: 42, display: "flex", flexDirection: "column", gap: 4 }}>
+                      <div style={{ fontSize: 11, color: "#22c55e", fontWeight: 600 }}>✓ DM enviado automáticamente</div>
+                      <div style={{ background: "linear-gradient(135deg,rgba(244,63,94,0.06),rgba(168,85,247,0.06))", border: "1px solid rgba(168,85,247,0.15)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#6d28d9" }}>
+                        ¡Hola! Te enviamos toda la info 😊 Aquí tienes el catálogo →
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", fontSize: 11, color: "#bbb" }}>
+                    <span>Regla: &quot;INFO&quot; → DM automático</span>
+                    <span style={{ color: "#22c55e", fontWeight: 600 }}>127 DMs hoy</span>
+                  </div>
+                </div>
+                {/* Stats */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {[["Clientes","12","↑ 3 este mes","#22c55e"],["Programados","48","próx. 30 días","#aaa"],["DMs enviados","1.284","este mes","#22c55e"]].map(([l,v,s,c])=>(
+                    <div key={l} style={{ background: "#fafafa", border: "1px solid #f0f0f0", borderRadius: 14, padding: 14 }}>
+                      <div style={{ fontSize: 10, color: "#aaa", fontWeight: 500, marginBottom: 2 }}>{l}</div>
+                      <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: "-0.5px" }}>{v}</div>
+                      <div style={{ fontSize: 10, color: c, fontWeight: 500, marginTop: 2 }}>{s}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6 text-white">
-              Deja de pagar dos herramientas<br />
-              <span style={{ background: "linear-gradient(135deg,#818cf8,#a78bfa,#f472b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                para hacer el trabajo de una.
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed" style={{ color: "#94a3b8" }}>
-              Plain combina la programación de contenido en Instagram con respuestas automáticas por DM cuando alguien comenta una palabra clave — todo en un panel para agencias.
+          </div>
+        </div>
+      </section>
+
+      {/* ── LOGOS ── */}
+      <div className="sep" style={{ maxWidth: 1900, margin: "0 auto 0" }} />
+      <section style={{ padding: "28px 32px", maxWidth: 1900, margin: "0 auto", textAlign: "center" }}>
+        <p style={{ fontSize: 12, fontWeight: 600, color: "#ccc", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Integra con tus herramientas</p>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "8px 32px" }}>
+          {["Instagram","Facebook","Dropbox","Google Drive","OneDrive","Canva"].map(n=>(
+            <span key={n} style={{ fontSize: 14, fontWeight: 600, color: "#ccc" }}>{n}</span>
+          ))}
+        </div>
+      </section>
+      <div className="sep" style={{ maxWidth: 1900, margin: "0 auto" }} />
+
+      {/* ── PROBLEM ── */}
+      <section style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>
+              El problema que todas las agencias tienen
+            </h2>
+            <p style={{ fontSize: 18, color: "#666", maxWidth: 520, margin: "0 auto" }}>
+              Pagas dos suscripciones para hacer lo que Plain hace solo.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={`${DASHBOARD_URL}/register`} className="inline-flex items-center justify-center gap-2 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all hover:scale-105 shadow-xl" style={{ background: "#6366f1" }}>
-                Empieza gratis — sin tarjeta <ArrowRight size={20} />
-              </a>
-              <a href="#features" className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-xl text-lg border transition-all" style={{ borderColor: "rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)" }}>
-                Ver cómo funciona
-              </a>
-            </div>
-            <p className="text-sm mt-4" style={{ color: "#4b5563" }}>14 días gratis · Sin tarjeta de crédito · Cancela cuando quieras</p>
           </div>
-
-          {/* Dashboard mock */}
-          <div className="mt-16 max-w-5xl mx-auto">
-            <div className="rounded-2xl border overflow-hidden shadow-2xl" style={{ background: "rgba(30,32,48,0.7)", borderColor: "rgba(255,255,255,0.08)" }}>
-              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ background: "rgba(15,15,25,0.8)", borderColor: "rgba(255,255,255,0.06)" }}>
-                <div className="w-3 h-3 rounded-full" style={{ background: "#ef4444", opacity: 0.7 }} />
-                <div className="w-3 h-3 rounded-full" style={{ background: "#eab308", opacity: 0.7 }} />
-                <div className="w-3 h-3 rounded-full" style={{ background: "#22c55e", opacity: 0.7 }} />
-                <span className="ml-3 text-xs" style={{ color: "#4b5563" }}>dashboard.plainsocial.app</span>
-              </div>
-              <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="md:col-span-2 rounded-xl p-5 border" style={{ background: "rgba(15,15,25,0.6)", borderColor: "rgba(255,255,255,0.06)" }}>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-2 h-2 rounded-full bg-green-400" style={{ animation: "pulse 2s infinite" }} />
-                    <span className="text-xs font-medium uppercase tracking-wider" style={{ color: "#6b7280" }}>Automatización activa</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(99,102,241,0.15)" }}>
-                        <MessageCircle size={14} style={{ color: "#818cf8" }} />
-                      </div>
-                      <div>
-                        <div className="text-xs mb-1" style={{ color: "#6b7280" }}>Usuario comentó en tu publicación</div>
-                        <div className="rounded-lg px-3 py-2 text-sm text-white inline-block" style={{ background: "rgba(255,255,255,0.08)" }}>"INFO" 🙌</div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 pl-11">
-                      <div>
-                        <div className="text-xs mb-1 text-green-400">Plain envió DM automáticamente ✓</div>
-                        <div className="rounded-lg px-3 py-2 text-sm border" style={{ background: "rgba(99,102,241,0.12)", borderColor: "rgba(99,102,241,0.2)", color: "#c7d2fe" }}>
-                          ¡Hola! Gracias por tu interés 😊 Te enviamos toda la información. Haz clic para ver el catálogo →
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-4 border-t flex items-center justify-between text-xs" style={{ borderColor: "rgba(255,255,255,0.05)", color: "#4b5563" }}>
-                    <span>Regla: Palabra clave &quot;INFO&quot; → DM automático</span>
-                    <span className="text-green-400">127 DMs enviados hoy</span>
-                  </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+            {/* Without */}
+            <div className="card" style={{ padding: 32, background: "#fff8f8", borderColor: "#ffe4e6" }}>
+              <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 24 }}>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#fee2e2", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <X size={16} style={{ color: "#ef4444" }} />
                 </div>
-                <div className="space-y-4">
-                  {[["Clientes gestionados","12","↑ 3 este mes","green"],["Posts programados","48","próximos 30 días","gray"],["DMs automáticos","1.284","este mes","green"]].map(([label,val,sub,color])=>(
-                    <div key={label} className="rounded-xl p-4 border" style={{ background: "rgba(15,15,25,0.6)", borderColor: "rgba(255,255,255,0.06)" }}>
-                      <div className="text-xs mb-1" style={{ color: "#6b7280" }}>{label}</div>
-                      <div className="text-2xl font-bold text-white">{val}</div>
-                      <div className={`text-xs mt-1 ${color==="green"?"text-green-400":"text-gray-500"}`}>{sub}</div>
-                    </div>
-                  ))}
+                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Sin Plain: dos facturas</h3>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {[["Metricool / Later / Buffer","~€20–45/mes","Programar contenido"],["ManyChat","~€25–65/mes*","Automatizar DMs"]].map(([t,p,d])=>(
+                  <div key={t} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "white", border: "1px solid #fee2e2", borderRadius: 12, padding: "12px 16px" }}>
+                    <div><div style={{ fontWeight: 700, fontSize: 13 }}>{t}</div><div style={{ fontSize: 12, color: "#999" }}>{d}</div></div>
+                    <div style={{ fontWeight: 800, color: "#ef4444", fontSize: 14 }}>{p}</div>
+                  </div>
+                ))}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#fef2f2", border: "2px solid #fca5a5", borderRadius: 12, padding: "12px 16px" }}>
+                  <span style={{ fontWeight: 800, fontSize: 15 }}>Total mensual</span>
+                  <span style={{ fontWeight: 900, color: "#ef4444", fontSize: 20 }}>€45–110/mes</span>
                 </div>
               </div>
+              <p style={{ fontSize: 11, color: "#ccc", marginTop: 10 }}>*ManyChat sube el precio sin avisar según contactos</p>
+            </div>
+            {/* With */}
+            <div className="card" style={{ padding: 32, background: "linear-gradient(135deg,rgba(244,63,94,0.03),rgba(168,85,247,0.05),rgba(6,182,212,0.03))", borderColor: "rgba(168,85,247,0.15)" }}>
+              <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 24 }}>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#fce7f3,#ede9fe)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Check size={16} style={{ color: "#a855f7" }} />
+                </div>
+                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Con Plain: todo en uno</h3>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {["Programación de contenido","Automatización comentario → DM","Gestión multi-cliente","Dropbox / Drive integrado"].map(f=>(
+                  <div key={f} style={{ display: "flex", alignItems: "center", gap: 10, background: "white", border: "1px solid rgba(168,85,247,0.12)", borderRadius: 12, padding: "12px 16px" }}>
+                    <Check size={15} style={{ color: "#a855f7", flexShrink: 0 }} />
+                    <span style={{ fontWeight: 600, fontSize: 13 }}>{f}</span>
+                  </div>
+                ))}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", borderRadius: 12, padding: "12px 16px" }}>
+                  <span style={{ fontWeight: 800, color: "white", fontSize: 15 }}>Todo incluido desde</span>
+                  <span style={{ fontWeight: 900, color: "white", fontSize: 20 }}>€24/mes</span>
+                </div>
+              </div>
+              <p style={{ fontSize: 11, color: "#bbb", marginTop: 10 }}>Precio fijo — sin sorpresas, sin contar contactos</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* LOGOS BAR */}
-      <section className="py-10 border-y" style={{ background: "#f9fafb", borderColor: "#f3f4f6" }}>
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <p className="text-center text-xs font-semibold mb-5 uppercase tracking-wider" style={{ color: "#9ca3af" }}>Integra con las herramientas que ya usas</p>
-          <div className="flex flex-wrap items-center justify-center gap-10 opacity-50">
-            {["Instagram","Facebook","Dropbox","Google Drive","OneDrive","Canva"].map(n=>(
-              <span key={n} className="text-gray-500 font-semibold text-sm">{n}</span>
-            ))}
+      {/* ── FEATURES ── */}
+      <section id="features" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
+        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Todo lo que necesita tu agencia</h2>
+            <p style={{ fontSize: 18, color: "#666" }}>Tres pilares. Un solo panel.</p>
           </div>
-        </div>
-      </section>
-
-      {/* PROBLEM */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">El problema que todas las agencias tienen</h2>
-              <p className="text-xl text-gray-500 max-w-2xl mx-auto">Cada mes pagas por dos herramientas que hacen a medias lo que Plain hace completo.</p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="rounded-2xl p-8 border-2" style={{ background: "rgba(254,242,242,0.4)", borderColor: "#fee2e2" }}>
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "#fee2e2" }}>
-                    <X size={18} style={{ color: "#ef4444" }} />
-                  </div>
-                  <h3 className="font-bold text-gray-900 text-lg">Sin Plain: dos facturas, doble trabajo</h3>
-                </div>
-                <div className="space-y-3">
-                  {[["Metricool / Later / Buffer","~€20–45/mes","Para programar contenido"],["ManyChat","~€25–65/mes*","Para automatizar DMs"]].map(([tool,price,desc])=>(
-                    <div key={tool} className="flex items-center justify-between bg-white rounded-xl px-4 py-3 border" style={{ borderColor: "#fee2e2" }}>
-                      <div><div className="font-semibold text-sm text-gray-800">{tool}</div><div className="text-xs text-gray-500">{desc}</div></div>
-                      <div className="font-bold text-red-500 text-sm">{price}</div>
-                    </div>
-                  ))}
-                  <div className="flex items-center justify-between rounded-xl px-4 py-3 border-2 mt-2" style={{ background: "#fef2f2", borderColor: "#fca5a5" }}>
-                    <div className="font-bold text-gray-900">Total mensual</div>
-                    <div className="font-black text-red-600 text-xl">€45–110/mes</div>
-                  </div>
-                </div>
-                <p className="text-xs mt-3" style={{ color: "#9ca3af" }}>*ManyChat cobra por contactos — el precio sube sin avisar</p>
-              </div>
-
-              <div className="rounded-2xl p-8 border-2" style={{ background: "rgba(238,242,255,0.4)", borderColor: "#e0e7ff" }}>
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "#e0e7ff" }}>
-                    <Check size={18} style={{ color: "#6366f1" }} />
-                  </div>
-                  <h3 className="font-bold text-gray-900 text-lg">Con Plain: todo en uno, precio fijo</h3>
-                </div>
-                <div className="space-y-3">
-                  {["Programación de contenido","Automatización comentario → DM","Gestión multi-cliente","Dropbox / Drive integrado"].map(f=>(
-                    <div key={f} className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 border" style={{ borderColor: "#e0e7ff" }}>
-                      <Check size={16} style={{ color: "#6366f1", flexShrink: 0 }} />
-                      <span className="text-sm font-medium text-gray-800">{f}</span>
-                    </div>
-                  ))}
-                  <div className="flex items-center justify-between rounded-xl px-4 py-3 mt-2" style={{ background: "#6366f1" }}>
-                    <div className="font-bold text-white">Todo incluido desde</div>
-                    <div className="font-black text-white text-xl">€24/mes</div>
-                  </div>
-                </div>
-                <p className="text-xs mt-3" style={{ color: "#a5b4fc" }}>Precio fijo, sin sorpresas, sin contar contactos</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURES */}
-      <section id="features" className="py-24" style={{ background: "#f9fafb" }}>
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Todo lo que necesita tu agencia</h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto">Tres pilares. Un solo panel. Sin cambiar de pestaña.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginBottom: 16 }}>
             {[
-              { icon: Zap, color: "#6366f1", bg: "#eef2ff", title: "Convierte comentarios en leads", desc: 'Define palabras clave — "INFO", "PRECIO", "RESERVA" — y Plain envía un DM personalizado al instante a cada usuario que las escriba. Automatización real, sin bots.', features: ["Múltiples palabras clave por regla","Mensajes con variantes aleatorias","Respuesta pública en comentario","Incluir enlaces y CTAs"] },
-              { icon: Calendar, color: "#7c3aed", bg: "#f5f3ff", title: "Publica sin esfuerzo", desc: "Conecta Dropbox o Google Drive y programa posts, Reels y Stories directamente desde las carpetas de tus clientes. Tus clientes suben el contenido; Plain lo publica.", features: ["Programación visual con calendario","Importar desde Dropbox y Drive","Posts, Reels y Stories","Publicación automática verificada"] },
-              { icon: Users, color: "#059669", bg: "#ecfdf5", title: "Gestiona todos tus clientes", desc: "Un panel. Todos tus clientes. Sin cambiar de cuenta, sin múltiples suscripciones. Diseñado para agencias que gestionan 5, 10 o 50 cuentas.", features: ["Panel multi-cliente unificado","Branding personalizado por cliente","Acceso por equipo con roles","Sin límite de cuentas conectadas"] },
-            ].map(({ icon: Icon, color, bg, title, desc, features })=>(
-              <div key={title} className="bg-white rounded-2xl p-8 border shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg" style={{ borderColor: "#f3f4f6" }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ background: bg }}>
-                  <Icon size={24} style={{ color }} />
+              { icon: Zap, grad: ["#fce7f3","#f43f5e"], title: "Convierte comentarios en leads", desc: 'Define palabras clave — "INFO", "PRECIO", "RESERVA" — y Plain envía un DM personalizado al instante. Sin ManyChat. Sin coste por contacto.', items: ["Múltiples palabras clave","Mensajes con variantes","Respuesta pública + DM","Incluir enlaces y CTAs"] },
+              { icon: Calendar, grad: ["#ede9fe","#a855f7"], title: "Publica sin esfuerzo", desc: "Conecta Dropbox o Google Drive y programa posts, Reels y Stories desde las carpetas de tus clientes. Ellos suben, Plain publica.", items: ["Calendario visual","Dropbox y Drive","Posts, Reels y Stories","Publicación automática"] },
+              { icon: Users, grad: ["#ecfdf5","#059669"], title: "Gestiona todos tus clientes", desc: "Un panel. Todos tus clientes. Sin cambiar de cuenta. Para agencias con 5, 10 o 50 cuentas de Instagram.", items: ["Panel multi-cliente","Branding por cliente","Roles de equipo","Sin límite de cuentas"] },
+            ].map(({ icon: Icon, grad, title, desc, items })=>(
+              <div key={title} className="card" style={{ padding: 28, background: "white" }}>
+                <div style={{ width: 48, height: 48, borderRadius: 14, background: grad[0], display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+                  <Icon size={22} style={{ color: grad[1] }} />
                 </div>
-                <h3 className="text-2xl font-black text-gray-900 mb-3">{title}</h3>
-                <p className="text-gray-500 mb-6 leading-relaxed text-sm">{desc}</p>
-                <ul className="space-y-2">
-                  {features.map(f=>(
-                    <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
-                      <Check size={14} style={{ color, flexShrink: 0 }} />{f}
+                <h3 style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.4px", marginBottom: 10 }}>{title}</h3>
+                <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6, marginBottom: 20 }}>{desc}</p>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                  {items.map(i=>(
+                    <li key={i} style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, color: "#444" }}>
+                      <Check size={13} style={{ color: grad[1], flexShrink: 0 }} />{i}
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-6">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
             {[
-              { icon: FolderOpen, color: "#ea580c", bg: "#fff7ed", title: "Almacenamiento conectado", desc: "Dropbox, Google Drive, OneDrive y más. Tus activos siempre a mano." },
-              { icon: TrendingUp, color: "#2563eb", bg: "#eff6ff", title: "Métricas en tiempo real", desc: "Visualiza el rendimiento de cada cliente desde un solo panel." },
-              { icon: Shield, color: "#0d9488", bg: "#f0fdfa", title: "Seguro y conforme al RGPD", desc: "Datos almacenados en Europa. Cumplimiento total con la normativa de Meta." },
-            ].map(({ icon: Icon, color, bg, title, desc })=>(
-              <div key={title} className="bg-white rounded-xl p-6 border flex gap-4" style={{ borderColor: "#f3f4f6" }}>
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: bg }}>
-                  <Icon size={18} style={{ color }} />
+              { icon: FolderOpen, c: "#ea580c", bg: "#fff7ed", t: "Almacenamiento conectado", d: "Dropbox, Drive, OneDrive. Tus activos siempre a mano." },
+              { icon: TrendingUp, c: "#2563eb", bg: "#eff6ff", t: "Métricas en tiempo real", d: "Rendimiento de cada cliente en un solo panel." },
+              { icon: Shield, c: "#059669", bg: "#ecfdf5", t: "Seguro y conforme RGPD", d: "Datos en Europa. Cumplimiento total con Meta." },
+            ].map(({ icon: Icon, c, bg, t, d })=>(
+              <div key={t} className="card" style={{ padding: 20, display: "flex", gap: 14, background: "white" }}>
+                <div style={{ width: 40, height: 40, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <Icon size={18} style={{ color: c }} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-1 text-sm">{title}</h4>
-                  <p className="text-xs text-gray-500">{desc}</p>
+                  <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 3 }}>{t}</div>
+                  <div style={{ fontSize: 12, color: "#888" }}>{d}</div>
                 </div>
               </div>
             ))}
@@ -229,25 +242,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">En marcha en menos de 10 minutos</h2>
-            <p className="text-xl text-gray-500">Sin curva de aprendizaje. Sin código. Sin consultores.</p>
+      {/* ── HOW IT WORKS ── */}
+      <section style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>En marcha en 10 minutos</h2>
+            <p style={{ fontSize: 18, color: "#666" }}>Sin código. Sin consultores. Sin complicaciones.</p>
           </div>
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {[
-              ["01","Conecta Instagram de tu cliente","OAuth en 2 clics. Plain obtiene los permisos necesarios y conecta la cuenta de Instagram Business."],
-              ["02","Define tus palabras clave","Crea una regla: \"cuando alguien comente INFO, envía este DM\". Puedes crear tantas reglas como necesites."],
-              ["03","Programa el contenido del mes","Importa los assets desde Dropbox o Drive, asigna fecha y hora, y Plain publica solo."],
-              ["04","Los leads llegan solos","Cada comentario con palabra clave activa el DM automáticamente, 24/7, sin que muevas un dedo."],
-            ].map(([n,title,desc])=>(
-              <div key={n} className="flex gap-6 items-start">
-                <div className="w-14 h-14 rounded-2xl text-white font-black text-lg flex items-center justify-center flex-shrink-0" style={{ background: "#6366f1" }}>{n}</div>
-                <div className="pt-2">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{title}</h3>
-                  <p className="text-gray-500">{desc}</p>
+              ["01","Conecta Instagram","OAuth en 2 clics. Plain conecta la cuenta de Instagram Business de tu cliente.","#f43f5e"],
+              ["02","Define palabras clave","Crea una regla: cuando alguien comente INFO, envía este DM. Tantas reglas como necesites.","#a855f7"],
+              ["03","Programa el contenido","Importa desde Dropbox o Drive, asigna fecha y Plain publica solo.","#06b6d4"],
+              ["04","Los leads llegan solos","Cada comentario con keyword activa el DM, 24/7, sin que muevas un dedo.","#059669"],
+            ].map(([n,t,d,c])=>(
+              <div key={n} className="card" style={{ padding: 24, display: "flex", gap: 20, alignItems: "flex-start", background: "white" }}>
+                <div style={{ width: 52, height: 52, borderRadius: 16, background: `linear-gradient(135deg,${c}22,${c}44)`, border: `1px solid ${c}33`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <span style={{ fontWeight: 900, fontSize: 18, color: c }}>{n}</span>
+                </div>
+                <div style={{ paddingTop: 4 }}>
+                  <h3 style={{ fontWeight: 800, fontSize: 18, marginBottom: 4 }}>{t}</h3>
+                  <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6 }}>{d}</p>
                 </div>
               </div>
             ))}
@@ -255,46 +270,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COMPARISON */}
-      <section id="comparativa" className="py-24" style={{ background: "#030712" }}>
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Plain vs. las alternativas</h2>
-            <p className="text-xl" style={{ color: "#6b7280" }}>Por qué las agencias eligen Plain sobre pagar dos herramientas por separado.</p>
+      {/* ── COMPARISON ── */}
+      <section id="comparativa" style={{ padding: "100px 32px", background: "#0a0a0a", color: "white", maxWidth: "100%" }}>
+        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Plain vs. las alternativas</h2>
+            <p style={{ fontSize: 18, color: "#666" }}>Por qué las agencias eligen Plain sobre pagar dos herramientas.</p>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full max-w-5xl mx-auto">
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", maxWidth: 900, margin: "0 auto", borderCollapse: "collapse" }}>
               <thead>
                 <tr>
-                  <th className="text-left py-4 px-6 font-medium w-1/4" style={{ color: "#6b7280" }}>Función</th>
-                  <th className="py-4 px-6 text-center">
-                    <div className="rounded-xl py-2 px-4 inline-block" style={{ background: "#6366f1" }}>
-                      <span className="font-black text-white">Plain</span>
-                    </div>
+                  <th style={{ textAlign: "left", padding: "12px 20px", color: "#444", fontWeight: 600, fontSize: 13, width: "30%" }}>Función</th>
+                  <th style={{ padding: "12px 20px", textAlign: "center" }}>
+                    <span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", padding: "6px 16px", borderRadius: 8, fontWeight: 800, fontSize: 13 }}>Plain</span>
                   </th>
                   {["Metricool","ManyChat","Hootsuite"].map(n=>(
-                    <th key={n} className="py-4 px-6 text-center font-medium" style={{ color: "#6b7280" }}>{n}</th>
+                    <th key={n} style={{ padding: "12px 20px", textAlign: "center", color: "#555", fontWeight: 600, fontSize: 13 }}>{n}</th>
                   ))}
                 </tr>
               </thead>
-              <tbody style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <tbody>
                 {[
                   ["Programar publicaciones Instagram", true, true, false, true],
                   ["Automatización comentario → DM", true, false, true, false],
-                  ["Gestión multi-cliente para agencias", true, "Parcial", false, "Parcial"],
-                  ["Dropbox / Google Drive integrado", true, false, false, false],
+                  ["Gestión multi-cliente agencias", true, "Parcial", false, "Parcial"],
+                  ["Dropbox / Google Drive", true, false, false, false],
                   ["Precio fijo (sin contar contactos)", true, true, false, false],
                   ["Soporte en español", true, true, false, false],
                   ["Todo en un solo panel", true, false, false, false],
-                  ["Precio para agencias (10 clientes)", "€124/mes", "€88/mes*", "€450/mes**", "€990/mes"],
+                  ["Precio (agencia 10 clientes)", "€124/mes", "€88/mes*", "€450/mes**", "€990/mes"],
                 ].map((row,i)=>(
-                  <tr key={i} className="transition-colors" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                    <td className="py-4 px-6 text-sm font-medium" style={{ color: "#d1d5db" }}>{row[0]}</td>
-                    {row.slice(1).map((val,j)=>(
-                      <td key={j} className="py-4 px-6 text-center">
-                        {val===true ? <Check size={20} className="mx-auto" style={{ color: "#818cf8" }} />
-                        : val===false ? <X size={20} className="mx-auto" style={{ color: "#374151" }} />
-                        : <span className={`text-sm font-semibold ${j===0?"text-indigo-300":"text-gray-400"}`}>{val}</span>}
+                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                    <td style={{ padding: "14px 20px", fontSize: 13, fontWeight: 500, color: "#ccc" }}>{row[0]}</td>
+                    {row.slice(1).map((v,j)=>(
+                      <td key={j} style={{ padding: "14px 20px", textAlign: "center" }}>
+                        {v===true ? <Check size={18} style={{ color: "#a855f7", margin: "0 auto" }} />
+                        : v===false ? <X size={18} style={{ color: "#333", margin: "0 auto" }} />
+                        : <span style={{ fontSize: 13, fontWeight: 700, color: j===0 ? "#c084fc" : "#555" }}>{v}</span>}
                       </td>
                     ))}
                   </tr>
@@ -302,163 +315,170 @@ export default function Home() {
               </tbody>
             </table>
           </div>
-          <p className="text-center text-xs mt-6" style={{ color: "#374151" }}>
-            *Metricool Advanced 25 marcas. **ManyChat Pro estimado para 10.000 contactos activos. Precios orientativos.
+          <p style={{ textAlign: "center", fontSize: 11, color: "#333", marginTop: 20 }}>
+            *Metricool Advanced 25 marcas. **ManyChat Pro 10.000 contactos. Precios orientativos.
           </p>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Lo que dicen las agencias</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              { q:"Llevábamos años pagando Metricool y ManyChat por separado. Con Plain cancelamos los dos y ahorramos más de €60 al mes. Y lo mejor: todo está en el mismo sitio.", a:"María G.", role:"Directora creativa, agencia de Barcelona" },
-              { q:"La automatización de comentarios nos genera leads mientras dormimos. Un cliente nuestro consiguió 340 DMs en un solo día después de un post viral.", a:"Jordi P.", role:"Social Media Manager, Madrid" },
-              { q:"Gestionar 15 clientes antes era un caos de pestañas. Ahora entro a Plain y lo tengo todo. La integración con Dropbox nos cambió el flujo de trabajo completamente.", a:"Ana M.", role:"Fundadora de agencia digital, México DF" },
-            ].map(t=>(
-              <div key={t.a} className="rounded-2xl p-8 border" style={{ background: "#f9fafb", borderColor: "#f3f4f6" }}>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_,i)=><Star key={i} size={16} style={{ color: "#facc15", fill: "#facc15" }} />)}
-                </div>
-                <p className="text-gray-700 leading-relaxed mb-6 italic text-sm">&quot;{t.q}&quot;</p>
-                <div>
-                  <div className="font-bold text-gray-900 text-sm">{t.a}</div>
-                  <div className="text-xs text-gray-500">{t.role}</div>
-                </div>
+      {/* ── TESTIMONIALS ── */}
+      <section style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 60 }}>
+          <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Lo que dicen las agencias</h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1100, margin: "0 auto" }}>
+          {[
+            { q:"Llevábamos años pagando Metricool y ManyChat por separado. Con Plain cancelamos los dos y ahorramos más de €60 al mes.", a:"María G.", r:"Directora creativa, Barcelona" },
+            { q:"La automatización de comentarios nos genera leads mientras dormimos. Un cliente consiguió 340 DMs en un solo día.", a:"Jordi P.", r:"Social Media Manager, Madrid" },
+            { q:"Gestionar 15 clientes antes era un caos de pestañas. Ahora entro a Plain y lo tengo todo. La integración con Dropbox es clave.", a:"Ana M.", r:"Fundadora agencia digital, México DF" },
+          ].map(t=>(
+            <div key={t.a} className="card" style={{ padding: 28 }}>
+              <div style={{ display: "flex", gap: 3, marginBottom: 16 }}>
+                {[...Array(5)].map((_,i)=><Star key={i} size={15} style={{ color: "#fbbf24", fill: "#fbbf24" }} />)}
               </div>
-            ))}
-          </div>
+              <p style={{ fontSize: 14, color: "#555", lineHeight: 1.7, marginBottom: 20, fontStyle: "italic" }}>&quot;{t.q}&quot;</p>
+              <div style={{ fontWeight: 700, fontSize: 14 }}>{t.a}</div>
+              <div style={{ fontSize: 12, color: "#999" }}>{t.r}</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="precios" className="py-24" style={{ background: "#f9fafb" }}>
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Precio fijo. Sin sorpresas.</h2>
-            <p className="text-xl text-gray-500 mb-8 max-w-2xl mx-auto">A diferencia de ManyChat, no cobramos por contactos. Pagas lo mismo cada mes, uses lo que uses.</p>
-            <div className="inline-flex items-center gap-1 border rounded-xl p-1" style={{ background: "white", borderColor: "#e5e7eb" }}>
-              <button onClick={()=>setBillingAnnual(false)} className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${!billingAnnual?"text-white":"text-gray-500"}`} style={!billingAnnual?{background:"#6366f1"}:{}}>Mensual</button>
-              <button onClick={()=>setBillingAnnual(true)} className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 ${billingAnnual?"text-white":"text-gray-500"}`} style={billingAnnual?{background:"#6366f1"}:{}}>
-                Anual <span className={`text-xs px-1.5 py-0.5 rounded-full ${billingAnnual?"bg-white/20 text-white":"bg-green-100 text-green-700"}`}>−17%</span>
-              </button>
+      {/* ── PRICING ── */}
+      <section id="precios" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
+        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Precio fijo. Sin sorpresas.</h2>
+            <p style={{ fontSize: 18, color: "#666", maxWidth: 500, margin: "0 auto 28px" }}>
+              A diferencia de ManyChat, no cobramos por contactos. Mismo precio cada mes.
+            </p>
+            {/* Toggle */}
+            <div style={{ display: "inline-flex", background: "white", border: "1px solid #e5e7eb", borderRadius: 12, padding: 4, gap: 4 }}>
+              {[["Mensual",false],["Anual — 17% dto.",true]].map(([l,v])=>(
+                <button key={String(v)} onClick={()=>setAnnual(v as boolean)} style={{ padding: "8px 20px", borderRadius: 9, border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14, transition: "all 0.15s", background: annual===(v as boolean) ? "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)" : "transparent", color: annual===(v as boolean) ? "white" : "#666" }}>
+                  {l}
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
             {[
-              { name:"Starter", desc:"Para freelancers y agencias que empiezan", price:prices.starter, cta:"Empezar gratis", highlight:false,
-                features:["Hasta 3 clientes / cuentas","Programación de contenido","5 automatizaciones activas","Integración Dropbox / Drive","Soporte por email"] },
-              { name:"Pro", desc:"Para agencias en crecimiento", price:prices.pro, cta:"Empezar gratis", highlight:true,
-                features:["Hasta 10 clientes / cuentas","Automatizaciones ilimitadas","Programación ilimitada","Todos los almacenamientos","Analytics por cliente","Soporte prioritario"] },
-              { name:"Agency", desc:"Para agencias que gestionan muchos clientes", price:prices.agency, cta:"Empezar gratis", highlight:false,
-                features:["Clientes ilimitados","Automatizaciones ilimitadas","Usuarios ilimitados","White-label (próximamente)","API acceso (próximamente)","Onboarding dedicado","Soporte 24/7"] },
-            ].map(plan=>(
-              <div key={plan.name} className={`rounded-2xl p-8 relative ${plan.highlight?"shadow-2xl":"border shadow-sm"}`} style={plan.highlight?{background:"#6366f1"}:{background:"white", borderColor:"#e5e7eb"}}>
-                {plan.highlight && <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-black px-4 py-1 rounded-full uppercase tracking-wide" style={{ background:"#facc15", color:"#713f12" }}>Más popular</div>}
-                <div className="mb-6">
-                  <h3 className={`text-xl font-black mb-1 ${plan.highlight?"text-white":"text-gray-900"}`}>{plan.name}</h3>
-                  <p className={`text-sm ${plan.highlight?"text-indigo-200":"text-gray-500"}`}>{plan.desc}</p>
+              { name:"Starter", desc:"Para freelancers y agencias pequeñas", price:p.s, hi:false,
+                items:["Hasta 3 clientes","Programación de contenido","5 automatizaciones activas","Dropbox / Drive","Soporte por email"] },
+              { name:"Pro", desc:"Para agencias en crecimiento", price:p.m, hi:true,
+                items:["Hasta 10 clientes","Automatizaciones ilimitadas","Programación ilimitada","Todos los almacenamientos","Analytics por cliente","Soporte prioritario"] },
+              { name:"Agency", desc:"Para agencias con muchos clientes", price:p.a, hi:false,
+                items:["Clientes ilimitados","Automatizaciones ilimitadas","Usuarios ilimitados","White-label (próx.)","API (próx.)","Onboarding dedicado","Soporte 24/7"] },
+            ].map(pl=>(
+              <div key={pl.name} style={{ borderRadius: 20, padding: 32, position: "relative", ...(pl.hi ? { background: "linear-gradient(145deg,#0a0a0a,#1a0a2e)", color: "white", boxShadow: "0 24px 60px rgba(168,85,247,0.25)" } : { background: "white", border: "1px solid #e8e8e8" }) }}>
+                {pl.hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>Más popular</div>}
+                <div style={{ marginBottom: 20 }}>
+                  <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 4 }}>{pl.name}</h3>
+                  <p style={{ fontSize: 13, color: pl.hi ? "#9ca3af" : "#888" }}>{pl.desc}</p>
                 </div>
-                <div className="mb-8">
-                  <span className={`text-5xl font-black ${plan.highlight?"text-white":"text-gray-900"}`}>€{plan.price}</span>
-                  <span className={plan.highlight?"text-indigo-300":"text-gray-400"}>/mes</span>
-                  {billingAnnual && <div className={`text-sm mt-1 ${plan.highlight?"text-indigo-200":"text-green-600"}`}>Facturado anualmente</div>}
+                <div style={{ marginBottom: 24 }}>
+                  <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>€{pl.price}</span>
+                  <span style={{ fontSize: 15, color: pl.hi ? "#6b7280" : "#aaa" }}>/mes</span>
+                  {annual && <div style={{ fontSize: 12, color: pl.hi ? "#a855f7" : "#22c55e", marginTop: 3 }}>Facturado anualmente</div>}
                 </div>
-                <a href={`${DASHBOARD_URL}/register`} className={`block text-center font-bold py-3 rounded-xl mb-8 transition-colors ${plan.highlight?"bg-white text-indigo-600 hover:bg-indigo-50":"text-white hover:opacity-90"}`} style={!plan.highlight?{background:"#111827"}:{}}>
-                  {plan.cta}
+                <a href={`${D}/register`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(pl.hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
+                  Empezar gratis
                 </a>
-                <ul className="space-y-3">
-                  {plan.features.map(f=>(
-                    <li key={f} className={`flex items-center gap-2 text-sm ${plan.highlight?"text-indigo-100":"text-gray-600"}`}>
-                      <Check size={15} style={{ color: plan.highlight?"white":"#6366f1", flexShrink:0 }} />{f}
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                  {pl.items.map(it=>(
+                    <li key={it} style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: pl.hi ? "#d1d5db" : "#555" }}>
+                      <Check size={14} style={{ color: pl.hi ? "#a855f7" : "#a855f7", flexShrink: 0 }} />{it}
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-          <p className="text-center text-sm text-gray-400 mt-8">Todos los planes incluyen 14 días de prueba gratuita · Sin tarjeta de crédito · Cancela en cualquier momento</p>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#bbb", marginTop: 24 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="py-24 bg-white">
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-12 text-center">Preguntas frecuentes</h2>
-            <div className="space-y-3">
-              {[
-                ["¿Necesito tener una cuenta de Instagram Business?","Sí, la automatización de comentarios y DMs requiere una cuenta de Instagram Business o Creator conectada a una Página de Facebook. La configuración tarda menos de 5 minutos."],
-                ["¿Plain reemplaza completamente a ManyChat?","Para las funciones de comentario→DM que usan la mayoría de agencias, sí. Plain cubre las automatizaciones de Instagram por palabras clave con un modelo más simple y a precio fijo."],
-                ["¿Cuántos DMs puedo enviar por día?","Plain usa la API oficial de Instagram y sigue los límites de Meta. Para cuentas Business activas, los límites son muy amplios y raramente suponen una restricción práctica."],
-                ["¿Puedo migrar mis automatizaciones de ManyChat a Plain?","Plain no importa directamente desde ManyChat, pero recrear las reglas es sencillo: defines la palabra clave, escribes el mensaje del DM y activas la regla. La mayoría de agencias lo hacen en menos de 30 minutos."],
-                ["¿Qué pasa si cancelo? ¿Pierdo mis datos?","No. Al cancelar, tus datos se conservan durante 30 días y puedes exportarlos en cualquier momento."],
-                ["¿Funciona también con publicaciones de Facebook?","Actualmente Plain está optimizado para Instagram. El soporte para Facebook Page posts está en el roadmap para próximos meses."],
-              ].map(([q,a],i)=>(
-                <div key={i} className="border rounded-xl overflow-hidden" style={{ borderColor: "#f3f4f6" }}>
-                  <button onClick={()=>setOpenFaq(openFaq===i?null:i)} className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-gray-50 transition-colors">
-                    <span className="font-semibold text-gray-900 text-sm">{q}</span>
-                    <ChevronDown size={18} className={`text-gray-400 flex-shrink-0 transition-transform ${openFaq===i?"rotate-180":""}`} />
-                  </button>
-                  {openFaq===i && (
-                    <div className="px-6 pb-5 text-gray-500 leading-relaxed text-sm border-t pt-4" style={{ borderColor: "#f9fafb" }}>{a}</div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
-      <section className="py-24" style={{ background: "#6366f1" }}>
-        <div className="mx-auto px-8 text-center" style={{ maxWidth: "1900px" }}>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">¿Listo para unificar tu stack?</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto" style={{ color: "#c7d2fe" }}>
-            Empieza hoy y comprueba por qué las agencias en España y LATAM están migrando a Plain.
-          </p>
-          <a href={`${DASHBOARD_URL}/register`} className="inline-flex items-center justify-center gap-2 font-bold px-10 py-4 rounded-xl text-lg transition-all hover:scale-105 shadow-xl" style={{ background: "white", color: "#6366f1" }}>
-            Prueba Plain gratis 14 días <ArrowRight size={20} />
-          </a>
-          <p className="text-sm mt-4" style={{ color: "#a5b4fc" }}>Sin tarjeta de crédito · Configuración en 10 minutos · Cancela cuando quieras</p>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="py-16" style={{ background: "#030712", color: "#6b7280" }}>
-        <div className="mx-auto px-8" style={{ maxWidth: "1900px" }}>
-          <div className="grid md:grid-cols-4 gap-10 mb-12">
-            <div>
-              <div className="text-2xl font-black text-white mb-3">plain<span style={{ color: "#6366f1" }}>·</span></div>
-              <p className="text-sm leading-relaxed">La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.</p>
-            </div>
+      {/* ── FAQ ── */}
+      <section id="faq" style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
+          <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 48, textAlign: "center" }}>Preguntas frecuentes</h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {[
-              { title:"Producto", links:["Funciones","Precios","Comparativa","Changelog"] },
-              { title:"Empresa", links:["Sobre Plain","Blog","Contacto","Partners"] },
-            ].map(col=>(
-              <div key={col.title}>
-                <h4 className="font-semibold text-white mb-4 text-xs uppercase tracking-wider">{col.title}</h4>
-                <ul className="space-y-2 text-sm">{col.links.map(l=><li key={l}><a href="#" className="hover:text-white transition-colors">{l}</a></li>)}</ul>
+              ["¿Necesito cuenta de Instagram Business?","Sí. La automatización requiere Instagram Business o Creator conectada a una Página de Facebook. La configuración tarda menos de 5 minutos."],
+              ["¿Plain reemplaza completamente a ManyChat?","Para las funciones de comentario→DM que usan la mayoría de agencias, sí. Modelo más simple, precio fijo, sin contar contactos."],
+              ["¿Cuántos DMs puedo enviar por día?","Plain usa la API oficial de Instagram y respeta los límites de Meta. Para cuentas Business activas, los límites raramente son un problema práctico."],
+              ["¿Puedo migrar mis reglas de ManyChat?","No importamos directamente, pero recrear las reglas es simple: keyword + mensaje + activar. La mayoría de agencias lo hacen en menos de 30 minutos."],
+              ["¿Qué pasa si cancelo?","Tus datos se conservan 30 días y puedes exportarlos. No borramos nada automáticamente."],
+              ["¿Funciona con Facebook?","Estamos optimizados para Instagram. El soporte para Facebook Pages está en el roadmap."],
+            ].map(([q,a],i)=>(
+              <div key={i} style={{ border: "1px solid #f0f0f0", borderRadius: 14, overflow: "hidden", background: "white" }}>
+                <button onClick={()=>setFaq(faq===i?null:i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 22px", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}>
+                  <span style={{ fontWeight: 600, fontSize: 15 }}>{q}</span>
+                  <ChevronDown size={17} style={{ color: "#bbb", flexShrink: 0, transform: faq===i ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
+                </button>
+                {faq===i && (
+                  <div style={{ padding: "0 22px 18px", fontSize: 14, color: "#666", lineHeight: 1.7, borderTop: "1px solid #fafafa" }}>{a}</div>
+                )}
               </div>
             ))}
-            <div>
-              <h4 className="font-semibold text-white mb-4 text-xs uppercase tracking-wider">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="https://www.addicional.com/politica-de-privacidad/" className="hover:text-white transition-colors">Política de privacidad</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Términos de uso</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookies</a></li>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section style={{ padding: "100px 32px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg,rgba(244,63,94,0.04),rgba(168,85,247,0.06),rgba(6,182,212,0.04))", pointerEvents: "none" }} />
+        <div style={{ maxWidth: 1900, margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div className="badge" style={{ marginBottom: 24 }}>
+            <Sparkles size={13} style={{ color: "#a855f7" }} />
+            Únete a las agencias que ya usan Plain
+          </div>
+          <h2 style={{ fontSize: "clamp(36px,5vw,68px)", fontWeight: 900, letterSpacing: "-2px", marginBottom: 16 }}>
+            ¿Listo para unificar tu stack?
+          </h2>
+          <p style={{ fontSize: 20, color: "#666", maxWidth: 500, margin: "0 auto 36px" }}>
+            Empieza hoy. Las agencias en España y LATAM están migrando a Plain.
+          </p>
+          <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 18, fontWeight: 700, padding: "16px 36px", borderRadius: 14, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
+            Prueba Plain gratis 14 días <ArrowRight size={20} />
+          </a>
+          <p style={{ marginTop: 14, fontSize: 13, color: "#aaa" }}>Sin tarjeta de crédito · 10 minutos de configuración · Cancela cuando quieras</p>
+        </div>
+      </section>
+
+      <div className="sep" />
+
+      {/* ── FOOTER ── */}
+      <footer style={{ padding: "60px 32px", maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
+          <div>
+            <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: "-0.5px", marginBottom: 10 }}>
+              plain<span className="grad-text">·</span>
+            </div>
+            <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, maxWidth: 280 }}>La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.</p>
+          </div>
+          {[
+            { t:"Producto", l:["Funciones","Precios","Comparativa","Changelog"] },
+            { t:"Empresa", l:["Sobre Plain","Blog","Contacto","Partners"] },
+            { t:"Legal", l:[{n:"Privacidad",h:"https://www.addicional.com/politica-de-privacidad/"},{n:"Términos",h:"#"},{n:"Cookies",h:"#"}] },
+          ].map(col=>(
+            <div key={col.t}>
+              <h4 style={{ fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "1px", color: "#aaa", marginBottom: 16 }}>{col.t}</h4>
+              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                {col.l.map((item: string | {n:string,h:string})=>{
+                  const label = typeof item === "string" ? item : item.n;
+                  const href = typeof item === "string" ? "#" : item.h;
+                  return <li key={label}><a href={href} style={{ fontSize: 14, color: "#888", textDecoration: "none" }}>{label}</a></li>;
+                })}
               </ul>
             </div>
-          </div>
-          <div className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm" style={{ borderColor: "#111827" }}>
-            <p>© {new Date().getFullYear()} Plain · Addicional Marketing, S.L. · Sabadell, España</p>
-            <p>Hecho con ❤️ para agencias que trabajan en serio</p>
-          </div>
+          ))}
+        </div>
+        <div className="sep" style={{ marginBottom: 24 }} />
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 13, color: "#bbb" }}>
+          <span>© {new Date().getFullYear()} Plain · Addicional Marketing, S.L. · Sabadell, España</span>
+          <span>Hecho con ❤️ para agencias</span>
         </div>
       </footer>
     </div>
