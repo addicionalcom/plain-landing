@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles } from "lucide-react";
+import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles, Brain, Import, BarChart2, ImageIcon, PenLine, Clock } from "lucide-react";
 
 const D = "https://dashboard.plainsocial.app";
 
@@ -242,6 +242,173 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── AI CONTENT ── */}
+      <section style={{ padding: "100px 32px", maxWidth: "100%", background: "white" }}>
+        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+          {/* Header */}
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <div className="badge" style={{ marginBottom: 20 }}>
+              <Brain size={13} style={{ color: "#a855f7" }} />
+              Exclusivo de Plain — no lo hace ninguna otra herramienta
+            </div>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 16 }}>
+              La IA que trabaja por ti.<br />
+              <span className="grad-text">Indica la carpeta, ella hace el resto.</span>
+            </h2>
+            <p style={{ fontSize: 20, color: "#666", maxWidth: 640, margin: "0 auto" }}>
+              Señala a Plain dónde están las fotos y vídeos de tu cliente. La IA analiza el contenido, selecciona las mejores piezas, escribe los copys y calendariza todo el mes automáticamente.
+            </p>
+          </div>
+
+          {/* Flow visual */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, maxWidth: 1100, margin: "0 auto 60px" }}>
+            {[
+              { icon: FolderOpen, color: "#f43f5e", bg: "#fff1f2", step: "01", title: "Señalas la carpeta", desc: "Dropbox, Google Drive o cualquier almacenamiento conectado. Plain accede a todas las fotos y vídeos del cliente." },
+              { icon: ImageIcon, color: "#a855f7", bg: "#faf5ff", step: "02", title: "La IA analiza el contenido", desc: "Evalúa cada pieza por calidad, relevancia y potencial de engagement. Selecciona las mejores automáticamente." },
+              { icon: PenLine, color: "#6366f1", bg: "#eef2ff", step: "03", title: "Escribe los copys", desc: "Genera copies adaptados a la voz de la marca, con hashtags, emojis y CTAs optimizados para Instagram." },
+              { icon: Clock, color: "#06b6d4", bg: "#ecfeff", step: "04", title: "Calendariza el mes", desc: "Programa todas las publicaciones en los mejores horarios para maximizar el alcance. Tú solo apruebas." },
+            ].map(({ icon: Icon, color, bg, step, title, desc }) => (
+              <div key={step} className="card" style={{ padding: 28, background: "white", position: "relative" }}>
+                <div style={{ position: "absolute", top: 20, right: 20, fontWeight: 900, fontSize: 13, color: "#f0f0f0", letterSpacing: "-0.5px" }}>{step}</div>
+                <div style={{ width: 52, height: 52, borderRadius: 16, background: bg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
+                  <Icon size={24} style={{ color }} />
+                </div>
+                <h3 style={{ fontWeight: 800, fontSize: 17, marginBottom: 8, letterSpacing: "-0.3px" }}>{title}</h3>
+                <p style={{ fontSize: 13, color: "#777", lineHeight: 1.65 }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Demo card */}
+          <div style={{ maxWidth: 900, margin: "0 auto" }}>
+            <div className="card" style={{ padding: 0, overflow: "hidden", background: "white", boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
+              {/* Top bar */}
+              <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 20px", display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
+                <span style={{ marginLeft: 10, fontSize: 12, color: "#aaa", fontWeight: 500 }}>Plain IA — Generación automática de contenido</span>
+                <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg,rgba(168,85,247,0.1),rgba(6,182,212,0.1))", border: "1px solid rgba(168,85,247,0.2)", borderRadius: 20, padding: "4px 12px" }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", animation: "pulse 2s infinite" }} />
+                  <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 600 }}>IA procesando</span>
+                </div>
+              </div>
+              <div style={{ padding: 28, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                {/* Left: folder + selection */}
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 12 }}>Carpeta analizada: /Delio/Marzo 2026</div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
+                    {[
+                      { sel: true, score: "9.4" }, { sel: false, score: "6.1" }, { sel: true, score: "8.8" },
+                      { sel: false, score: "5.9" }, { sel: true, score: "9.1" }, { sel: false, score: "7.2" },
+                    ].map((item, i) => (
+                      <div key={i} style={{ aspectRatio: "1", borderRadius: 10, background: item.sel ? "linear-gradient(135deg,#fce7f3,#ede9fe)" : "#f5f5f5", border: item.sel ? "2px solid #a855f7" : "2px solid transparent", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", position: "relative", overflow: "hidden" }}>
+                        <ImageIcon size={18} style={{ color: item.sel ? "#a855f7" : "#ccc" }} />
+                        <span style={{ fontSize: 10, fontWeight: 700, marginTop: 4, color: item.sel ? "#a855f7" : "#ccc" }}>{item.score}</span>
+                        {item.sel && <div style={{ position: "absolute", top: 6, right: 6, width: 16, height: 16, borderRadius: "50%", background: "#a855f7", display: "flex", alignItems: "center", justifyContent: "center" }}><Check size={9} style={{ color: "white" }} /></div>}
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{ marginTop: 12, fontSize: 12, color: "#888" }}>3 de 6 piezas seleccionadas · Puntuación media: 9.1</div>
+                </div>
+                {/* Right: generated copy + calendar */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <div style={{ background: "#fafafa", border: "1px solid #f0f0f0", borderRadius: 14, padding: 16 }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 8 }}>Copy generado por IA</div>
+                    <p style={{ fontSize: 12, color: "#444", lineHeight: 1.6 }}>
+                      ✨ Empieza la semana con energía en Delio 🍽️<br />
+                      Nuevos platos de temporada que ya están esperándote.<br />
+                      Reserva tu mesa y descubre el sabor de marzo.<br />
+                      <span style={{ color: "#a855f7" }}>#Delio #RestauranteBarcelona #GastronomíaLocal</span>
+                    </p>
+                  </div>
+                  <div style={{ background: "#fafafa", border: "1px solid #f0f0f0", borderRadius: 14, padding: 16 }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: "#06b6d4", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 10 }}>Calendarizado automáticamente</div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      {[["Lun 3 Mar","18:30","Post principal","✓"],["Mié 5 Mar","12:00","Story animada","✓"],["Vie 7 Mar","19:00","Reel receta","✓"]].map(([d,h,t,s])=>(
+                        <div key={d} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11 }}>
+                          <span style={{ color: "#888" }}>{d} · {h}</span>
+                          <span style={{ fontWeight: 600, color: "#444" }}>{t}</span>
+                          <span style={{ color: "#22c55e", fontWeight: 700 }}>{s}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── METRICOOL MIGRATION ── */}
+      <section style={{ padding: "80px 32px", maxWidth: "100%", background: "linear-gradient(135deg,rgba(244,63,94,0.03),rgba(168,85,247,0.04),rgba(6,182,212,0.03))" }}>
+        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+          <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
+            <div>
+              <div className="badge" style={{ marginBottom: 20 }}>
+                <Import size={13} style={{ color: "#f43f5e" }} />
+                Para usuarios de Metricool
+              </div>
+              <h2 style={{ fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 16 }}>
+                Migra de Metricool<br />
+                <span className="grad-text">en un solo clic.</span>
+              </h2>
+              <p style={{ fontSize: 17, color: "#666", lineHeight: 1.7, marginBottom: 28 }}>
+                Plain importa todo tu histórico de Metricool automáticamente. No pierdes nada, no empiezas de cero. En minutos tienes todo listo con la potencia extra de la IA y las automatizaciones.
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
+                {[
+                  { icon: BarChart2, color: "#f43f5e", bg: "#fff1f2", t: "Analytics históricos", d: "Todo tu historial de métricas, seguidores y engagement." },
+                  { icon: Calendar, color: "#a855f7", bg: "#faf5ff", t: "Publicaciones programadas", d: "Importamos el calendario de contenido pendiente." },
+                  { icon: Users, color: "#06b6d4", bg: "#ecfeff", t: "Clientes y cuentas", d: "Todas tus marcas conectadas, migradas automáticamente." },
+                ].map(({ icon: Icon, color, bg, t, d }) => (
+                  <div key={t} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                    <div style={{ width: 38, height: 38, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                      <Icon size={16} style={{ color }} />
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{t}</div>
+                      <div style={{ fontSize: 13, color: "#888" }}>{d}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 15, fontWeight: 700, padding: "13px 24px", borderRadius: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
+                Migrar desde Metricool <ArrowRight size={17} />
+              </a>
+            </div>
+            {/* Visual */}
+            <div className="card" style={{ padding: 28, background: "white" }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#888", marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span>Importar desde Metricool</span>
+                <span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontWeight: 800 }}>1 clic</span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {[
+                  { item: "Analytics históricos", count: "18 meses", status: "✓", done: true },
+                  { item: "Publicaciones programadas", count: "34 posts", status: "✓", done: true },
+                  { item: "Cuentas conectadas", count: "8 clientes", status: "✓", done: true },
+                  { item: "Automatizaciones IA", count: "nuevo", status: "★", done: false },
+                  { item: "Respuestas automáticas DM", count: "nuevo", status: "★", done: false },
+                ].map(({ item, count, status, done }) => (
+                  <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px", borderRadius: 12, background: done ? "#f0fdf4" : "linear-gradient(135deg,rgba(244,63,94,0.04),rgba(168,85,247,0.06))", border: `1px solid ${done ? "#bbf7d0" : "rgba(168,85,247,0.15)"}` }}>
+                    <span style={{ fontWeight: 600, fontSize: 14 }}>{item}</span>
+                    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                      <span style={{ fontSize: 12, color: "#888" }}>{count}</span>
+                      <span style={{ fontWeight: 800, fontSize: 16, color: done ? "#22c55e" : "#a855f7" }}>{status}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ marginTop: 20, padding: "14px", background: "#0a0a0a", borderRadius: 14, textAlign: "center" }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: "white" }}>Migración completada en 2 min 34 seg ⚡</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── HOW IT WORKS ── */}
       <section style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
@@ -293,12 +460,14 @@ export default function Home() {
               <tbody>
                 {[
                   ["Programar publicaciones Instagram", true, true, false, true],
+                  ["IA selecciona contenido y escribe copys", true, false, false, false],
+                  ["Calendarización automática con IA", true, false, false, false],
                   ["Automatización comentario → DM", true, false, true, false],
+                  ["Migración desde Metricool (1 clic)", true, "—", false, false],
                   ["Gestión multi-cliente agencias", true, "Parcial", false, "Parcial"],
-                  ["Dropbox / Google Drive", true, false, false, false],
+                  ["Dropbox / Google Drive integrado", true, false, false, false],
                   ["Precio fijo (sin contar contactos)", true, true, false, false],
                   ["Soporte en español", true, true, false, false],
-                  ["Todo en un solo panel", true, false, false, false],
                   ["Precio (agencia 10 clientes)", "€124/mes", "€88/mes*", "€450/mes**", "€990/mes"],
                 ].map((row,i)=>(
                   <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
