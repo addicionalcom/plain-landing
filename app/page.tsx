@@ -946,7 +946,7 @@ export default function Home() {
           {[
             { t:"Producto", l:["Funciones","Precios","Comparativa","Changelog"] },
             { t:"Empresa", l:["Sobre Plain","Blog","Contacto","Partners"] },
-            { t:"Legal", l:[{n:"Privacidad",h:"https://www.addicional.com/politica-de-privacidad/"},{n:"Términos",h:"#"},{n:"Cookies",h:"#"}] },
+            { t:"Legal", l:[{n:"Privacidad",h:"https://www.addicional.com/politica-de-privacidad/"},{n:"Términos",h:"/terminos"},{n:"Cookies",h:"/cookies"},{n:"Uso aceptable",h:"/uso-aceptable"}] },
           ].map(col=>(
             <div key={col.t}>
               <h4 style={{ fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "1px", color: "#aaa", marginBottom: 16 }}>{col.t}</h4>
