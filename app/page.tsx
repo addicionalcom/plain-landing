@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles, Brain, Import, BarChart2, ImageIcon, PenLine, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles, Brain, Import, BarChart2, ImageIcon, PenLine, Clock, Play, Pause } from "lucide-react";
 
 const D = "https://dashboard.plainsocial.app";
 
@@ -8,7 +8,15 @@ export default function Home() {
   const [annual, setAnnual] = useState(true);
   const [faq, setFaq] = useState<number | null>(null);
   const [tip, setTip] = useState<{label:string; desc:string; x:number; y:number}|null>(null);
+  const [demoStep, setDemoStep] = useState(0);
+  const [demoPlaying, setDemoPlaying] = useState(true);
   const p = { s: annual ? 24 : 29, m: annual ? 66 : 79, a: annual ? 124 : 149 };
+
+  useEffect(() => {
+    if (!demoPlaying) return;
+    const t = setInterval(() => setDemoStep(s => (s + 1) % 4), 3000);
+    return () => clearInterval(t);
+  }, [demoPlaying]);
 
   const TIPS: Record<string, string> = {
     // Pricing items
@@ -397,6 +405,211 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── DEMO ANIMADA ── */}
+      <section style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <div className="badge" style={{ marginBottom: 16 }}>
+              <Play size={12} style={{ color: "#a855f7" }} />
+              Cómo funciona — en 4 pasos
+            </div>
+            <h2 style={{ fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>
+              De la carpeta de Dropbox<br />
+              <span className="grad-text">al post publicado. Solo.</span>
+            </h2>
+            <p style={{ fontSize: 17, color: "#666", maxWidth: 520, margin: "0 auto" }}>
+              Conecta una carpeta, indica el cliente y Plain hace el resto — IA incluida.
+            </p>
+          </div>
+
+          {/* Step tabs */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, marginBottom: 40, flexWrap: "wrap" }}>
+            {[
+              { n: "01", label: "Conectas la carpeta" },
+              { n: "02", label: "La IA selecciona" },
+              { n: "03", label: "Escribe el copy" },
+              { n: "04", label: "Calendariza" },
+            ].map(({ n, label }, i) => (
+              <button key={n} onClick={() => { setDemoStep(i); setDemoPlaying(false); }}
+                style={{ padding: "8px 18px", borderRadius: 100, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700, transition: "all 0.2s",
+                  background: demoStep === i ? "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)" : "white",
+                  color: demoStep === i ? "white" : "#888",
+                  boxShadow: demoStep === i ? "0 4px 16px rgba(168,85,247,0.3)" : "0 1px 4px rgba(0,0,0,0.08)",
+                  border: demoStep === i ? "none" : "1px solid #e8e8e8",
+                }}>
+                <span style={{ opacity: 0.7, marginRight: 6 }}>{n}</span>{label}
+              </button>
+            ))}
+            <button onClick={() => setDemoPlaying(p => !p)}
+              style={{ padding: "8px 14px", borderRadius: 100, border: "1px solid #e8e8e8", background: "white", cursor: "pointer", color: "#aaa", display: "flex", alignItems: "center", gap: 5, fontSize: 12 }}>
+              {demoPlaying ? <Pause size={12} /> : <Play size={12} />}
+              {demoPlaying ? "Pausa" : "Auto"}
+            </button>
+          </div>
+
+          {/* Demo screen */}
+          <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 20, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
+            {/* Window bar */}
+            <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 20px", display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
+              <span style={{ marginLeft: 12, fontSize: 12, color: "#bbb", fontWeight: 500 }}>Plain · Contenido automático</span>
+              {/* Progress bar */}
+              <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
+                {[0,1,2,3].map(i => (
+                  <div key={i} style={{ width: i === demoStep ? 24 : 8, height: 6, borderRadius: 100, transition: "all 0.4s",
+                    background: i === demoStep ? "linear-gradient(90deg,#f43f5e,#a855f7)" : i < demoStep ? "#a855f7" : "#e8e8e8" }} />
+                ))}
+              </div>
+            </div>
+
+            {/* Content — step 0: Conectar carpeta */}
+            {demoStep === 0 && (
+              <div style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Almacenamiento conectado</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                    {[
+                      { name: "Dropbox", sub: "Conectado · 3 carpetas", color: "#0061ff", active: true },
+                      { name: "Google Drive", sub: "Conectado · 5 carpetas", color: "#34a853", active: true },
+                      { name: "OneDrive", sub: "No conectado", color: "#0078d4", active: false },
+                    ].map(s => (
+                      <div key={s.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 12, border: `1px solid ${s.active ? "rgba(168,85,247,0.15)" : "#f0f0f0"}`, background: s.active ? "rgba(168,85,247,0.03)" : "#fafafa" }}>
+                        <div style={{ width: 36, height: 36, borderRadius: 10, background: s.active ? s.color : "#f0f0f0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <FolderOpen size={16} style={{ color: s.active ? "white" : "#ccc" }} />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 13, fontWeight: 700 }}>{s.name}</div>
+                          <div style={{ fontSize: 11, color: s.active ? "#a855f7" : "#bbb" }}>{s.sub}</div>
+                        </div>
+                        {s.active && <Check size={14} style={{ color: "#22c55e" }} />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Carpeta seleccionada: /Delio/Abril 2026</div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
+                    {["IMG_001.jpg","VID_002.mp4","IMG_003.jpg","IMG_004.jpg","VID_005.mp4","IMG_006.jpg"].map((f,i) => (
+                      <div key={f} style={{ aspectRatio:"1", borderRadius: 10, background: f.includes("VID") ? "#faf5ff" : "#f9fafb", border: "1px solid #f0f0f0", display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "center", gap: 4 }}>
+                        {f.includes("VID") ? <div style={{ fontSize: 18 }}>🎬</div> : <ImageIcon size={18} style={{ color: "#d1d5db" }} />}
+                        <span style={{ fontSize: 9, color: "#bbb", fontWeight: 500 }}>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{ marginTop: 12, fontSize: 12, color: "#888" }}>6 archivos listos para analizar →</div>
+                </div>
+              </div>
+            )}
+
+            {/* Content — step 1: IA selecciona */}
+            {demoStep === 1 && (
+              <div style={{ padding: 32, minHeight: 320 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>IA analizando contenido · Delio / Abril 2026</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 12, marginBottom: 24 }}>
+                  {[
+                    { f:"IMG_001.jpg", score:9.4, sel:true, reason:"Alta luminosidad, producto bien centrado" },
+                    { f:"VID_002.mp4", score:6.1, sel:false, reason:"Movimiento borroso en los primeros segundos" },
+                    { f:"IMG_003.jpg", score:8.8, sel:true, reason:"Colores vibrantes, fondo limpio" },
+                    { f:"IMG_004.jpg", score:5.9, sel:false, reason:"Sobreexpuesto, poco contraste" },
+                    { f:"VID_005.mp4", score:9.1, sel:true, reason:"Reel dinámico, ritmo perfecto para Instagram" },
+                    { f:"IMG_006.jpg", score:7.2, sel:false, reason:"Encuadre correcto pero poco diferencial" },
+                  ].map((item,i) => (
+                    <div key={i}
+                      title={item.reason}
+                      style={{ aspectRatio:"1", borderRadius: 12, position:"relative", overflow:"hidden",
+                        border: item.sel ? "2px solid #a855f7" : "2px solid #f0f0f0",
+                        background: item.sel ? "linear-gradient(135deg,#faf5ff,#fce7f3)" : "#f9fafb",
+                        display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:4, cursor:"help" }}>
+                      {item.f.includes("VID") ? <div style={{ fontSize:22 }}>🎬</div> : <ImageIcon size={20} style={{ color: item.sel ? "#a855f7" : "#d1d5db" }} />}
+                      <div style={{ fontSize:11, fontWeight:800, color: item.sel ? "#a855f7" : "#bbb" }}>{item.score}</div>
+                      {item.sel && <div style={{ position:"absolute", top:6, right:6, width:18, height:18, borderRadius:"50%", background:"#a855f7", display:"flex", alignItems:"center", justifyContent:"center" }}><Check size={10} style={{ color:"white" }} /></div>}
+                      {!item.sel && <div style={{ position:"absolute", top:6, right:6, width:18, height:18, borderRadius:"50%", background:"#f3f4f6", display:"flex", alignItems:"center", justifyContent:"center" }}><X size={10} style={{ color:"#d1d5db" }} /></div>}
+                    </div>
+                  ))}
+                </div>
+                <div style={{ display:"flex", alignItems:"center", gap:16, padding:"14px 20px", borderRadius:12, background:"linear-gradient(135deg,rgba(168,85,247,0.06),rgba(6,182,212,0.06))", border:"1px solid rgba(168,85,247,0.12)" }}>
+                  <div style={{ width:8, height:8, borderRadius:"50%", background:"#a855f7" }} />
+                  <span style={{ fontSize:13, color:"#666" }}>IA seleccionó <strong style={{ color:"#a855f7" }}>3 de 6 piezas</strong> · Puntuación media: <strong>9.1 / 10</strong> · Estimación de alcance: <strong style={{ color:"#22c55e" }}>+34% vs media</strong></span>
+                </div>
+              </div>
+            )}
+
+            {/* Content — step 2: Escribe copy */}
+            {demoStep === 2 && (
+              <div style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Pieza seleccionada #1</div>
+                  <div style={{ aspectRatio:"4/3", borderRadius:14, background:"linear-gradient(135deg,#fce7f3,#ede9fe)", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:12 }}>
+                    <ImageIcon size={40} style={{ color:"#c084fc" }} />
+                  </div>
+                  <div style={{ fontSize:11, color:"#888" }}>IMG_001.jpg · Score 9.4 · Feed post</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Copy generado por IA</div>
+                  <div style={{ background:"#fafafa", border:"1px solid #f0f0f0", borderRadius:14, padding:18, marginBottom:12 }}>
+                    <div style={{ fontSize:11, fontWeight:700, color:"#a855f7", marginBottom:10, textTransform:"uppercase", letterSpacing:"0.6px" }}>Tono · Cercano · Español</div>
+                    <p style={{ fontSize:13, color:"#333", lineHeight:1.7 }}>
+                      🍽️ Abril empieza con sabor en <strong>Delio</strong>.<br />
+                      Nuevos platos de temporada que ya están esperándote en nuestra terraza.<br />
+                      ¿Te apuntas esta semana? 👇<br />
+                      <span style={{ color:"#a855f7" }}>#Delio #Barcelona #Gastronomía #RestauranteBarcelona #PlatosDeTemporada</span>
+                    </p>
+                  </div>
+                  <div style={{ display:"flex", gap:8 }}>
+                    {["Formal","Cercano","Humorístico"].map((t,i)=>(
+                      <button key={t} style={{ padding:"5px 12px", borderRadius:100, fontSize:11, fontWeight:700, border:"none", cursor:"pointer",
+                        background: i===1 ? "linear-gradient(135deg,#f43f5e,#a855f7)" : "white",
+                        color: i===1 ? "white" : "#aaa",
+                        boxShadow: i===1 ? "0 2px 8px rgba(168,85,247,0.3)" : "none",
+                        border: i!==1 ? "1px solid #e8e8e8" : "none" }}>{t}</button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Content — step 3: Calendariza */}
+            {demoStep === 3 && (
+              <div style={{ padding: 32, minHeight: 320 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>Calendario de publicación — Abril 2026 · Delio</div>
+                <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:8, marginBottom:16 }}>
+                  {["L","M","X","J","V","S","D"].map(d=>(
+                    <div key={d} style={{ textAlign:"center", fontSize:11, fontWeight:700, color:"#bbb", paddingBottom:4 }}>{d}</div>
+                  ))}
+                  {Array.from({length:30},(_,i)=>i+1).map(day=>{
+                    const scheduled = [2,5,8,10,12,15,17,19,22,24,26,29].includes(day);
+                    const isNew = [2,8,15].includes(day);
+                    return (
+                      <div key={day} style={{ aspectRatio:"1", borderRadius:8, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:600,
+                        background: isNew ? "linear-gradient(135deg,#f43f5e,#a855f7)" : scheduled ? "rgba(168,85,247,0.08)" : "#f9fafb",
+                        color: isNew ? "white" : scheduled ? "#a855f7" : "#ccc",
+                        border: scheduled && !isNew ? "1px solid rgba(168,85,247,0.2)" : "1px solid transparent",
+                        position:"relative" }}>
+                        {day}
+                        {isNew && <div style={{ position:"absolute", top:-4, right:-4, fontSize:8, background:"#22c55e", color:"white", borderRadius:100, padding:"1px 4px", fontWeight:800 }}>NEW</div>}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div style={{ display:"flex", alignItems:"center", gap:16, padding:"12px 18px", borderRadius:12, background:"rgba(34,197,94,0.06)", border:"1px solid rgba(34,197,94,0.15)" }}>
+                  <Check size={16} style={{ color:"#22c55e", flexShrink:0 }} />
+                  <span style={{ fontSize:13, color:"#666" }}>
+                    <strong style={{ color:"#22c55e" }}>3 publicaciones calendarizadas</strong> automáticamente en los mejores horarios · Lun, Jue y Dom a las 18:30
+                    · <strong>0 minutos de tu tiempo</strong>
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <p style={{ textAlign:"center", fontSize:13, color:"#bbb", marginTop:20 }}>
+            Pasa el ratón sobre cada pieza para ver el análisis de la IA · Haz clic en los pasos para explorar
+          </p>
         </div>
       </section>
 
