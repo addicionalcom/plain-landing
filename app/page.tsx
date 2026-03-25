@@ -434,7 +434,7 @@ export default function Home() {
               { n: "04", label: "Calendariza" },
             ].map(({ n, label }, i) => (
               <button key={n} onClick={() => { setDemoStep(i); setDemoPlaying(false); }}
-                style={{ padding: "8px 18px", borderRadius: 100, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700, transition: "all 0.2s",
+                style={{ padding: "8px 18px", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 700, transition: "all 0.2s",
                   background: demoStep === i ? "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)" : "white",
                   color: demoStep === i ? "white" : "#888",
                   boxShadow: demoStep === i ? "0 4px 16px rgba(168,85,247,0.3)" : "0 1px 4px rgba(0,0,0,0.08)",
@@ -562,7 +562,7 @@ export default function Home() {
                   </div>
                   <div style={{ display:"flex", gap:8 }}>
                     {["Formal","Cercano","Humorístico"].map((t,i)=>(
-                      <button key={t} style={{ padding:"5px 12px", borderRadius:100, fontSize:11, fontWeight:700, border:"none", cursor:"pointer",
+                      <button key={t} style={{ padding:"5px 12px", borderRadius:100, fontSize:11, fontWeight:700, cursor:"pointer",
                         background: i===1 ? "linear-gradient(135deg,#f43f5e,#a855f7)" : "white",
                         color: i===1 ? "white" : "#aaa",
                         boxShadow: i===1 ? "0 2px 8px rgba(168,85,247,0.3)" : "none",
