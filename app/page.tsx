@@ -16,7 +16,7 @@ export default function Home() {
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(255,255,255,0.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid #f0f0f0" }}>
         <div style={{ maxWidth: 1900, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
           <a href="/" style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.5px", textDecoration: "none", color: "#0a0a0a" }}>
-            plain<span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>·</span>
+            <img src="/logo.svg" alt="Plain" style={{ height: 28, display: "block" }} />
           </a>
           <div style={{ display: "flex", gap: 28, fontSize: 14, fontWeight: 500, color: "#555" }}>
             {[["#features","Funciones"],["#comparativa","Comparativa"],["#precios","Precios"],["#faq","FAQ"]].map(([h,l])=>(
@@ -454,7 +454,7 @@ export default function Home() {
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
           <div>
             <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: "-0.5px", marginBottom: 10 }}>
-              plain<span className="grad-text">·</span>
+              <img src="/logo.svg" alt="Plain" style={{ height: 28, display: "block" }} />
             </div>
             <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, maxWidth: 280 }}>La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.</p>
           </div>
