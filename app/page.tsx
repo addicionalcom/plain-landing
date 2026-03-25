@@ -359,7 +359,7 @@ export default function Home() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
                 {[
-                  { icon: BarChart2, color: "#f43f5e", bg: "#fff1f2", t: "Analytics históricos", d: "Todo tu historial de métricas, seguidores y engagement." },
+                  { icon: BarChart2, color: "#f43f5e", bg: "#fff1f2", t: "Analytics · hasta 12 meses de histórico", d: "Importamos todas tus métricas: seguidores, alcance, engagement y publicaciones." },
                   { icon: Calendar, color: "#a855f7", bg: "#faf5ff", t: "Publicaciones programadas", d: "Importamos el calendario de contenido pendiente." },
                   { icon: Users, color: "#06b6d4", bg: "#ecfeff", t: "Clientes y cuentas", d: "Todas tus marcas conectadas, migradas automáticamente." },
                 ].map(({ icon: Icon, color, bg, t, d }) => (
@@ -386,7 +386,7 @@ export default function Home() {
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[
-                  { item: "Analytics históricos", count: "18 meses", status: "✓", done: true },
+                  { item: "Analytics históricos (12 meses)", count: "importados", status: "✓", done: true },
                   { item: "Publicaciones programadas", count: "34 posts", status: "✓", done: true },
                   { item: "Cuentas conectadas", count: "8 clientes", status: "✓", done: true },
                   { item: "Automatizaciones IA", count: "nuevo", status: "★", done: false },
@@ -464,6 +464,7 @@ export default function Home() {
                   ["Calendarización automática con IA", true, false, false, false],
                   ["Automatización comentario → DM", true, false, true, false],
                   ["Migración desde Metricool (1 clic)", true, "—", false, false],
+                  ["Analytics · histórico 12 meses", true, true, false, false],
                   ["Gestión multi-cliente agencias", true, "Parcial", false, "Parcial"],
                   ["Dropbox / Google Drive integrado", true, false, false, false],
                   ["Precio fijo (sin contar contactos)", true, true, false, false],
@@ -531,14 +532,34 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Networks row */}
+          <div style={{ textAlign: "center", marginBottom: 32 }}>
+            <p style={{ fontSize: 13, color: "#888", marginBottom: 10, fontWeight: 500 }}>Todas las redes incluidas en cada plan · Cada cliente puede conectar todas simultáneamente</p>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
+              {[
+                { label: "Instagram", color: "#E1306C", svg: <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: "#E1306C" }}><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> },
+                { label: "Facebook", color: "#1877F2", svg: <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: "#1877F2" }}><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
+                { label: "TikTok", color: "#000000", svg: <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: "#000000" }}><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg> },
+                { label: "LinkedIn", color: "#0A66C2", svg: <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: "#0A66C2" }}><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
+                { label: "YouTube", color: "#FF0000", svg: <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: "#FF0000" }}><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> },
+                { label: "Pinterest", color: "#E60023", svg: <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: "#E60023" }}><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> },
+                { label: "X", color: "#000000", svg: <svg viewBox="0 0 24 24" style={{ width: 18, height: 18, fill: "#000000" }}><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg> },
+              ].map(({ label, svg }) => (
+                <div key={label} title={label} style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "white", border: "1px solid #e8e8e8", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}>
+                  {svg}
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
             {[
               { name:"Starter", desc:"Para freelancers y agencias pequeñas", price:p.s, hi:false,
-                items:["Hasta 3 clientes","Programación de contenido","5 automatizaciones activas","Dropbox / Drive","Soporte por email"] },
+                items:["Hasta 3 clientes","Programación de contenido","5 automatizaciones activas","Analytics · últimos 12 meses","Dropbox / Drive","Soporte por email"] },
               { name:"Pro", desc:"Para agencias en crecimiento", price:p.m, hi:true,
-                items:["Hasta 10 clientes","Automatizaciones ilimitadas","Programación ilimitada","Todos los almacenamientos","Analytics por cliente","Soporte prioritario"] },
+                items:["Hasta 10 clientes","Automatizaciones ilimitadas","Programación ilimitada","Analytics · histórico 12 meses","Todos los almacenamientos","Soporte prioritario"] },
               { name:"Agency", desc:"Para agencias con muchos clientes", price:p.a, hi:false,
-                items:["Clientes ilimitados","Automatizaciones ilimitadas","Usuarios ilimitados","White-label (próx.)","API (próx.)","Onboarding dedicado","Soporte 24/7"] },
+                items:["Clientes ilimitados","Automatizaciones ilimitadas","Usuarios ilimitados","Analytics · histórico 12 meses","White-label (próx.)","API (próx.)","Onboarding dedicado","Soporte 24/7"] },
             ].map(pl=>(
               <div key={pl.name} style={{ borderRadius: 20, padding: 32, position: "relative", ...(pl.hi ? { background: "linear-gradient(145deg,#0a0a0a,#1a0a2e)", color: "white", boxShadow: "0 24px 60px rgba(168,85,247,0.25)" } : { background: "white", border: "1px solid #e8e8e8" }) }}>
                 {pl.hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>Más popular</div>}
@@ -546,10 +567,19 @@ export default function Home() {
                   <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 4 }}>{pl.name}</h3>
                   <p style={{ fontSize: 13, color: pl.hi ? "#9ca3af" : "#888" }}>{pl.desc}</p>
                 </div>
-                <div style={{ marginBottom: 24 }}>
+                <div style={{ marginBottom: 16 }}>
                   <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>€{pl.price}</span>
                   <span style={{ fontSize: 15, color: pl.hi ? "#6b7280" : "#aaa" }}>/mes</span>
                   {annual && <div style={{ fontSize: 12, color: pl.hi ? "#a855f7" : "#22c55e", marginTop: 3 }}>Facturado anualmente</div>}
+                </div>
+                {/* All networks included */}
+                <div style={{ marginBottom: 20, padding: "10px 14px", borderRadius: 10, background: pl.hi ? "rgba(168,85,247,0.12)" : "rgba(168,85,247,0.05)", border: `1px solid ${pl.hi ? "rgba(168,85,247,0.3)" : "rgba(168,85,247,0.12)"}` }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, color: pl.hi ? "#c084fc" : "#a855f7", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.5px" }}>Todas las redes por cliente</p>
+                  <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+                    {["IG","FB","TK","LI","YT","Pin","X"].map(n=>(
+                      <span key={n} style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 6, background: pl.hi ? "rgba(255,255,255,0.1)" : "white", color: pl.hi ? "#e5e7eb" : "#555", border: `1px solid ${pl.hi ? "rgba(255,255,255,0.15)" : "#e8e8e8"}` }}>{n}</span>
+                    ))}
+                  </div>
                 </div>
                 <a href={`${D}/register`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(pl.hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
                   Empezar gratis
@@ -557,14 +587,15 @@ export default function Home() {
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                   {pl.items.map(it=>(
                     <li key={it} style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: pl.hi ? "#d1d5db" : "#555" }}>
-                      <Check size={14} style={{ color: pl.hi ? "#a855f7" : "#a855f7", flexShrink: 0 }} />{it}
+                      <Check size={14} style={{ color: "#a855f7", flexShrink: 0 }} />{it}
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-          <p style={{ textAlign: "center", fontSize: 13, color: "#bbb", marginTop: 24 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#aaa", marginTop: 16 }}>Al conectar un nuevo cliente, Plain importa hasta 12 meses de datos históricos automáticamente.</p>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#bbb", marginTop: 8 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
         </div>
       </section>
 
