@@ -11,6 +11,7 @@ export default function Home() {
   const p = { s: annual ? 24 : 29, m: annual ? 66 : 79, a: annual ? 124 : 149 };
 
   const TIPS: Record<string, string> = {
+    // Pricing items
     "Hasta 3 clientes": "Gestiona hasta 3 marcas desde un panel centralizado. Cada cliente con sus propias redes y automatizaciones.",
     "Hasta 10 clientes": "Panel multi-cliente para hasta 10 marcas. Cambia entre clientes en un clic sin perder contexto.",
     "Clientes ilimitados": "Sin límite de clientes. Añade todas las agencias y marcas que necesites sin coste adicional.",
@@ -29,6 +30,25 @@ export default function Home() {
     "White-label (próx.)": "Próximamente: personaliza Plain con tu marca, colores y dominio propio para venderlo a tus clientes.",
     "API (próx.)": "Próximamente: API REST para integrar Plain con tus herramientas, CRMs y flujos de trabajo personalizados.",
     "Onboarding dedicado": "Sesión 1:1 con nuestro equipo para configurar todo desde cero. Incluye migración de Metricool.",
+    // Features section — automatización
+    "Múltiples palabras clave": "Define tantas keywords como necesites: 'INFO', 'PRECIO', 'RESERVA', 'LINK'... cada una con su propio mensaje y flujo de respuesta.",
+    "Mensajes con variantes": "Añade variantes al mismo mensaje para que Instagram no los detecte como spam. Plain los rota automáticamente.",
+    "Respuesta pública + DM": "Además del DM privado, Plain puede dejar un comentario público en la publicación. Doble impacto con un solo clic.",
+    "Incluir enlaces y CTAs": "Añade URLs, botones de llamada a la acción y emojis en tus mensajes automáticos. Lleva tráfico a donde quieras.",
+    // Features section — programación
+    "Calendario visual": "Vista mensual de todas las publicaciones programadas. Arrastra y suelta para reorganizar. Filtrable por cliente y red.",
+    "Dropbox y Drive": "Conecta las carpetas de tus clientes directamente. Sin descargar ni subir archivos — Plain accede y publica desde ahí.",
+    "Posts, Reels y Stories": "Programa cualquier formato de Instagram: feed, Reels cortos y largos, Stories con stickers y links.",
+    "Publicación automática": "Cero intervención manual. Plain publica a la hora exacta programada, incluso cuando estás de vacaciones.",
+    // Features section — multi-cliente
+    "Panel multi-cliente": "Un solo login. Todos tus clientes en una barra lateral. Cambia de cuenta en menos de 2 segundos.",
+    "Branding por cliente": "Cada cliente tiene su propio color, logo y configuración. La experiencia parece hecha a medida para cada marca.",
+    "Roles de equipo": "Asigna permisos distintos a cada miembro: admin, editor o visualizador. Controla quién puede publicar o configurar automatizaciones.",
+    "Sin límite de cuentas": "Desde el plan Pro, gestiona tantos clientes como quieras sin pagar más. Escala sin fricciones.",
+    // Small feature cards
+    "Almacenamiento conectado": "Dropbox, Google Drive y OneDrive integrados de forma nativa. Accede a los activos de tus clientes sin salir de Plain.",
+    "Métricas en tiempo real": "Dashboard de rendimiento con alcance, impresiones, engagement y crecimiento de seguidores actualizado cada hora.",
+    "Seguro y conforme RGPD": "Todos los datos se procesan en servidores europeos. Cumplimiento total con Meta, RGPD y la normativa española.",
   };
 
   const NET_ICONS = [
@@ -246,7 +266,12 @@ export default function Home() {
                 <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6, marginBottom: 20 }}>{desc}</p>
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
                   {items.map(i=>(
-                    <li key={i} style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, color: "#444" }}>
+                    <li key={i}
+                      onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:i,desc:TIPS[i]??i,x:r.left+r.width/2,y:r.top-8}); }}
+                      onMouseLeave={()=>setTip(null)}
+                      style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, color: "#444", cursor: TIPS[i] ? "help" : "default", borderRadius: 6, padding: "2px 4px", transition: "background 0.1s" }}
+                      onMouseOver={e=>{ if(TIPS[i])(e.currentTarget as HTMLElement).style.background="#f9f5ff"; }}
+                      onMouseOut={e=>{ (e.currentTarget as HTMLElement).style.background="transparent"; }}>
                       <Check size={13} style={{ color: grad[1], flexShrink: 0 }} />{i}
                     </li>
                   ))}
@@ -260,7 +285,9 @@ export default function Home() {
               { icon: TrendingUp, c: "#2563eb", bg: "#eff6ff", t: "Métricas en tiempo real", d: "Rendimiento de cada cliente en un solo panel." },
               { icon: Shield, c: "#059669", bg: "#ecfdf5", t: "Seguro y conforme RGPD", d: "Datos en Europa. Cumplimiento total con Meta." },
             ].map(({ icon: Icon, c, bg, t, d })=>(
-              <div key={t} className="card" style={{ padding: 20, display: "flex", gap: 14, background: "white" }}>
+              <div key={t} className="card" style={{ padding: 20, display: "flex", gap: 14, background: "white", cursor: "help" }}
+                onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:t,desc:TIPS[t]??d,x:r.left+r.width/2,y:r.top-8}); }}
+                onMouseLeave={()=>setTip(null)}>
                 <div style={{ width: 40, height: 40, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <Icon size={18} style={{ color: c }} />
                 </div>
