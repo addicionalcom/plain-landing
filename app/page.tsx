@@ -74,9 +74,9 @@ export default function Home() {
 
       {/* ── NAV ── */}
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(255,255,255,0.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid #f0f0f0" }}>
-        <div style={{ maxWidth: 1900, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 80 }}>
           <a href="/" style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.5px", textDecoration: "none", color: "#0a0a0a" }}>
-            <img src="/logo.svg" alt="Plain" style={{ height: 28, display: "block" }} />
+            <img src="/logo.svg" alt="Plain" style={{ height: 34, display: "block" }} />
           </a>
           <div style={{ display: "flex", gap: 28, fontSize: 14, fontWeight: 500, color: "#555" }}>
             {[["#features","Funciones"],["#comparativa","Comparativa"],["#precios","Precios"],["#faq","FAQ"]].map(([h,l])=>(
@@ -99,7 +99,7 @@ export default function Home() {
         <div style={{ position: "absolute", top: 100, left: "10%", width: 300, height: 300, background: "radial-gradient(ellipse, rgba(244,63,94,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 80, right: "10%", width: 300, height: 300, background: "radial-gradient(ellipse, rgba(6,182,212,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-        <div style={{ maxWidth: 1900, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
           {/* Badge */}
           <div className="badge anim-up" style={{ marginBottom: 28 }}>
             <Sparkles size={13} style={{ color: "#a855f7" }} />
@@ -182,8 +182,8 @@ export default function Home() {
       </section>
 
       {/* ── LOGOS ── */}
-      <div className="sep" style={{ maxWidth: 1900, margin: "0 auto 0" }} />
-      <section style={{ padding: "28px 32px", maxWidth: 1900, margin: "0 auto", textAlign: "center" }}>
+      <div className="sep" style={{ maxWidth: 1400, margin: "0 auto 0" }} />
+      <section style={{ padding: "28px 32px", maxWidth: 1400, margin: "0 auto", textAlign: "center" }}>
         <p style={{ fontSize: 12, fontWeight: 600, color: "#ccc", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>Integra con tus herramientas</p>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "8px 36px" }}>
           {[
@@ -191,8 +191,8 @@ export default function Home() {
             { name: "Facebook", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
             { name: "TikTok", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg> },
             { name: "LinkedIn", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
-            { name: "Dropbox", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M12 6.036l-6 3.75 6 3.75-6 3.75L0 13.536l6-3.75-6-3.75L6 2.286l6 3.75zm-6 10.5l6-3.75 6 3.75-6 3.75zm6-3.75l6-3.75-6-3.75 6-3.75 6 3.75-6 3.75z"/></svg> },
-            { name: "Google Drive", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M4.433 22.396l2-3.467H22l-2 3.467zm3.566-3.467l-4-6.933L0 18.929zm12.568 0H7.999l4-6.933h12.568zM8.566 11.997L4.566 5.064 2.566 8.53l4 6.934zm4-6.933L8.566 11.997h8l-4-6.933zm4 0l4 6.933 2-3.467-4-6.933z"/></svg> },
+            { name: "Dropbox", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M6 2L0 5.75l6 3.75 6-3.75zm12 0l-6 3.75 6 3.75 6-3.75zM0 11.25L6 15l6-3.75L6 7.5zm12 0L18 15l6-3.75-6-3.75zM6 16.25L12 20l6-3.75-6-3.75z"/></svg> },
+            { name: "Google Drive", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M4.5 21l7.5-13 7.5 13zm1.8-1.5h11.4L12 9zm5.7-8L7.5 21H2l4-7zm1.5 0L18 21h-5.5l-4-7z"/></svg> },
             { name: "OneDrive", svg: <svg viewBox="0 0 24 24" style={{width:22,height:22,fill:"#ccc"}}><path d="M17.5 12.5a5 5 0 00-9.8-1.4A4 4 0 108 19h9.5a3.5 3.5 0 000-7h-.5z"/></svg> },
             { name: "YouTube", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> },
             { name: "Pinterest", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> },
@@ -206,10 +206,10 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <div className="sep" style={{ maxWidth: 1900, margin: "0 auto" }} />
+      <div className="sep" style={{ maxWidth: 1400, margin: "0 auto" }} />
 
       {/* ── PROBLEM ── */}
-      <section style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+      <section style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>
@@ -270,7 +270,7 @@ export default function Home() {
 
       {/* ── FEATURES ── */}
       <section id="features" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
-        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Todo lo que necesita tu agencia</h2>
             <p style={{ fontSize: 18, color: "#666" }}>Tres pilares. Un solo panel.</p>
@@ -326,7 +326,7 @@ export default function Home() {
 
       {/* ── AI CONTENT ── */}
       <section style={{ padding: "100px 32px", maxWidth: "100%", background: "white" }}>
-        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <div className="badge" style={{ marginBottom: 20 }}>
@@ -630,7 +630,7 @@ export default function Home() {
 
       {/* ── METRICOOL MIGRATION ── */}
       <section style={{ padding: "80px 32px", maxWidth: "100%", background: "linear-gradient(135deg,rgba(244,63,94,0.03),rgba(168,85,247,0.04),rgba(6,182,212,0.03))" }}>
-        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
             <div>
               <div className="badge" style={{ marginBottom: 20 }}>
@@ -697,7 +697,7 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+      <section style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>En marcha en 10 minutos</h2>
@@ -726,7 +726,7 @@ export default function Home() {
 
       {/* ── COMPARISON ── */}
       <section id="comparativa" style={{ padding: "100px 32px", background: "#0a0a0a", color: "white", maxWidth: "100%" }}>
-        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Plain vs. las alternativas</h2>
             <p style={{ fontSize: 18, color: "#666" }}>Por qué las agencias eligen Plain sobre pagar dos herramientas.</p>
@@ -779,7 +779,7 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+      <section style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Lo que dicen las agencias</h2>
         </div>
@@ -803,7 +803,7 @@ export default function Home() {
 
       {/* ── PRICING ── */}
       <section id="precios" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
-        <div style={{ maxWidth: 1900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Precio fijo. Sin sorpresas.</h2>
             <p style={{ fontSize: 18, color: "#666", maxWidth: 500, margin: "0 auto 28px" }}>
@@ -885,7 +885,7 @@ export default function Home() {
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" style={{ padding: "100px 32px", maxWidth: 1900, margin: "0 auto" }}>
+      <section id="faq" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 48, textAlign: "center" }}>Preguntas frecuentes</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -914,7 +914,7 @@ export default function Home() {
       {/* ── CTA ── */}
       <section style={{ padding: "100px 32px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg,rgba(244,63,94,0.04),rgba(168,85,247,0.06),rgba(6,182,212,0.04))", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 1900, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div className="badge" style={{ marginBottom: 24 }}>
             <Sparkles size={13} style={{ color: "#a855f7" }} />
             Únete a las agencias que ya usan Plain
@@ -935,11 +935,11 @@ export default function Home() {
       <div className="sep" />
 
       {/* ── FOOTER ── */}
-      <footer style={{ padding: "60px 32px", maxWidth: 1900, margin: "0 auto" }}>
+      <footer style={{ padding: "60px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
           <div>
             <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: "-0.5px", marginBottom: 10 }}>
-              <img src="/logo.svg" alt="Plain" style={{ height: 28, display: "block" }} />
+              <img src="/logo.svg" alt="Plain" style={{ height: 34, display: "block" }} />
             </div>
             <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, maxWidth: 280 }}>La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.</p>
           </div>
