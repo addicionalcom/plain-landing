@@ -622,7 +622,7 @@ export default function Home() {
                 <Import size={13} style={{ color: "#f43f5e" }} />
                 Para usuarios de Metricool
               </div>
-              <h2 style={{ fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, letterSpacing: "-1.5px", lineHeight: 1.05, marginBottom: 16 }}>
+              <h2 style={{ fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 16 }}>
                 Migra de Metricool<br />
                 <span className="grad-text">en un solo clic.</span>
               </h2>
