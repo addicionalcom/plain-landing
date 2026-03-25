@@ -41,16 +41,10 @@ export const metadata: Metadata = {
       "Automatiza respuestas en Instagram, programa contenido y gestiona todos tus clientes desde un solo lugar.",
     images: ["/og-image.png"],
   },
+  // TODO: canviar a index:true quan la landing estigui llesta per publicar
   robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    index: false,
+    follow: false,
   },
 };
 
