@@ -103,17 +103,36 @@ export default function Home() {
           {/* Badge */}
           <div className="badge anim-up" style={{ marginBottom: 28 }}>
             <Sparkles size={13} style={{ color: "#a855f7" }} />
-            Programación · Automatización · Multi-cliente
+            La herramienta de social media para agencias
           </div>
 
-          <h1 className="anim-up-1 hero-title" style={{ fontSize: "clamp(44px, 6vw, 80px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-2px", marginBottom: 24, maxWidth: 900, margin: "0 auto 24px" }}>
-            Deja de pagar dos herramientas<br />
-            <span className="grad-text">para hacer el trabajo de una.</span>
+          <h1 className="anim-up-1 hero-title" style={{ fontSize: "clamp(40px, 5.5vw, 76px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-2px", marginBottom: 24, maxWidth: 960, margin: "0 auto 24px" }}>
+            Tú genera el contenido.<br />
+            <span className="grad-text">Plain se encarga del resto.</span>
           </h1>
 
-          <p className="anim-up-2" style={{ fontSize: 20, color: "#555", maxWidth: 600, margin: "0 auto 36px", lineHeight: 1.6 }}>
-            Plain combina programación de Instagram con automatización comentario→DM en un solo panel para agencias.
+          <p className="anim-up-2" style={{ fontSize: 20, color: "#555", maxWidth: 620, margin: "0 auto 16px", lineHeight: 1.6 }}>
+            Sube tus fotos y reels a Dropbox o Drive. Plain selecciona el mejor contenido, redacta los copies con IA, lo planifica y lo publica solo.
           </p>
+
+          {/* Flow pills */}
+          <div className="anim-up-2" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, flexWrap: "wrap", marginBottom: 36 }}>
+            {[
+              { icon: "📁", label: "Subes el contenido" },
+              { icon: "→", label: "" },
+              { icon: "🤖", label: "IA selecciona y redacta" },
+              { icon: "→", label: "" },
+              { icon: "📅", label: "Planifica" },
+              { icon: "→", label: "" },
+              { icon: "✅", label: "Publica solo" },
+            ].map((item, i) => item.label ? (
+              <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "white", border: "1px solid #e8e8e8", borderRadius: 100, padding: "5px 12px", fontSize: 13, fontWeight: 600, color: "#333", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
+                <span>{item.icon}</span>{item.label}
+              </span>
+            ) : (
+              <span key={i} style={{ color: "#ccc", fontWeight: 300, fontSize: 18 }}>→</span>
+            ))}
+          </div>
 
           <div className="anim-up-3" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 16, fontWeight: 700, padding: "14px 28px", borderRadius: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
