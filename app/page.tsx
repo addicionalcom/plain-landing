@@ -123,10 +123,10 @@ export default function Home() {
               Ver cómo funciona
             </a>
           </div>
-          <p style={{ marginTop: 14, fontSize: 13, color: "#aaa" }}>14 días gratis · Sin tarjeta · Cancela cuando quieras</p>
+          <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>14 días gratis · Sin tarjeta · Cancela cuando quieras</p>
 
           {/* Hero card mockup */}
-          <div className="float hero-card" style={{ marginTop: 60, maxWidth: 860, marginLeft: "auto", marginRight: "auto" }}>
+          <div aria-hidden="true" className="float hero-card" style={{ marginTop: 60, maxWidth: 860, marginLeft: "auto", marginRight: "auto" }}>
             <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 24, overflow: "hidden", boxShadow: "0 24px 80px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04)" }}>
               {/* Window bar */}
               <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 18px", display: "flex", alignItems: "center", gap: 8 }}>
@@ -231,7 +231,7 @@ export default function Home() {
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[["Metricool / Later / Buffer","~€20–45/mes","Programar contenido"],["ManyChat","~€25–65/mes*","Automatizar DMs"]].map(([t,p,d])=>(
                   <div key={t} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "white", border: "1px solid #fee2e2", borderRadius: 12, padding: "12px 16px" }}>
-                    <div><div style={{ fontWeight: 700, fontSize: 13 }}>{t}</div><div style={{ fontSize: 12, color: "#999" }}>{d}</div></div>
+                    <div><div style={{ fontWeight: 700, fontSize: 13 }}>{t}</div><div style={{ fontSize: 12, color: "#767676" }}>{d}</div></div>
                     <div style={{ fontWeight: 800, color: "#ef4444", fontSize: 14 }}>{p}</div>
                   </div>
                 ))}
@@ -262,7 +262,7 @@ export default function Home() {
                   <span style={{ fontWeight: 900, color: "white", fontSize: 20 }}>€24/mes</span>
                 </div>
               </div>
-              <p style={{ fontSize: 11, color: "#bbb", marginTop: 10 }}>Precio fijo — sin sorpresas, sin contar contactos</p>
+              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>Precio fijo — sin sorpresas, sin contar contactos</p>
             </div>
           </div>
         </div>
@@ -316,7 +316,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 3 }}>{t}</div>
-                  <div style={{ fontSize: 12, color: "#888" }}>{d}</div>
+                  <div style={{ fontSize: 12, color: "#767676" }}>{d}</div>
                 </div>
               </div>
             ))}
@@ -369,7 +369,7 @@ export default function Home() {
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
-                <span style={{ marginLeft: 10, fontSize: 12, color: "#aaa", fontWeight: 500 }}>Plain IA — Generación automática de contenido</span>
+                <span style={{ marginLeft: 10, fontSize: 12, color: "#767676", fontWeight: 500 }}>Plain IA — Generación automática de contenido</span>
                 <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg,rgba(168,85,247,0.1),rgba(6,182,212,0.1))", border: "1px solid rgba(168,85,247,0.2)", borderRadius: 20, padding: "4px 12px" }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", animation: "pulse 2s infinite" }} />
                   <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 600 }}>IA procesando</span>
@@ -378,7 +378,7 @@ export default function Home() {
               <div className="ai-demo-grid" style={{ padding: 28, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                 {/* Left: folder + selection */}
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 12 }}>Carpeta analizada: /Delio/Marzo 2026</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 12 }}>Carpeta analizada: /Delio/Marzo 2026</div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                     {[
                       { sel: true, score: "9.4" }, { sel: false, score: "6.1" }, { sel: true, score: "8.8" },
@@ -391,7 +391,7 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  <div style={{ marginTop: 12, fontSize: 12, color: "#888" }}>3 de 6 piezas seleccionadas · Puntuación media: 9.1</div>
+                  <div style={{ marginTop: 12, fontSize: 12, color: "#767676" }}>3 de 6 piezas seleccionadas · Puntuación media: 9.1</div>
                 </div>
                 {/* Right: generated copy + calendar */}
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -409,7 +409,7 @@ export default function Home() {
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                       {[["Lun 3 Mar","18:30","Post principal","✓"],["Mié 5 Mar","12:00","Story animada","✓"],["Vie 7 Mar","19:00","Reel receta","✓"]].map(([d,h,t,s])=>(
                         <div key={d} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11 }}>
-                          <span style={{ color: "#888" }}>{d} · {h}</span>
+                          <span style={{ color: "#767676" }}>{d} · {h}</span>
                           <span style={{ fontWeight: 600, color: "#444" }}>{t}</span>
                           <span style={{ color: "#22c55e", fontWeight: 700 }}>{s}</span>
                         </div>
@@ -459,7 +459,7 @@ export default function Home() {
               </button>
             ))}
             <button onClick={() => setDemoPlaying(p => !p)}
-              style={{ padding: "8px 14px", borderRadius: 100, border: "1px solid #e8e8e8", background: "white", cursor: "pointer", color: "#aaa", display: "flex", alignItems: "center", gap: 5, fontSize: 12 }}>
+              style={{ padding: "8px 14px", borderRadius: 100, border: "1px solid #e8e8e8", background: "white", cursor: "pointer", color: "#767676", display: "flex", alignItems: "center", gap: 5, fontSize: 12 }}>
               {demoPlaying ? <Pause size={12} /> : <Play size={12} />}
               {demoPlaying ? "Pausa" : "Auto"}
             </button>
@@ -472,7 +472,7 @@ export default function Home() {
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
-              <span style={{ marginLeft: 12, fontSize: 12, color: "#bbb", fontWeight: 500 }}>Plain · Contenido automático</span>
+              <span style={{ marginLeft: 12, fontSize: 12, color: "#767676", fontWeight: 500 }}>Plain · Contenido automático</span>
               {/* Progress bar */}
               <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
                 {[0,1,2,3].map(i => (
@@ -486,7 +486,7 @@ export default function Home() {
             {demoStep === 0 && (
               <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Almacenamiento conectado</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Almacenamiento conectado</div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     {[
                       { name: "Dropbox", sub: "Conectado · 3 carpetas", color: "#0061ff", active: true },
@@ -507,16 +507,16 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Carpeta seleccionada: /Delio/Abril 2026</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Carpeta seleccionada: /Delio/Abril 2026</div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                     {["IMG_001.jpg","VID_002.mp4","IMG_003.jpg","IMG_004.jpg","VID_005.mp4","IMG_006.jpg"].map((f,i) => (
                       <div key={f} style={{ aspectRatio:"1", borderRadius: 10, background: f.includes("VID") ? "#faf5ff" : "#f9fafb", border: "1px solid #f0f0f0", display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "center", gap: 4 }}>
                         {f.includes("VID") ? <div style={{ fontSize: 18 }}>🎬</div> : <ImageIcon size={18} style={{ color: "#d1d5db" }} />}
-                        <span style={{ fontSize: 9, color: "#bbb", fontWeight: 500 }}>{f}</span>
+                        <span style={{ fontSize: 9, color: "#767676", fontWeight: 500 }}>{f}</span>
                       </div>
                     ))}
                   </div>
-                  <div style={{ marginTop: 12, fontSize: 12, color: "#888" }}>6 archivos listos para analizar →</div>
+                  <div style={{ marginTop: 12, fontSize: 12, color: "#767676" }}>6 archivos listos para analizar →</div>
                 </div>
               </div>
             )}
@@ -524,7 +524,7 @@ export default function Home() {
             {/* Content — step 1: IA selecciona */}
             {demoStep === 1 && (
               <div style={{ padding: 32, minHeight: 320 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>IA analizando contenido · Delio / Abril 2026</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>IA analizando contenido · Delio / Abril 2026</div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 12, marginBottom: 24 }}>
                   {[
                     { f:"IMG_001.jpg", score:9.4, sel:true, reason:"Alta luminosidad, producto bien centrado" },
@@ -558,14 +558,14 @@ export default function Home() {
             {demoStep === 2 && (
               <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Pieza seleccionada #1</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Pieza seleccionada #1</div>
                   <div style={{ aspectRatio:"4/3", borderRadius:14, background:"linear-gradient(135deg,#fce7f3,#ede9fe)", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:12 }}>
                     <ImageIcon size={40} style={{ color:"#c084fc" }} />
                   </div>
-                  <div style={{ fontSize:11, color:"#888" }}>IMG_001.jpg · Score 9.4 · Feed post</div>
+                  <div style={{ fontSize:11, color:"#767676" }}>IMG_001.jpg · Score 9.4 · Feed post</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Copy generado por IA</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Copy generado por IA</div>
                   <div style={{ background:"#fafafa", border:"1px solid #f0f0f0", borderRadius:14, padding:18, marginBottom:12 }}>
                     <div style={{ fontSize:11, fontWeight:700, color:"#a855f7", marginBottom:10, textTransform:"uppercase", letterSpacing:"0.6px" }}>Tono · Cercano · Español</div>
                     <p style={{ fontSize:13, color:"#333", lineHeight:1.7 }}>
@@ -579,7 +579,7 @@ export default function Home() {
                     {["Formal","Cercano","Humorístico"].map((t,i)=>(
                       <button key={t} style={{ padding:"5px 12px", borderRadius:100, fontSize:11, fontWeight:700, cursor:"pointer",
                         background: i===1 ? "linear-gradient(135deg,#f43f5e,#a855f7)" : "white",
-                        color: i===1 ? "white" : "#aaa",
+                        color: i===1 ? "white" : "#767676",
                         boxShadow: i===1 ? "0 2px 8px rgba(168,85,247,0.3)" : "none",
                         border: i!==1 ? "1px solid #e8e8e8" : "none" }}>{t}</button>
                     ))}
@@ -591,7 +591,7 @@ export default function Home() {
             {/* Content — step 3: Calendariza */}
             {demoStep === 3 && (
               <div style={{ padding: 32, minHeight: 320 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>Calendario de publicación — Abril 2026 · Delio</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>Calendario de publicación — Abril 2026 · Delio</div>
                 <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:8, marginBottom:16 }}>
                   {["L","M","X","J","V","S","D"].map(d=>(
                     <div key={d} style={{ textAlign:"center", fontSize:11, fontWeight:700, color:"#bbb", paddingBottom:4 }}>{d}</div>
@@ -622,7 +622,7 @@ export default function Home() {
             )}
           </div>
 
-          <p style={{ textAlign:"center", fontSize:13, color:"#bbb", marginTop:20 }}>
+          <p style={{ textAlign:"center", fontSize:13, color:"#767676", marginTop:20 }}>
             Pasa el ratón sobre cada pieza para ver el análisis de la IA · Haz clic en los pasos para explorar
           </p>
         </div>
@@ -656,7 +656,7 @@ export default function Home() {
                     </div>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{t}</div>
-                      <div style={{ fontSize: 13, color: "#888" }}>{d}</div>
+                      <div style={{ fontSize: 13, color: "#767676" }}>{d}</div>
                     </div>
                   </div>
                 ))}
@@ -667,7 +667,7 @@ export default function Home() {
             </div>
             {/* Visual */}
             <div className="card" style={{ padding: 28, background: "white" }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#888", marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#767676", marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <span>Importar desde Metricool</span>
                 <span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontWeight: 800 }}>1 clic</span>
               </div>
@@ -682,7 +682,7 @@ export default function Home() {
                   <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px", borderRadius: 12, background: done ? "#f0fdf4" : "linear-gradient(135deg,rgba(244,63,94,0.04),rgba(168,85,247,0.06))", border: `1px solid ${done ? "#bbf7d0" : "rgba(168,85,247,0.15)"}` }}>
                     <span style={{ fontWeight: 600, fontSize: 14 }}>{item}</span>
                     <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                      <span style={{ fontSize: 12, color: "#888" }}>{count}</span>
+                      <span style={{ fontSize: 12, color: "#767676" }}>{count}</span>
                       <span style={{ fontWeight: 800, fontSize: 16, color: done ? "#22c55e" : "#a855f7" }}>{status}</span>
                     </div>
                   </div>
@@ -795,7 +795,7 @@ export default function Home() {
               </div>
               <p style={{ fontSize: 14, color: "#555", lineHeight: 1.7, marginBottom: 20, fontStyle: "italic" }}>&quot;{t.q}&quot;</p>
               <div style={{ fontWeight: 700, fontSize: 14 }}>{t.a}</div>
-              <div style={{ fontSize: 12, color: "#999" }}>{t.r}</div>
+              <div style={{ fontSize: 12, color: "#767676" }}>{t.r}</div>
             </div>
           ))}
         </div>
@@ -821,7 +821,7 @@ export default function Home() {
 
           {/* Networks row */}
           <div style={{ textAlign: "center", marginBottom: 32 }}>
-            <p style={{ fontSize: 13, color: "#888", marginBottom: 10, fontWeight: 500 }}>Todas las redes incluidas en cada plan · Cada cliente puede conectar todas simultáneamente</p>
+            <p style={{ fontSize: 13, color: "#767676", marginBottom: 10, fontWeight: 500 }}>Todas las redes incluidas en cada plan · Cada cliente puede conectar todas simultáneamente</p>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
               {NET_ICONS.map(({ label, el }) => (
                 <div key={label} title={label} style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: 10, background: "white", border: "1px solid #e8e8e8", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}>
@@ -849,7 +849,7 @@ export default function Home() {
                 </div>
                 <div style={{ marginBottom: 16 }}>
                   <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>€{pl.price}</span>
-                  <span style={{ fontSize: 15, color: pl.hi ? "#6b7280" : "#aaa" }}>/mes</span>
+                  <span style={{ fontSize: 15, color: pl.hi ? "#6b7280" : "#767676" }}>/mes</span>
                   {annual && <div style={{ fontSize: 12, color: pl.hi ? "#a855f7" : "#22c55e", marginTop: 3 }}>Facturado anualmente</div>}
                 </div>
                 {/* All networks included */}
@@ -879,8 +879,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p style={{ textAlign: "center", fontSize: 13, color: "#aaa", marginTop: 16 }}>Al conectar un nuevo cliente, Plain importa hasta 12 meses de datos históricos automáticamente.</p>
-          <p style={{ textAlign: "center", fontSize: 13, color: "#bbb", marginTop: 8 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#767676", marginTop: 16 }}>Al conectar un nuevo cliente, Plain importa hasta 12 meses de datos históricos automáticamente.</p>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#767676", marginTop: 8 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
         </div>
       </section>
 
@@ -928,7 +928,7 @@ export default function Home() {
           <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 18, fontWeight: 700, padding: "16px 36px", borderRadius: 14, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
             Prueba Plain gratis 14 días <ArrowRight size={20} />
           </a>
-          <p style={{ marginTop: 14, fontSize: 13, color: "#aaa" }}>Sin tarjeta de crédito · 10 minutos de configuración · Cancela cuando quieras</p>
+          <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>Sin tarjeta de crédito · 10 minutos de configuración · Cancela cuando quieras</p>
         </div>
       </section>
 
@@ -941,7 +941,7 @@ export default function Home() {
             <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: "-0.5px", marginBottom: 10 }}>
               <img src="/logo.svg" alt="Plain" style={{ height: 34, display: "block" }} />
             </div>
-            <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7, maxWidth: 280 }}>La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.</p>
+            <p style={{ fontSize: 13, color: "#767676", lineHeight: 1.7, maxWidth: 280 }}>La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.</p>
           </div>
           {[
             { t:"Producto", l:["Funciones","Precios","Comparativa","Changelog"] },
@@ -949,12 +949,12 @@ export default function Home() {
             { t:"Legal", l:[{n:"Privacidad",h:"https://www.addicional.com/politica-de-privacidad/"},{n:"Términos",h:"/terminos"},{n:"Cookies",h:"/cookies"},{n:"Uso aceptable",h:"/uso-aceptable"}] },
           ].map(col=>(
             <div key={col.t}>
-              <h4 style={{ fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "1px", color: "#aaa", marginBottom: 16 }}>{col.t}</h4>
+              <h4 style={{ fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "1px", color: "#767676", marginBottom: 16 }}>{col.t}</h4>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                 {col.l.map((item: string | {n:string,h:string})=>{
                   const label = typeof item === "string" ? item : item.n;
                   const href = typeof item === "string" ? "#" : item.h;
-                  return <li key={label}><a href={href} style={{ fontSize: 14, color: "#888", textDecoration: "none" }}>{label}</a></li>;
+                  return <li key={label}><a href={href} style={{ fontSize: 14, color: "#767676", textDecoration: "none" }}>{label}</a></li>;
                 })}
               </ul>
             </div>
