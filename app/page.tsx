@@ -367,21 +367,21 @@ export default function Home() {
               Exclusivo de Plain — no lo hace ninguna otra herramienta
             </div>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 16 }}>
-              La IA que trabaja por ti.<br />
-              <span className="grad-text">Indica la carpeta, ella hace el resto.</span>
+              Céntate en crear el contenido.<br />
+              <span className="grad-text">El resto lo hace Plain.</span>
             </h2>
-            <p style={{ fontSize: 20, color: "#666", maxWidth: 640, margin: "0 auto" }}>
-              Señala a Plain dónde están las fotos y vídeos de tu cliente. La IA analiza el contenido, selecciona las mejores piezas, escribe los copys y calendariza todo el mes automáticamente.
+            <p style={{ fontSize: 20, color: "#666", maxWidth: 680, margin: "0 auto" }}>
+              Plain funciona en automático. Selecciona una carpeta local o de Dropbox y nútrela de imágenes y reels. Plain se encarga de escribir los copys y calendarizar. Te lo deja en borrador para revisión o programado en las mejores horas.
             </p>
           </div>
 
           {/* Flow visual */}
           <div className="ai-flow-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, maxWidth: 1100, margin: "0 auto 60px" }}>
             {[
-              { icon: FolderOpen, color: "#f43f5e", bg: "#fff1f2", step: "01", title: "Señalas la carpeta", desc: "Dropbox, Google Drive o cualquier almacenamiento conectado. Plain accede a todas las fotos y vídeos del cliente." },
-              { icon: ImageIcon, color: "#a855f7", bg: "#faf5ff", step: "02", title: "La IA analiza el contenido", desc: "Evalúa cada pieza por calidad, relevancia y potencial de engagement. Selecciona las mejores automáticamente." },
-              { icon: PenLine, color: "#6366f1", bg: "#eef2ff", step: "03", title: "Escribe los copys", desc: "Genera copies adaptados a la voz de la marca, con hashtags, emojis y CTAs optimizados para Instagram." },
-              { icon: Clock, color: "#06b6d4", bg: "#ecfeff", step: "04", title: "Calendariza el mes", desc: "Programa todas las publicaciones en los mejores horarios para maximizar el alcance. Tú solo apruebas." },
+              { icon: FolderOpen, color: "#f43f5e", bg: "#fff1f2", step: "01", title: "Señalas la carpeta", desc: "Selecciona una carpeta local o de Dropbox y nútrela de imágenes y reels. Plain accede a todo el contenido del cliente automáticamente." },
+              { icon: Brain, color: "#a855f7", bg: "#faf5ff", step: "02", title: "Tu marca, tu briefing", desc: "Plain tiene un briefing preparado para cada marca y se basa en él para crear el contenido. Listo en 2 minutos y editable cuando quieras." },
+              { icon: PenLine, color: "#6366f1", bg: "#eef2ff", step: "03", title: "Escribe los copys", desc: "Genera copies con la voz de tu marca, hashtags, emojis y CTAs optimizados. Cada texto refleja tu identidad." },
+              { icon: Clock, color: "#06b6d4", bg: "#ecfeff", step: "04", title: "Borrador o programado", desc: "Te lo deja en borrador para revisión o directamente programado en los mejores horarios. Tú decides el nivel de control." },
             ].map(({ icon: Icon, color, bg, step, title, desc }) => (
               <div key={step} className="card" style={{ padding: 28, background: "white", position: "relative" }}>
                 <div style={{ position: "absolute", top: 20, right: 20, fontWeight: 900, fontSize: 13, color: "#f0f0f0", letterSpacing: "-0.5px" }}>{step}</div>
