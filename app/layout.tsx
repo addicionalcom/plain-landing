@@ -57,6 +57,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        {/* Cookie consent — must be first script */}
+        <script type="text/javascript" src="https://gettermscmp.com/cookie-consent/embed/c4ea85ee-201f-4d52-ada0-4884c52001ff/es?auto=true" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
