@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
@@ -42,10 +43,13 @@ export const metadata: Metadata = {
       "Automatiza respuestas en Instagram, programa contenido y gestiona todos tus clientes desde un solo lugar.",
     images: ["/og-image.png"],
   },
-  // TODO: canviar a index:true quan la landing estigui llesta per publicar
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
@@ -57,8 +61,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        {/* Cookie consent — must be first script */}
-        <script type="text/javascript" src="https://gettermscmp.com/cookie-consent/embed/c4ea85ee-201f-4d52-ada0-4884c52001ff/es?auto=true" />
+        {/* Preconnect to external origins */}
+        <link rel="preconnect" href="https://gettermscmp.com" />
+        <link rel="dns-prefetch" href="https://gettermscmp.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -80,7 +85,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geist.variable} ${geistMono.variable}`} style={{ fontFamily: "var(--font-geist), system-ui, sans-serif" }}>{children}</body>
+      <body className={`${geist.variable} ${geistMono.variable}`} style={{ fontFamily: "var(--font-geist), system-ui, sans-serif" }}>
+        {children}
+        {/* Cookie consent — non-blocking, loads after page is interactive */}
+        <Script
+          src="https://gettermscmp.com/cookie-consent/embed/c4ea85ee-201f-4d52-ada0-4884c52001ff/es?auto=true"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
