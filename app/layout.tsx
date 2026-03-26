@@ -77,9 +77,9 @@ export default function RootLayout({
                 "Plataforma de gestión de redes sociales para agencias de marketing.",
               url: "https://plainsocial.app",
               offers: [
-                { "@type": "Offer", name: "Starter", price: "29", priceCurrency: "EUR" },
-                { "@type": "Offer", name: "Pro", price: "79", priceCurrency: "EUR" },
-                { "@type": "Offer", name: "Agency", price: "149", priceCurrency: "EUR" },
+                { "@type": "Offer", name: "Negocio", price: "10", priceCurrency: "EUR" },
+                { "@type": "Offer", name: "Community", price: "40", priceCurrency: "EUR" },
+                { "@type": "Offer", name: "Agencia", price: "200", priceCurrency: "EUR" },
               ],
             }),
           }}

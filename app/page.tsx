@@ -10,7 +10,7 @@ export default function Home() {
   const [tip, setTip] = useState<{label:string; desc:string; x:number; y:number}|null>(null);
   const [demoStep, setDemoStep] = useState(0);
   const [demoPlaying, setDemoPlaying] = useState(true);
-  const p = { s: annual ? 24 : 29, m: annual ? 66 : 79, a: annual ? 124 : 149 };
+  const p = { s: annual ? 8 : 10, m: annual ? 33 : 40, a: annual ? 166 : 200 };
 
   useEffect(() => {
     if (!demoPlaying) return;
@@ -805,9 +805,17 @@ export default function Home() {
       <section id="precios" className="section-pad" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
+            {/* Launch pricing banner */}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,rgba(244,63,94,0.08),rgba(168,85,247,0.08))", border: "1px solid rgba(168,85,247,0.25)", borderRadius: 100, padding: "7px 18px", marginBottom: 20 }}>
+              <span style={{ fontSize: 14 }}>🔒</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: "#a855f7" }}>Precios de lanzamiento · Plazas limitadas · En breve subirán</span>
+            </div>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Precio fijo. Sin sorpresas.</h2>
-            <p style={{ fontSize: 18, color: "#666", maxWidth: 500, margin: "0 auto 28px" }}>
+            <p style={{ fontSize: 18, color: "#666", maxWidth: 540, margin: "0 auto 8px" }}>
               A diferencia de ManyChat, no cobramos por contactos. Mismo precio cada mes.
+            </p>
+            <p style={{ fontSize: 14, color: "#a855f7", fontWeight: 600, marginBottom: 28 }}>
+              Si contratas ahora, este precio y funcionalidades se mantienen para siempre ✓
             </p>
             {/* Toggle */}
             <div style={{ display: "inline-flex", background: "white", border: "1px solid #e5e7eb", borderRadius: 12, padding: 4, gap: 4 }}>
@@ -834,12 +842,12 @@ export default function Home() {
 
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
             {[
-              { name:"Starter", desc:"Para freelancers y agencias pequeñas", price:p.s, hi:false,
-                items:["Hasta 3 clientes","Programación de contenido","5 automatizaciones activas","Analytics · últimos 12 meses","Dropbox / Drive","Soporte por email"] },
-              { name:"Pro", desc:"Para agencias en crecimiento", price:p.m, hi:true,
-                items:["Hasta 10 clientes","Automatizaciones ilimitadas","Programación ilimitada","Analytics · histórico 12 meses","Todos los almacenamientos","Soporte prioritario"] },
-              { name:"Agency", desc:"Para agencias con muchos clientes", price:p.a, hi:false,
-                items:["Clientes ilimitados","Automatizaciones ilimitadas","Usuarios ilimitados","Analytics · histórico 12 meses","White-label (próx.)","API (próx.)","Onboarding dedicado","Soporte 24/7"] },
+              { name:"Negocio", desc:"1 marca", price:p.s, hi:false,
+                items:["1 marca / cliente","Todas las redes sociales","Programación de contenido","5 automatizaciones activas","Dropbox / Drive","Soporte por email"] },
+              { name:"Community", desc:"Hasta 10 marcas", price:p.m, hi:true,
+                items:["Hasta 10 marcas / clientes","Todas las redes sociales","Automatizaciones ilimitadas","Programación ilimitada","Todos los almacenamientos","Analytics por cliente","Soporte prioritario"] },
+              { name:"Agencia", desc:"Hasta 100 marcas", price:p.a, hi:false,
+                items:["Hasta 100 marcas / clientes","Todas las redes sociales","Automatizaciones ilimitadas","Usuarios ilimitados","White-label (próx.)","API (próx.)","Onboarding dedicado","Soporte 24/7"] },
             ].map(pl=>(
               <div key={pl.name} style={{ borderRadius: 20, padding: 32, position: "relative", ...(pl.hi ? { background: "linear-gradient(145deg,#0a0a0a,#1a0a2e)", color: "white", boxShadow: "0 24px 60px rgba(168,85,247,0.25)" } : { background: "white", border: "1px solid #e8e8e8" }) }}>
                 {pl.hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>Más popular</div>}
