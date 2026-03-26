@@ -100,3 +100,88 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
 }
+
+/* ── RESPONSIVE ── */
+
+/* ── TABLET (max 900px) ── */
+@media (max-width: 900px) {
+  /* NAV */
+  .nav-links { display: none !important; }
+  .nav-login { display: none !important; }
+  .nav-inner { padding: 0 20px !important; height: 68px !important; }
+  .nav-cta { font-size: 13px !important; padding: 8px 16px !important; }
+
+  /* HERO */
+  .hero-section { padding-top: 100px !important; padding-bottom: 60px !important; }
+  .hero-title { font-size: 38px !important; letter-spacing: -1px !important; line-height: 1.1 !important; }
+  .hero-card { margin-top: 40px !important; }
+  .hero-card-grid { grid-template-columns: 1fr !important; }
+
+  /* SECTION PADDING */
+  .section-pad { padding-top: 60px !important; padding-bottom: 60px !important; padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* LOGOS */
+  .logos-section { padding: 20px 20px !important; }
+
+  /* PROBLEM */
+  .problem-grid { grid-template-columns: 1fr !important; }
+
+  /* FEATURES */
+  .features-main-grid { grid-template-columns: 1fr !important; }
+  .features-sub-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* AI CONTENT */
+  .ai-flow-grid { grid-template-columns: 1fr 1fr !important; }
+  .ai-demo-grid { grid-template-columns: 1fr !important; }
+
+  /* DEMO */
+  .demo-step-grid { grid-template-columns: 1fr !important; }
+  .demo-tabs { gap: 6px !important; }
+
+  /* METRICOOL */
+  .metricool-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* COMPARISON */
+  .comparison-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .comparison-table { min-width: 600px !important; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* PRICING */
+  .pricing-grid { grid-template-columns: 1fr !important; max-width: 480px !important; }
+
+  /* FOOTER */
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+
+  /* TOOLTIP */
+  .tooltip-popup { display: none !important; }
+}
+
+/* ── MOBILE (max 640px) ── */
+@media (max-width: 640px) {
+  /* NAV */
+  .nav-inner { padding: 0 16px !important; height: 60px !important; }
+
+  /* HERO */
+  .hero-section { padding-top: 80px !important; padding-bottom: 48px !important; }
+  .hero-title { font-size: 32px !important; letter-spacing: -0.5px !important; }
+
+  /* SECTION PADDING */
+  .section-pad { padding-top: 48px !important; padding-bottom: 48px !important; padding-left: 16px !important; padding-right: 16px !important; }
+
+  /* LOGOS */
+  .logos-section { padding: 16px 16px !important; }
+
+  /* FEATURES sub-grid */
+  .features-sub-grid { grid-template-columns: 1fr !important; }
+
+  /* AI FLOW */
+  .ai-flow-grid { grid-template-columns: 1fr !important; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { grid-template-columns: 1fr !important; }
+
+  /* FOOTER */
+  .footer-grid { grid-template-columns: 1fr !important; }
+}

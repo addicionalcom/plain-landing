@@ -74,18 +74,18 @@ export default function Home() {
 
       {/* ── NAV ── */}
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(255,255,255,0.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid #f0f0f0" }}>
-        <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 80 }}>
+        <div className="nav-inner" style={{ maxWidth: 1400, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 80 }}>
           <a href="/" style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.5px", textDecoration: "none", color: "#0a0a0a" }}>
             <img src="/logo.svg" alt="Plain" style={{ height: 34, display: "block" }} />
           </a>
-          <div style={{ display: "flex", gap: 28, fontSize: 14, fontWeight: 500, color: "#555" }}>
+          <div className="nav-links" style={{ display: "flex", gap: 28, fontSize: 14, fontWeight: 500, color: "#555" }}>
             {[["#features","Funciones"],["#comparativa","Comparativa"],["#precios","Precios"],["#faq","FAQ"]].map(([h,l])=>(
               <a key={h} href={h} style={{ textDecoration: "none", color: "inherit" }}>{l}</a>
             ))}
           </div>
-          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <a href={`${D}/login`} style={{ fontSize: 14, fontWeight: 500, color: "#555", textDecoration: "none" }}>Iniciar sesión</a>
-            <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 14, fontWeight: 600, padding: "9px 20px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
+          <div className="nav-actions" style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            <a href={`${D}/login`} className="nav-login" style={{ fontSize: 14, fontWeight: 500, color: "#555", textDecoration: "none" }}>Iniciar sesión</a>
+            <a href={`${D}/register`} className="grad-btn nav-cta" style={{ fontSize: 14, fontWeight: 600, padding: "9px 20px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
               Prueba gratis 14 días
             </a>
           </div>
@@ -93,7 +93,7 @@ export default function Home() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ paddingTop: 140, paddingBottom: 100, textAlign: "center", position: "relative", overflow: "hidden" }}>
+      <section className="hero-section" style={{ paddingTop: 140, paddingBottom: 100, textAlign: "center", position: "relative", overflow: "hidden" }}>
         {/* Bg blobs */}
         <div style={{ position: "absolute", top: -80, left: "50%", transform: "translateX(-50%)", width: 800, height: 500, background: "radial-gradient(ellipse, rgba(168,85,247,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 100, left: "10%", width: 300, height: 300, background: "radial-gradient(ellipse, rgba(244,63,94,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -106,7 +106,7 @@ export default function Home() {
             Programación · Automatización · Multi-cliente
           </div>
 
-          <h1 className="anim-up-1" style={{ fontSize: "clamp(44px, 6vw, 80px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-2px", marginBottom: 24, maxWidth: 900, margin: "0 auto 24px" }}>
+          <h1 className="anim-up-1 hero-title" style={{ fontSize: "clamp(44px, 6vw, 80px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-2px", marginBottom: 24, maxWidth: 900, margin: "0 auto 24px" }}>
             Deja de pagar dos herramientas<br />
             <span className="grad-text">para hacer el trabajo de una.</span>
           </h1>
@@ -126,7 +126,7 @@ export default function Home() {
           <p style={{ marginTop: 14, fontSize: 13, color: "#aaa" }}>14 días gratis · Sin tarjeta · Cancela cuando quieras</p>
 
           {/* Hero card mockup */}
-          <div className="float" style={{ marginTop: 60, maxWidth: 860, marginLeft: "auto", marginRight: "auto" }}>
+          <div className="float hero-card" style={{ marginTop: 60, maxWidth: 860, marginLeft: "auto", marginRight: "auto" }}>
             <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 24, overflow: "hidden", boxShadow: "0 24px 80px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04)" }}>
               {/* Window bar */}
               <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 18px", display: "flex", alignItems: "center", gap: 8 }}>
@@ -136,7 +136,7 @@ export default function Home() {
                 <span style={{ marginLeft: 12, fontSize: 12, color: "#aaa", fontWeight: 500 }}>dashboard.plainsocial.app — Automatizaciones</span>
               </div>
               {/* Content */}
-              <div style={{ padding: 24, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+              <div className="hero-card-grid" style={{ padding: 24, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
                 {/* Trigger panel */}
                 <div style={{ gridColumn: "span 2", background: "#fafafa", borderRadius: 16, padding: 20, border: "1px solid #f0f0f0" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
@@ -183,7 +183,7 @@ export default function Home() {
 
       {/* ── LOGOS ── */}
       <div className="sep" style={{ maxWidth: 1400, margin: "0 auto 0" }} />
-      <section style={{ padding: "28px 32px", maxWidth: 1400, margin: "0 auto", textAlign: "center" }}>
+      <section className="logos-section" style={{ padding: "28px 32px", maxWidth: 1400, margin: "0 auto", textAlign: "center" }}>
         <p style={{ fontSize: 12, fontWeight: 600, color: "#ccc", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>Integra con tus herramientas</p>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "8px 36px" }}>
           {[
@@ -209,7 +209,7 @@ export default function Home() {
       <div className="sep" style={{ maxWidth: 1400, margin: "0 auto" }} />
 
       {/* ── PROBLEM ── */}
-      <section style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
+      <section className="section-pad" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>
@@ -219,7 +219,7 @@ export default function Home() {
               Pagas dos suscripciones para hacer lo que Plain hace solo.
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          <div className="problem-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
             {/* Without */}
             <div className="card" style={{ padding: 32, background: "#fff8f8", borderColor: "#ffe4e6" }}>
               <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 24 }}>
@@ -269,13 +269,13 @@ export default function Home() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section id="features" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
+      <section id="features" className="section-pad" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Todo lo que necesita tu agencia</h2>
             <p style={{ fontSize: 18, color: "#666" }}>Tres pilares. Un solo panel.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginBottom: 16 }}>
+          <div className="features-main-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginBottom: 16 }}>
             {[
               { icon: Zap, grad: ["#fce7f3","#f43f5e"], title: "Convierte comentarios en leads", desc: 'Define palabras clave — "INFO", "PRECIO", "RESERVA" — y Plain envía un DM personalizado al instante. Sin ManyChat. Sin coste por contacto.', items: ["Múltiples palabras clave","Mensajes con variantes","Respuesta pública + DM","Incluir enlaces y CTAs"] },
               { icon: Calendar, grad: ["#ede9fe","#a855f7"], title: "Publica sin esfuerzo", desc: "Conecta Dropbox o Google Drive y programa posts, Reels y Stories desde las carpetas de tus clientes. Ellos suben, Plain publica.", items: ["Calendario visual","Dropbox y Drive","Posts, Reels y Stories","Publicación automática"] },
@@ -302,7 +302,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+          <div className="features-sub-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
             {[
               { icon: FolderOpen, c: "#ea580c", bg: "#fff7ed", t: "Almacenamiento conectado", d: "Dropbox, Drive, OneDrive. Tus activos siempre a mano." },
               { icon: TrendingUp, c: "#2563eb", bg: "#eff6ff", t: "Métricas en tiempo real", d: "Rendimiento de cada cliente en un solo panel." },
@@ -325,7 +325,7 @@ export default function Home() {
       </section>
 
       {/* ── AI CONTENT ── */}
-      <section style={{ padding: "100px 32px", maxWidth: "100%", background: "white" }}>
+      <section className="section-pad" style={{ padding: "100px 32px", maxWidth: "100%", background: "white" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 60 }}>
@@ -343,7 +343,7 @@ export default function Home() {
           </div>
 
           {/* Flow visual */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, maxWidth: 1100, margin: "0 auto 60px" }}>
+          <div className="ai-flow-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, maxWidth: 1100, margin: "0 auto 60px" }}>
             {[
               { icon: FolderOpen, color: "#f43f5e", bg: "#fff1f2", step: "01", title: "Señalas la carpeta", desc: "Dropbox, Google Drive o cualquier almacenamiento conectado. Plain accede a todas las fotos y vídeos del cliente." },
               { icon: ImageIcon, color: "#a855f7", bg: "#faf5ff", step: "02", title: "La IA analiza el contenido", desc: "Evalúa cada pieza por calidad, relevancia y potencial de engagement. Selecciona las mejores automáticamente." },
@@ -375,7 +375,7 @@ export default function Home() {
                   <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 600 }}>IA procesando</span>
                 </div>
               </div>
-              <div style={{ padding: 28, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+              <div className="ai-demo-grid" style={{ padding: 28, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
                 {/* Left: folder + selection */}
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 12 }}>Carpeta analizada: /Delio/Marzo 2026</div>
@@ -424,7 +424,7 @@ export default function Home() {
       </section>
 
       {/* ── DEMO ANIMADA ── */}
-      <section style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
+      <section className="section-pad" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div className="badge" style={{ marginBottom: 16 }}>
@@ -441,7 +441,7 @@ export default function Home() {
           </div>
 
           {/* Step tabs */}
-          <div style={{ display: "flex", justifyContent: "center", gap: 8, marginBottom: 40, flexWrap: "wrap" }}>
+          <div className="demo-tabs" style={{ display: "flex", justifyContent: "center", gap: 8, marginBottom: 40, flexWrap: "wrap" }}>
             {[
               { n: "01", label: "Conectas la carpeta" },
               { n: "02", label: "La IA selecciona" },
@@ -484,7 +484,7 @@ export default function Home() {
 
             {/* Content — step 0: Conectar carpeta */}
             {demoStep === 0 && (
-              <div style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
+              <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Almacenamiento conectado</div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -556,7 +556,7 @@ export default function Home() {
 
             {/* Content — step 2: Escribe copy */}
             {demoStep === 2 && (
-              <div style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
+              <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700, color: "#aaa", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Pieza seleccionada #1</div>
                   <div style={{ aspectRatio:"4/3", borderRadius:14, background:"linear-gradient(135deg,#fce7f3,#ede9fe)", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:12 }}>
@@ -629,9 +629,9 @@ export default function Home() {
       </section>
 
       {/* ── METRICOOL MIGRATION ── */}
-      <section style={{ padding: "80px 32px", maxWidth: "100%", background: "linear-gradient(135deg,rgba(244,63,94,0.03),rgba(168,85,247,0.04),rgba(6,182,212,0.03))" }}>
+      <section className="section-pad" style={{ padding: "80px 32px", maxWidth: "100%", background: "linear-gradient(135deg,rgba(244,63,94,0.03),rgba(168,85,247,0.04),rgba(6,182,212,0.03))" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
-          <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
+          <div className="metricool-grid" style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
             <div>
               <div className="badge" style={{ marginBottom: 20 }}>
                 <Import size={13} style={{ color: "#f43f5e" }} />
@@ -697,7 +697,7 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
+      <section className="section-pad" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>En marcha en 10 minutos</h2>
@@ -725,14 +725,14 @@ export default function Home() {
       </section>
 
       {/* ── COMPARISON ── */}
-      <section id="comparativa" style={{ padding: "100px 32px", background: "#0a0a0a", color: "white", maxWidth: "100%" }}>
+      <section id="comparativa" className="section-pad" style={{ padding: "100px 32px", background: "#0a0a0a", color: "white", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Plain vs. las alternativas</h2>
             <p style={{ fontSize: 18, color: "#666" }}>Por qué las agencias eligen Plain sobre pagar dos herramientas.</p>
           </div>
-          <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", maxWidth: 900, margin: "0 auto", borderCollapse: "collapse" }}>
+          <div className="comparison-wrap" style={{ overflowX: "auto" }}>
+            <table className="comparison-table" style={{ width: "100%", maxWidth: 900, margin: "0 auto", borderCollapse: "collapse" }}>
               <thead>
                 <tr>
                   <th style={{ textAlign: "left", padding: "12px 20px", color: "#444", fontWeight: 600, fontSize: 13, width: "30%" }}>Función</th>
@@ -779,11 +779,11 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
+      <section className="section-pad" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Lo que dicen las agencias</h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1100, margin: "0 auto" }}>
+        <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1100, margin: "0 auto" }}>
           {[
             { q:"Llevábamos años pagando Metricool y ManyChat por separado. Con Plain cancelamos los dos y ahorramos más de €60 al mes.", a:"María G.", r:"Directora creativa, Barcelona" },
             { q:"La automatización de comentarios nos genera leads mientras dormimos. Un cliente consiguió 340 DMs en un solo día.", a:"Jordi P.", r:"Social Media Manager, Madrid" },
@@ -802,7 +802,7 @@ export default function Home() {
       </section>
 
       {/* ── PRICING ── */}
-      <section id="precios" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
+      <section id="precios" className="section-pad" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Precio fijo. Sin sorpresas.</h2>
@@ -832,7 +832,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
+          <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
             {[
               { name:"Starter", desc:"Para freelancers y agencias pequeñas", price:p.s, hi:false,
                 items:["Hasta 3 clientes","Programación de contenido","5 automatizaciones activas","Analytics · últimos 12 meses","Dropbox / Drive","Soporte por email"] },
@@ -885,7 +885,7 @@ export default function Home() {
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
+      <section id="faq" className="section-pad" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 720, margin: "0 auto" }}>
           <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 48, textAlign: "center" }}>Preguntas frecuentes</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -912,7 +912,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ padding: "100px 32px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+      <section className="section-pad" style={{ padding: "100px 32px", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg,rgba(244,63,94,0.04),rgba(168,85,247,0.06),rgba(6,182,212,0.04))", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div className="badge" style={{ marginBottom: 24 }}>
@@ -935,8 +935,8 @@ export default function Home() {
       <div className="sep" />
 
       {/* ── FOOTER ── */}
-      <footer style={{ padding: "60px 32px", maxWidth: 1400, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
+      <footer className="section-pad" style={{ padding: "60px 32px", maxWidth: 1400, margin: "0 auto" }}>
+        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
           <div>
             <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: "-0.5px", marginBottom: 10 }}>
               <img src="/logo.svg" alt="Plain" style={{ height: 34, display: "block" }} />
@@ -969,7 +969,7 @@ export default function Home() {
 
       {/* ── TOOLTIP ── */}
       {tip && (
-        <div style={{ position:"fixed", left: tip.x, top: tip.y, transform:"translate(-50%,-100%)", zIndex:9999, pointerEvents:"none", maxWidth:260 }}>
+        <div className="tooltip-popup" style={{ position:"fixed", left: tip.x, top: tip.y, transform:"translate(-50%,-100%)", zIndex:9999, pointerEvents:"none", maxWidth:260 }}>
           <div style={{ background:"#0a0a0a", color:"white", borderRadius:10, padding:"10px 14px", boxShadow:"0 8px 32px rgba(0,0,0,0.2)", border:"1px solid rgba(255,255,255,0.08)" }}>
             <p style={{ fontSize:12, fontWeight:700, marginBottom:4, color:"#c084fc" }}>{tip.label}</p>
             <p style={{ fontSize:12, lineHeight:1.6, color:"#d1d5db" }}>{tip.desc}</p>
