@@ -213,10 +213,11 @@ export default function Home() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>
-              El problema que todas las agencias tienen
+              ¿Usas Metricool para publicar<br/>y ManyChat para automatizar?
             </h2>
-            <p style={{ fontSize: 18, color: "#666", maxWidth: 520, margin: "0 auto" }}>
-              Pagas dos suscripciones para hacer lo que Plain hace solo.
+            <p style={{ fontSize: 18, color: "#666", maxWidth: 560, margin: "0 auto" }}>
+              Ya puedes cancelar los dos. Plain hace exactamente lo mismo —
+              y además genera el contenido con IA desde tus carpetas.
             </p>
           </div>
           <div className="problem-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
@@ -226,21 +227,28 @@ export default function Home() {
                 <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#fee2e2", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <X size={16} style={{ color: "#ef4444" }} />
                 </div>
-                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Sin Plain: dos facturas</h3>
+                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Sin Plain: dos facturas cada mes</h3>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {[["Metricool / Later / Buffer","~€20–45/mes","Programar contenido"],["ManyChat","~€25–65/mes*","Automatizar DMs"]].map(([t,p,d])=>(
+                {[
+                  ["Metricool Starter","€29/mes","Programar contenido · 10 marcas"],
+                  ["ManyChat","€25–65/mes*","Automatizar DMs · precio por contactos"],
+                ].map(([t,price,d])=>(
                   <div key={t} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "white", border: "1px solid #fee2e2", borderRadius: 12, padding: "12px 16px" }}>
                     <div><div style={{ fontWeight: 700, fontSize: 13 }}>{t}</div><div style={{ fontSize: 12, color: "#767676" }}>{d}</div></div>
-                    <div style={{ fontWeight: 800, color: "#ef4444", fontSize: 14 }}>{p}</div>
+                    <div style={{ fontWeight: 800, color: "#ef4444", fontSize: 14 }}>{price}</div>
                   </div>
                 ))}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "white", border: "1px solid #fee2e2", borderRadius: 12, padding: "12px 16px", opacity: 0.6 }}>
+                  <div><div style={{ fontWeight: 700, fontSize: 13, color: "#ef4444" }}>IA para generar contenido</div><div style={{ fontSize: 12, color: "#767676" }}>No disponible en ninguna de las dos</div></div>
+                  <X size={16} style={{ color: "#ef4444" }} />
+                </div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#fef2f2", border: "2px solid #fca5a5", borderRadius: 12, padding: "12px 16px" }}>
-                  <span style={{ fontWeight: 800, fontSize: 15 }}>Total mensual</span>
-                  <span style={{ fontWeight: 900, color: "#ef4444", fontSize: 20 }}>€45–110/mes</span>
+                  <span style={{ fontWeight: 800, fontSize: 15 }}>Total mensual mínimo</span>
+                  <span style={{ fontWeight: 900, color: "#ef4444", fontSize: 20 }}>€54–94/mes</span>
                 </div>
               </div>
-              <p style={{ fontSize: 11, color: "#ccc", marginTop: 10 }}>*ManyChat sube el precio sin avisar según contactos</p>
+              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>*ManyChat escala el precio sin avisar según número de contactos</p>
             </div>
             {/* With */}
             <div className="card" style={{ padding: 32, background: "linear-gradient(135deg,rgba(244,63,94,0.03),rgba(168,85,247,0.05),rgba(6,182,212,0.03))", borderColor: "rgba(168,85,247,0.15)" }}>
@@ -248,10 +256,16 @@ export default function Home() {
                 <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#fce7f3,#ede9fe)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Check size={16} style={{ color: "#a855f7" }} />
                 </div>
-                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Con Plain: todo en uno</h3>
+                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Con Plain: todo en uno, por menos</h3>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {["Programación de contenido","Automatización comentario → DM","Gestión multi-cliente","Dropbox / Drive integrado"].map(f=>(
+                {[
+                  "Programación de contenido",
+                  "Automatización comentario → DM",
+                  "IA genera copies desde Dropbox / Drive",
+                  "Gestión multi-cliente · hasta 100 marcas",
+                  "Precio fijo · sin contar contactos",
+                ].map(f=>(
                   <div key={f} style={{ display: "flex", alignItems: "center", gap: 10, background: "white", border: "1px solid rgba(168,85,247,0.12)", borderRadius: 12, padding: "12px 16px" }}>
                     <Check size={15} style={{ color: "#a855f7", flexShrink: 0 }} />
                     <span style={{ fontWeight: 600, fontSize: 13 }}>{f}</span>
@@ -259,10 +273,10 @@ export default function Home() {
                 ))}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", borderRadius: 12, padding: "12px 16px" }}>
                   <span style={{ fontWeight: 800, color: "white", fontSize: 15 }}>Todo incluido desde</span>
-                  <span style={{ fontWeight: 900, color: "white", fontSize: 20 }}>€24/mes</span>
+                  <span style={{ fontWeight: 900, color: "white", fontSize: 20 }}>€10/mes</span>
                 </div>
               </div>
-              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>Precio fijo — sin sorpresas, sin contar contactos</p>
+              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>Precio de lanzamiento garantizado · Se mantiene para siempre si contratas ahora</p>
             </div>
           </div>
         </div>
@@ -729,18 +743,18 @@ export default function Home() {
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Plain vs. las alternativas</h2>
-            <p style={{ fontSize: 18, color: "#666" }}>Por qué las agencias eligen Plain sobre pagar dos herramientas.</p>
+            <p style={{ fontSize: 18, color: "#666" }}>Una sola herramienta que hace lo que Metricool y ManyChat juntos — por menos.</p>
           </div>
           <div className="comparison-wrap" style={{ overflowX: "auto" }}>
-            <table className="comparison-table" style={{ width: "100%", maxWidth: 900, margin: "0 auto", borderCollapse: "collapse" }}>
+            <table className="comparison-table" style={{ width: "100%", maxWidth: 960, margin: "0 auto", borderCollapse: "collapse" }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: "left", padding: "12px 20px", color: "#444", fontWeight: 600, fontSize: 13, width: "30%" }}>Función</th>
+                  <th style={{ textAlign: "left", padding: "12px 20px", color: "#444", fontWeight: 600, fontSize: 13, width: "32%" }}>Función</th>
                   <th style={{ padding: "12px 20px", textAlign: "center" }}>
                     <span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", padding: "6px 16px", borderRadius: 8, fontWeight: 800, fontSize: 13 }}>Plain</span>
                   </th>
-                  {["Metricool","ManyChat","Hootsuite"].map(n=>(
-                    <th key={n} style={{ padding: "12px 20px", textAlign: "center", color: "#555", fontWeight: 600, fontSize: 13 }}>{n}</th>
+                  {["Metricool","ManyChat","Metricool\n+ ManyChat"].map(n=>(
+                    <th key={n} style={{ padding: "12px 20px", textAlign: "center", color: "#555", fontWeight: 600, fontSize: 13, whiteSpace: "pre-line" }}>{n}</th>
                   ))}
                 </tr>
               </thead>
@@ -749,22 +763,21 @@ export default function Home() {
                   ["Programar publicaciones Instagram", true, true, false, true],
                   ["IA selecciona contenido y escribe copys", true, false, false, false],
                   ["Calendarización automática con IA", true, false, false, false],
-                  ["Automatización comentario → DM", true, false, true, false],
-                  ["Migración desde Metricool (1 clic)", true, "—", false, false],
-                  ["Analytics · histórico 12 meses", true, true, false, false],
+                  ["Automatización comentario → DM", true, false, true, true],
+                  ["Genera contenido desde Dropbox / Drive", true, false, false, false],
+                  ["Migración desde Metricool (1 clic)", true, "—", false, "—"],
                   ["Gestión multi-cliente agencias", true, "Parcial", false, "Parcial"],
-                  ["Dropbox / Google Drive integrado", true, false, false, false],
-                  ["Precio fijo (sin contar contactos)", true, true, false, false],
-                  ["Soporte en español", true, true, false, false],
-                  ["Precio (agencia 10 clientes)", "€124/mes", "€88/mes*", "€450/mes**", "€990/mes"],
+                  ["Precio fijo · sin contar contactos", true, true, false, false],
+                  ["Soporte en español", true, true, false, true],
+                  ["Precio · 10 marcas + automatización", "€40/mes 🔒", "€29/mes", "€25–65/mes", "€54–94/mes"],
                 ].map((row,i)=>(
-                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-                    <td style={{ padding: "14px 20px", fontSize: 13, fontWeight: 500, color: "#ccc" }}>{row[0]}</td>
+                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)", ...(i===9 ? { background: "rgba(168,85,247,0.05)" } : {}) }}>
+                    <td style={{ padding: "14px 20px", fontSize: 13, fontWeight: i===9 ? 700 : 500, color: i===9 ? "white" : "#ccc" }}>{row[0]}</td>
                     {row.slice(1).map((v,j)=>(
                       <td key={j} style={{ padding: "14px 20px", textAlign: "center" }}>
                         {v===true ? <Check size={18} style={{ color: "#a855f7", margin: "0 auto" }} />
                         : v===false ? <X size={18} style={{ color: "#333", margin: "0 auto" }} />
-                        : <span style={{ fontSize: 13, fontWeight: 700, color: j===0 ? "#c084fc" : "#555" }}>{v}</span>}
+                        : <span style={{ fontSize: 13, fontWeight: 700, color: j===0 ? "#c084fc" : j===3 ? "#ef4444" : "#555" }}>{v}</span>}
                       </td>
                     ))}
                   </tr>
@@ -772,8 +785,8 @@ export default function Home() {
               </tbody>
             </table>
           </div>
-          <p style={{ textAlign: "center", fontSize: 11, color: "#333", marginTop: 20 }}>
-            *Metricool Advanced 25 marcas. **ManyChat Pro 10.000 contactos. Precios orientativos.
+          <p style={{ textAlign: "center", fontSize: 11, color: "#444", marginTop: 20 }}>
+            🔒 Precio de lanzamiento garantizado. Metricool Starter 10 marcas: €29/mes. ManyChat desde €25/mes (escala según contactos). Precios orientativos.
           </p>
         </div>
       </section>
@@ -887,8 +900,17 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p style={{ textAlign: "center", fontSize: 13, color: "#767676", marginTop: 16 }}>Al conectar un nuevo cliente, Plain importa hasta 12 meses de datos históricos automáticamente.</p>
-          <p style={{ textAlign: "center", fontSize: 13, color: "#767676", marginTop: 8 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
+          {/* vs Metricool callout */}
+          <div style={{ textAlign: "center", marginTop: 32, padding: "18px 24px", background: "white", border: "1px solid #e8e8e8", borderRadius: 16, maxWidth: 600, margin: "32px auto 0" }}>
+            <p style={{ fontSize: 14, fontWeight: 700, color: "#0a0a0a", marginBottom: 4 }}>
+              Plain = Metricool + ManyChat en uno — por menos dinero
+            </p>
+            <p style={{ fontSize: 13, color: "#767676" }}>
+              Metricool Starter 10 marcas (€29) + ManyChat (€25 mín.) = <strong style={{ color: "#ef4444" }}>€54/mes</strong> sin IA de contenido.<br/>
+              Plain Community 10 marcas = <strong style={{ color: "#a855f7" }}>€40/mes</strong> con scheduling + automatización + IA generadora.
+            </p>
+          </div>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#767676", marginTop: 16 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
         </div>
       </section>
 
