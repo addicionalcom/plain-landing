@@ -961,9 +961,8 @@ export default function Home() {
           ))}
         </div>
         <div className="sep" style={{ marginBottom: 24 }} />
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 13, color: "#bbb" }}>
-          <span>© {new Date().getFullYear()} Plain · Addicional Marketing, S.L.</span>
-          <span style={{ fontSize: 12, color: "#ccc", letterSpacing: "0.3px" }}>Made in Sabadell</span>
+        <div style={{ textAlign: "center", fontSize: 12, color: "#ccc", letterSpacing: "0.3px" }}>
+          Made in Sabadell
         </div>
       </footer>
 
