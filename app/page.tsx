@@ -862,12 +862,9 @@ export default function Home() {
           {/* Networks row */}
           <div style={{ textAlign: "center", marginBottom: 32 }}>
             <p style={{ fontSize: 13, color: "#767676", marginBottom: 10, fontWeight: 500 }}>Todas las redes incluidas en cada plan · Cada cliente puede conectar todas simultáneamente</p>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 14, flexWrap: "nowrap", justifyContent: "center" }}>
               {NET_ICONS.map(({ label, el }) => (
-                <div key={label} title={label} style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: 10, background: "white", border: "1px solid #e8e8e8", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}>
-                  {/* scale up the icon for the header row */}
-                  <span style={{ transform:"scale(1.25)", display:"flex" }}>{el}</span>
-                </div>
+                <span key={label} title={label} style={{ display:"flex", transform:"scale(1.3)" }}>{el}</span>
               ))}
             </div>
           </div>
@@ -895,11 +892,11 @@ export default function Home() {
                 {/* All networks included */}
                 <div style={{ marginBottom: 20, padding: "10px 14px", borderRadius: 10, background: pl.hi ? "rgba(168,85,247,0.12)" : "rgba(168,85,247,0.05)", border: `1px solid ${pl.hi ? "rgba(168,85,247,0.3)" : "rgba(168,85,247,0.12)"}` }}>
                   <p style={{ fontSize: 11, fontWeight: 700, color: pl.hi ? "#c084fc" : "#a855f7", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>Todas las redes por cliente</p>
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  <div style={{ display: "flex", gap: 10, flexWrap: "nowrap", alignItems: "center" }}>
                     {NET_ICONS.map(n=>(
-                      <div key={n.label} title={n.label} style={{ display:"flex", alignItems:"center", justifyContent:"center", width:28, height:28, borderRadius:8, background: pl.hi ? "rgba(255,255,255,0.1)" : "white", border:`1px solid ${pl.hi ? "rgba(255,255,255,0.15)" : "#e8e8e8"}` }}>
+                      <span key={n.label} title={n.label} style={{ display:"flex", flexShrink: 0 }}>
                         {n.el}
-                      </div>
+                      </span>
                     ))}
                   </div>
                 </div>
