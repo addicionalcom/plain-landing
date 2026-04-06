@@ -885,7 +885,7 @@ export default function Home() {
                   <p style={{ fontSize: 13, color: "#767676" }}>{pl.desc}</p>
                 </div>
                 <div style={{ marginBottom: 16 }}>
-                  <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>€{pl.price}</span>
+                  <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>{pl.price}€</span>
                   <span style={{ fontSize: 15, color: "#767676" }}>/mes</span>
                   {annual && <div style={{ fontSize: 12, color: "#22c55e", marginTop: 3 }}>Facturado anualmente</div>}
                 </div>
