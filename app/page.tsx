@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles, Brain, Import, BarChart2, ImageIcon, PenLine, Clock, Play, Pause } from "lucide-react";
+import translations, { Lang, LANGS } from "./i18n/translations";
 
 const D = "https://dashboard.plainsocial.app";
 
@@ -10,54 +11,57 @@ export default function Home() {
   const [tip, setTip] = useState<{label:string; desc:string; x:number; y:number}|null>(null);
   const [demoStep, setDemoStep] = useState(0);
   const [demoPlaying, setDemoPlaying] = useState(true);
+  const [lang, setLang] = useState<Lang>("es");
   const p = { s: annual ? 8 : 10, m: annual ? 33 : 40, a: annual ? 166 : 200 };
 
   useEffect(() => {
+    const stored = localStorage.getItem("plain_lang") as Lang | null;
+    if (stored === "es" || stored === "en") setLang(stored);
+  }, []);
+
+  const handleLang = (l: Lang) => {
+    setLang(l);
+    localStorage.setItem("plain_lang", l);
+  };
+
+  useEffect(() => {
     if (!demoPlaying) return;
-    const t = setInterval(() => setDemoStep(s => (s + 1) % 4), 3000);
-    return () => clearInterval(t);
+    const timer = setInterval(() => setDemoStep(s => (s + 1) % 4), 3000);
+    return () => clearInterval(timer);
   }, [demoPlaying]);
 
-  const TIPS: Record<string, string> = {
-    // Pricing items
-    "Hasta 3 clientes": "Gestiona hasta 3 marcas desde un panel centralizado. Cada cliente con sus propias redes y automatizaciones.",
-    "Hasta 10 clientes": "Panel multi-cliente para hasta 10 marcas. Cambia entre clientes en un clic sin perder contexto.",
-    "Clientes ilimitados": "Sin límite de clientes. Añade todas las agencias y marcas que necesites sin coste adicional.",
-    "Programación de contenido": "Importa desde Dropbox o Drive, elige fecha y hora, y Plain publica solo. Admite imágenes, vídeos y carruseles.",
-    "Programación ilimitada": "Posts ilimitados en todas las redes. Sin restricciones de volumen ni de calendario.",
-    "5 automatizaciones activas": "Crea hasta 5 reglas activas: cuando alguien comente una keyword, Plain envía un DM automático al instante.",
-    "Automatizaciones ilimitadas": "Reglas ilimitadas por cliente. Diferentes keywords, mensajes y horarios. 100% en automático.",
-    "Analytics · últimos 12 meses": "Dashboard de métricas por cuenta: alcance, engagement, seguidores e impresiones. Histórico de hasta 12 meses.",
-    "Analytics · histórico 12 meses": "Dashboard de métricas por cuenta: alcance, engagement, seguidores e impresiones. Histórico completo de 12 meses.",
-    "Dropbox / Drive": "Conecta tu Dropbox o Google Drive y accede al contenido de tus clientes directamente desde Plain.",
-    "Todos los almacenamientos": "Dropbox, Google Drive, OneDrive y almacenamiento local. Compatible con todos los flujos de trabajo.",
-    "Soporte por email": "Soporte por email en horario de oficina con respuesta garantizada en menos de 24h.",
-    "Soporte prioritario": "Acceso prioritario al equipo con respuesta en menos de 4 horas en días laborables.",
-    "Soporte 24/7": "Soporte disponible 24h/7d vía chat y email. Para agencias que no pueden permitirse esperar.",
-    "Usuarios ilimitados": "Añade todo tu equipo sin coste extra. Roles y permisos por usuario.",
-    "White-label (próx.)": "Próximamente: personaliza Plain con tu marca, colores y dominio propio para venderlo a tus clientes.",
-    "API (próx.)": "Próximamente: API REST para integrar Plain con tus herramientas, CRMs y flujos de trabajo personalizados.",
-    "Onboarding dedicado": "Sesión 1:1 con nuestro equipo para configurar todo desde cero. Incluye migración de Metricool.",
-    // Features section — automatización
-    "Múltiples palabras clave": "Define tantas keywords como necesites: 'INFO', 'PRECIO', 'RESERVA', 'LINK'... cada una con su propio mensaje y flujo de respuesta.",
-    "Mensajes con variantes": "Añade variantes al mismo mensaje para que Instagram no los detecte como spam. Plain los rota automáticamente.",
-    "Respuesta pública + DM": "Además del DM privado, Plain puede dejar un comentario público en la publicación. Doble impacto con un solo clic.",
-    "Incluir enlaces y CTAs": "Añade URLs, botones de llamada a la acción y emojis en tus mensajes automáticos. Lleva tráfico a donde quieras.",
-    // Features section — programación
-    "Calendario visual": "Vista mensual de todas las publicaciones programadas. Arrastra y suelta para reorganizar. Filtrable por cliente y red.",
-    "Dropbox y Drive": "Conecta las carpetas de tus clientes directamente. Sin descargar ni subir archivos — Plain accede y publica desde ahí.",
-    "Posts, Reels y Stories": "Programa cualquier formato de Instagram: feed, Reels cortos y largos, Stories con stickers y links.",
-    "Publicación automática": "Cero intervención manual. Plain publica a la hora exacta programada, incluso cuando estás de vacaciones.",
-    // Features section — multi-cliente
-    "Panel multi-cliente": "Un solo login. Todos tus clientes en una barra lateral. Cambia de cuenta en menos de 2 segundos.",
-    "Branding por cliente": "Cada cliente tiene su propio color, logo y configuración. La experiencia parece hecha a medida para cada marca.",
-    "Roles de equipo": "Asigna permisos distintos a cada miembro: admin, editor o visualizador. Controla quién puede publicar o configurar automatizaciones.",
-    "Sin límite de cuentas": "Desde el plan Pro, gestiona tantos clientes como quieras sin pagar más. Escala sin fricciones.",
-    // Small feature cards
-    "Almacenamiento conectado": "Dropbox, Google Drive y OneDrive integrados de forma nativa. Accede a los activos de tus clientes sin salir de Plain.",
-    "Métricas en tiempo real": "Dashboard de rendimiento con alcance, impresiones, engagement y crecimiento de seguidores actualizado cada hora.",
-    "Seguro y conforme RGPD": "Todos los datos se procesan en servidores europeos. Cumplimiento total con Meta, RGPD y la normativa española.",
-  };
+  const t = translations[lang];
+
+  // Visual constants (no translation needed)
+  const FEATURE_ICONS = [
+    { icon: Zap, grad: ["#fce7f3","#f43f5e"] as [string,string] },
+    { icon: Calendar, grad: ["#ede9fe","#a855f7"] as [string,string] },
+    { icon: Users, grad: ["#ecfdf5","#059669"] as [string,string] },
+  ];
+  const SMALL_CARD_ICONS = [
+    { icon: FolderOpen, c: "#ea580c", bg: "#fff7ed" },
+    { icon: TrendingUp, c: "#2563eb", bg: "#eff6ff" },
+    { icon: Shield, c: "#059669", bg: "#ecfdf5" },
+  ];
+  const AI_STEP_ICONS = [
+    { icon: FolderOpen, color: "#f43f5e", bg: "#fff1f2" },
+    { icon: Brain, color: "#a855f7", bg: "#faf5ff" },
+    { icon: PenLine, color: "#6366f1", bg: "#eef2ff" },
+    { icon: Clock, color: "#06b6d4", bg: "#ecfeff" },
+  ];
+  const MIGRATION_ICONS = [
+    { icon: BarChart2, color: "#f43f5e", bg: "#fff1f2" },
+    { icon: Calendar, color: "#a855f7", bg: "#faf5ff" },
+    { icon: Users, color: "#06b6d4", bg: "#ecfeff" },
+  ];
+  const HIOW_COLORS = ["#f43f5e","#a855f7","#06b6d4","#059669"];
+  const FLOW_ICONS = ["📁","🤖","📅","✅"];
+  const STORAGE_CONFIGS = [
+    { color: "#0061ff", active: true },
+    { color: "#34a853", active: true },
+    { color: "#0078d4", active: false },
+  ];
+  const DAY_NAMES = lang === "es" ? ["L","M","X","J","V","S","D"] : ["M","T","W","T","F","S","S"];
 
   const NET_ICONS = [
     { label:"Instagram", el:<svg viewBox="0 0 24 24" style={{width:16,height:16,fill:"#444"}}><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> },
@@ -79,14 +83,27 @@ export default function Home() {
             <img src="/logo.svg" alt="Plain" style={{ height: 34, display: "block" }} />
           </a>
           <div className="nav-links" style={{ display: "flex", gap: 28, fontSize: 14, fontWeight: 500, color: "#555" }}>
-            {[["#features","Funciones"],["#comparativa","Comparativa"],["#precios","Precios"],["#faq","FAQ"]].map(([h,l])=>(
+            {[["#features",t.nav.features],["#comparativa",t.nav.comparison],["#precios",t.nav.pricing],["#faq",t.nav.faq]].map(([h,l])=>(
               <a key={h} href={h} style={{ textDecoration: "none", color: "inherit" }}>{l}</a>
             ))}
           </div>
           <div className="nav-actions" style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <a href={`${D}/login`} className="nav-login" style={{ fontSize: 14, fontWeight: 500, color: "#555", textDecoration: "none" }}>Iniciar sesión</a>
+            {/* Language switcher */}
+            <div style={{ display: "flex", gap: 2, background: "#f5f5f5", borderRadius: 8, padding: 2 }}>
+              {LANGS.map(({ code, label }) => (
+                <button key={code} onClick={() => handleLang(code)}
+                  style={{ padding: "4px 10px", borderRadius: 6, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 700,
+                    background: lang === code ? "white" : "transparent",
+                    color: lang === code ? "#0a0a0a" : "#999",
+                    boxShadow: lang === code ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
+                    transition: "all 0.15s" }}>
+                  {label}
+                </button>
+              ))}
+            </div>
+            <a href={`${D}/login`} className="nav-login" style={{ fontSize: 14, fontWeight: 500, color: "#555", textDecoration: "none" }}>{t.nav.login}</a>
             <a href={`${D}/register`} className="grad-btn nav-cta" style={{ fontSize: 14, fontWeight: 600, padding: "9px 20px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
-              Prueba gratis 14 días
+              {t.nav.cta}
             </a>
           </div>
         </div>
@@ -94,73 +111,65 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section className="hero-section" style={{ paddingTop: 140, paddingBottom: 100, textAlign: "center", position: "relative", overflow: "hidden" }}>
-        {/* Bg blobs */}
         <div style={{ position: "absolute", top: -80, left: "50%", transform: "translateX(-50%)", width: 800, height: 500, background: "radial-gradient(ellipse, rgba(168,85,247,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 100, left: "10%", width: 300, height: 300, background: "radial-gradient(ellipse, rgba(244,63,94,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 80, right: "10%", width: 300, height: 300, background: "radial-gradient(ellipse, rgba(6,182,212,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
 
         <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
-          {/* Badge */}
           <div className="badge anim-up" style={{ marginBottom: 28 }}>
             <Sparkles size={13} style={{ color: "#a855f7" }} />
-            La herramienta de social media para agencias
+            {t.hero.badge}
           </div>
 
           <h1 className="anim-up-1 hero-title" style={{ fontSize: "clamp(40px, 5.5vw, 76px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-2px", marginBottom: 24, maxWidth: 960, margin: "0 auto 24px" }}>
-            Tú genera el contenido.<br />
-            <span className="grad-text">Plain se encarga del resto.</span>
+            {t.hero.h1a}<br />
+            <span className="grad-text">{t.hero.h1b}</span>
           </h1>
 
           <p className="anim-up-2" style={{ fontSize: 20, color: "#555", maxWidth: 620, margin: "0 auto 16px", lineHeight: 1.6 }}>
-            Sube tus fotos y reels a Dropbox o Drive. Plain selecciona el mejor contenido, redacta los copies con IA, lo planifica y lo publica solo.
+            {t.hero.p}
           </p>
 
           {/* Flow pills */}
           <div className="anim-up-2" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, flexWrap: "wrap", marginBottom: 36 }}>
-            {[
-              { icon: "📁", label: "Subes el contenido" },
-              { icon: "→", label: "" },
-              { icon: "🤖", label: "IA selecciona y redacta" },
-              { icon: "→", label: "" },
-              { icon: "📅", label: "Planifica" },
-              { icon: "→", label: "" },
-              { icon: "✅", label: "Publica solo" },
-            ].map((item, i) => item.label ? (
-              <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "white", border: "1px solid #e8e8e8", borderRadius: 100, padding: "5px 12px", fontSize: 13, fontWeight: 600, color: "#333", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-                <span>{item.icon}</span>{item.label}
-              </span>
-            ) : (
-              <span key={i} style={{ color: "#ccc", fontWeight: 300, fontSize: 18 }}>→</span>
-            ))}
+            {t.hero.flowPills.flatMap((label, i) => {
+              const items = [(
+                <span key={`pill-${i}`} style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "white", border: "1px solid #e8e8e8", borderRadius: 100, padding: "5px 12px", fontSize: 13, fontWeight: 600, color: "#333", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
+                  <span>{FLOW_ICONS[i]}</span>{label}
+                </span>
+              )];
+              if (i < t.hero.flowPills.length - 1) {
+                items.push(<span key={`arrow-${i}`} style={{ color: "#ccc", fontWeight: 300, fontSize: 18 }}>→</span>);
+              }
+              return items;
+            })}
           </div>
 
           <div className="anim-up-3" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 16, fontWeight: 700, padding: "14px 28px", borderRadius: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
-              Empieza gratis — sin tarjeta <ArrowRight size={18} />
+              {t.hero.ctaPrimary} <ArrowRight size={18} />
             </a>
             <a href="#features" style={{ fontSize: 16, fontWeight: 600, padding: "14px 28px", borderRadius: 12, textDecoration: "none", border: "1px solid #e5e7eb", color: "#333", display: "inline-block", background: "white" }}>
-              Ver cómo funciona
+              {t.hero.ctaSecondary}
             </a>
           </div>
-          <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>14 días gratis · Sin tarjeta · Cancela cuando quieras</p>
+          <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>{t.hero.footnote}</p>
 
           {/* Hero card mockup */}
           <div aria-hidden="true" className="float hero-card" style={{ marginTop: 60, maxWidth: 860, marginLeft: "auto", marginRight: "auto" }}>
             <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 24, overflow: "hidden", boxShadow: "0 24px 80px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04)" }}>
-              {/* Window bar */}
               <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 18px", display: "flex", alignItems: "center", gap: 8 }}>
                 <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#ff5f57" }} />
                 <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#febc2e" }} />
                 <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#28c840" }} />
                 <span style={{ marginLeft: 12, fontSize: 12, color: "#aaa", fontWeight: 500 }}>dashboard.plainsocial.app — Automatizaciones</span>
               </div>
-              {/* Content */}
               <div className="hero-card-grid" style={{ padding: 24, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
                 {/* Trigger panel */}
                 <div style={{ gridColumn: "span 2", background: "#fafafa", borderRadius: 16, padding: 20, border: "1px solid #f0f0f0" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
                     <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e" }} />
-                    <span style={{ fontSize: 11, fontWeight: 600, color: "#666", textTransform: "uppercase", letterSpacing: "0.8px" }}>Automatización activa</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: "#666", textTransform: "uppercase", letterSpacing: "0.8px" }}>{t.hero.automationActive}</span>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                     <div style={{ display: "flex", gap: 10 }}>
@@ -168,25 +177,29 @@ export default function Home() {
                         <MessageCircle size={14} style={{ color: "#a855f7" }} />
                       </div>
                       <div>
-                        <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>Comentario recibido</div>
-                        <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 10, padding: "8px 12px", fontSize: 13, fontWeight: 500 }}>"INFO" 🙌</div>
+                        <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>{t.hero.commentReceived}</div>
+                        <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 10, padding: "8px 12px", fontSize: 13, fontWeight: 500 }}>&quot;INFO&quot; 🙌</div>
                       </div>
                     </div>
                     <div style={{ paddingLeft: 42, display: "flex", flexDirection: "column", gap: 4 }}>
-                      <div style={{ fontSize: 11, color: "#22c55e", fontWeight: 600 }}>✓ DM enviado automáticamente</div>
+                      <div style={{ fontSize: 11, color: "#22c55e", fontWeight: 600 }}>{t.hero.dmSent}</div>
                       <div style={{ background: "linear-gradient(135deg,rgba(244,63,94,0.06),rgba(168,85,247,0.06))", border: "1px solid rgba(168,85,247,0.15)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#6d28d9" }}>
-                        ¡Hola! Te enviamos toda la info 😊 Aquí tienes el catálogo →
+                        {t.hero.dmMessage}
                       </div>
                     </div>
                   </div>
                   <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", fontSize: 11, color: "#bbb" }}>
-                    <span>Regla: &quot;INFO&quot; → DM automático</span>
-                    <span style={{ color: "#22c55e", fontWeight: 600 }}>127 DMs hoy</span>
+                    <span>{t.hero.ruleLabel}</span>
+                    <span style={{ color: "#22c55e", fontWeight: 600 }}>{t.hero.dmsToday}</span>
                   </div>
                 </div>
                 {/* Stats */}
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  {[["Clientes","12","↑ 3 este mes","#22c55e"],["Programados","48","próx. 30 días","#aaa"],["DMs enviados","1.284","este mes","#22c55e"]].map(([l,v,s,c])=>(
+                  {[
+                    [t.hero.statClients,"12",t.hero.statClientsUp,"#22c55e"],
+                    [t.hero.statScheduled,"48",t.hero.statScheduledSub,"#aaa"],
+                    [t.hero.statDMs,"1.284",t.hero.statDMsSub,"#22c55e"],
+                  ].map(([l,v,s,c])=>(
                     <div key={l} style={{ background: "#fafafa", border: "1px solid #f0f0f0", borderRadius: 14, padding: 14 }}>
                       <div style={{ fontSize: 10, color: "#aaa", fontWeight: 500, marginBottom: 2 }}>{l}</div>
                       <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: "-0.5px" }}>{v}</div>
@@ -203,7 +216,7 @@ export default function Home() {
       {/* ── LOGOS ── */}
       <div className="sep" style={{ maxWidth: 1400, margin: "0 auto 0" }} />
       <section className="logos-section" style={{ padding: "28px 32px", maxWidth: 1400, margin: "0 auto", textAlign: "center" }}>
-        <p style={{ fontSize: 12, fontWeight: 600, color: "#ccc", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>Integra con tus herramientas</p>
+        <p style={{ fontSize: 12, fontWeight: 600, color: "#ccc", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>{t.logos.title}</p>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "8px 36px" }}>
           {[
             { name: "Instagram", svg: <svg viewBox="0 0 24 24" style={{width:20,height:20,fill:"#ccc"}}><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> },
@@ -232,11 +245,10 @@ export default function Home() {
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>
-              ¿Usas Metricool para publicar<br/>y ManyChat para automatizar?
+              {t.problem.h2}
             </h2>
             <p style={{ fontSize: 18, color: "#666", maxWidth: 560, margin: "0 auto" }}>
-              Ya puedes cancelar los dos. Plain hace exactamente lo mismo —
-              y además genera el contenido con IA desde tus carpetas.
+              {t.problem.p}
             </p>
           </div>
           <div className="problem-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
@@ -246,28 +258,28 @@ export default function Home() {
                 <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#fee2e2", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <X size={16} style={{ color: "#ef4444" }} />
                 </div>
-                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Sin Plain: dos facturas cada mes</h3>
+                <h3 style={{ fontWeight: 800, fontSize: 17 }}>{t.problem.withoutTitle}</h3>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[
-                  ["Metricool Starter","€29/mes","Programar contenido · 10 marcas"],
-                  ["ManyChat","€25–65/mes*","Automatizar DMs · precio por contactos"],
-                ].map(([t,price,d])=>(
-                  <div key={t} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "white", border: "1px solid #fee2e2", borderRadius: 12, padding: "12px 16px" }}>
-                    <div><div style={{ fontWeight: 700, fontSize: 13 }}>{t}</div><div style={{ fontSize: 12, color: "#767676" }}>{d}</div></div>
+                  ["Metricool Starter","€29/mes",t.problem.metricoolDesc],
+                  ["ManyChat","€25–65/mes*",t.problem.manychatDesc],
+                ].map(([name,price,d])=>(
+                  <div key={name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "white", border: "1px solid #fee2e2", borderRadius: 12, padding: "12px 16px" }}>
+                    <div><div style={{ fontWeight: 700, fontSize: 13 }}>{name}</div><div style={{ fontSize: 12, color: "#767676" }}>{d}</div></div>
                     <div style={{ fontWeight: 800, color: "#ef4444", fontSize: 14 }}>{price}</div>
                   </div>
                 ))}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "white", border: "1px solid #fee2e2", borderRadius: 12, padding: "12px 16px", opacity: 0.6 }}>
-                  <div><div style={{ fontWeight: 700, fontSize: 13, color: "#ef4444" }}>IA para generar contenido</div><div style={{ fontSize: 12, color: "#767676" }}>No disponible en ninguna de las dos</div></div>
+                  <div><div style={{ fontWeight: 700, fontSize: 13, color: "#ef4444" }}>{t.problem.noAI}</div><div style={{ fontSize: 12, color: "#767676" }}>{t.problem.noAIDesc}</div></div>
                   <X size={16} style={{ color: "#ef4444" }} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#fef2f2", border: "2px solid #fca5a5", borderRadius: 12, padding: "12px 16px" }}>
-                  <span style={{ fontWeight: 800, fontSize: 15 }}>Total mensual mínimo</span>
+                  <span style={{ fontWeight: 800, fontSize: 15 }}>{t.problem.totalLabel}</span>
                   <span style={{ fontWeight: 900, color: "#ef4444", fontSize: 20 }}>€54–94/mes</span>
                 </div>
               </div>
-              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>*ManyChat escala el precio sin avisar según número de contactos</p>
+              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>{t.problem.totalNote}</p>
             </div>
             {/* With */}
             <div className="card" style={{ padding: 32, background: "linear-gradient(135deg,rgba(244,63,94,0.03),rgba(168,85,247,0.05),rgba(6,182,212,0.03))", borderColor: "rgba(168,85,247,0.15)" }}>
@@ -275,27 +287,21 @@ export default function Home() {
                 <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#fce7f3,#ede9fe)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Check size={16} style={{ color: "#a855f7" }} />
                 </div>
-                <h3 style={{ fontWeight: 800, fontSize: 17 }}>Con Plain: todo en uno, por menos</h3>
+                <h3 style={{ fontWeight: 800, fontSize: 17 }}>{t.problem.withTitle}</h3>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {[
-                  "Programación de contenido",
-                  "Automatización comentario → DM",
-                  "IA genera copies desde Dropbox / Drive",
-                  "Gestión multi-cliente · hasta 100 marcas",
-                  "Precio fijo · sin contar contactos",
-                ].map(f=>(
+                {t.problem.withItems.map(f=>(
                   <div key={f} style={{ display: "flex", alignItems: "center", gap: 10, background: "white", border: "1px solid rgba(168,85,247,0.12)", borderRadius: 12, padding: "12px 16px" }}>
                     <Check size={15} style={{ color: "#a855f7", flexShrink: 0 }} />
                     <span style={{ fontWeight: 600, fontSize: 13 }}>{f}</span>
                   </div>
                 ))}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", borderRadius: 12, padding: "12px 16px" }}>
-                  <span style={{ fontWeight: 800, color: "white", fontSize: 15 }}>Todo incluido desde</span>
+                  <span style={{ fontWeight: 800, color: "white", fontSize: 15 }}>{t.problem.allFromLabel}</span>
                   <span style={{ fontWeight: 900, color: "white", fontSize: 20 }}>€10/mes</span>
                 </div>
               </div>
-              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>Precio de lanzamiento garantizado · Se mantiene para siempre si contratas ahora</p>
+              <p style={{ fontSize: 11, color: "#767676", marginTop: 10 }}>{t.problem.guarantee}</p>
             </div>
           </div>
         </div>
@@ -305,54 +311,52 @@ export default function Home() {
       <section id="features" className="section-pad" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Todo lo que necesita tu agencia</h2>
-            <p style={{ fontSize: 18, color: "#666" }}>Tres pilares. Un solo panel.</p>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>{t.features.h2}</h2>
+            <p style={{ fontSize: 18, color: "#666" }}>{t.features.p}</p>
           </div>
           <div className="features-main-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginBottom: 16 }}>
-            {[
-              { icon: Zap, grad: ["#fce7f3","#f43f5e"], title: "Convierte comentarios en leads", desc: 'Define palabras clave — "INFO", "PRECIO", "RESERVA" — y Plain envía un DM personalizado al instante. Sin ManyChat. Sin coste por contacto.', items: ["Múltiples palabras clave","Mensajes con variantes","Respuesta pública + DM","Incluir enlaces y CTAs"] },
-              { icon: Calendar, grad: ["#ede9fe","#a855f7"], title: "Publica sin esfuerzo", desc: "Conecta Dropbox o Google Drive y programa posts, Reels y Stories desde las carpetas de tus clientes. Ellos suben, Plain publica.", items: ["Calendario visual","Dropbox y Drive","Posts, Reels y Stories","Publicación automática"] },
-              { icon: Users, grad: ["#ecfdf5","#059669"], title: "Gestiona todos tus clientes", desc: "Un panel. Todos tus clientes. Sin cambiar de cuenta. Para agencias con 5, 10 o 50 cuentas de Instagram.", items: ["Panel multi-cliente","Branding por cliente","Roles de equipo","Sin límite de cuentas"] },
-            ].map(({ icon: Icon, grad, title, desc, items })=>(
-              <div key={title} className="card" style={{ padding: 28, background: "white" }}>
-                <div style={{ width: 48, height: 48, borderRadius: 14, background: grad[0], display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
-                  <Icon size={22} style={{ color: grad[1] }} />
+            {t.features.cards.map((card, ci) => {
+              const { icon: Icon, grad } = FEATURE_ICONS[ci];
+              return (
+                <div key={card.title} className="card" style={{ padding: 28, background: "white" }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 14, background: grad[0], display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
+                    <Icon size={22} style={{ color: grad[1] }} />
+                  </div>
+                  <h3 style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.4px", marginBottom: 10 }}>{card.title}</h3>
+                  <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6, marginBottom: 20 }}>{card.desc}</p>
+                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                    {card.items.map(item=>(
+                      <li key={item.label}
+                        onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:item.label,desc:item.tip,x:r.left+r.width/2,y:r.top-8}); }}
+                        onMouseLeave={()=>setTip(null)}
+                        style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, color: "#444", cursor: "help", borderRadius: 6, padding: "2px 4px", transition: "background 0.1s" }}
+                        onMouseOver={e=>{ (e.currentTarget as HTMLElement).style.background="#f9f5ff"; }}
+                        onMouseOut={e=>{ (e.currentTarget as HTMLElement).style.background="transparent"; }}>
+                        <Check size={13} style={{ color: grad[1], flexShrink: 0 }} />{item.label}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 style={{ fontWeight: 800, fontSize: 20, letterSpacing: "-0.4px", marginBottom: 10 }}>{title}</h3>
-                <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6, marginBottom: 20 }}>{desc}</p>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
-                  {items.map(i=>(
-                    <li key={i}
-                      onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:i,desc:TIPS[i]??i,x:r.left+r.width/2,y:r.top-8}); }}
-                      onMouseLeave={()=>setTip(null)}
-                      style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, color: "#444", cursor: TIPS[i] ? "help" : "default", borderRadius: 6, padding: "2px 4px", transition: "background 0.1s" }}
-                      onMouseOver={e=>{ if(TIPS[i])(e.currentTarget as HTMLElement).style.background="#f9f5ff"; }}
-                      onMouseOut={e=>{ (e.currentTarget as HTMLElement).style.background="transparent"; }}>
-                      <Check size={13} style={{ color: grad[1], flexShrink: 0 }} />{i}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className="features-sub-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
-            {[
-              { icon: FolderOpen, c: "#ea580c", bg: "#fff7ed", t: "Almacenamiento conectado", d: "Dropbox, Drive, OneDrive. Tus activos siempre a mano." },
-              { icon: TrendingUp, c: "#2563eb", bg: "#eff6ff", t: "Métricas en tiempo real", d: "Rendimiento de cada cliente en un solo panel." },
-              { icon: Shield, c: "#059669", bg: "#ecfdf5", t: "Seguro y conforme RGPD", d: "Datos en Europa. Cumplimiento total con Meta." },
-            ].map(({ icon: Icon, c, bg, t, d })=>(
-              <div key={t} className="card" style={{ padding: 20, display: "flex", gap: 14, background: "white", cursor: "help" }}
-                onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:t,desc:TIPS[t]??d,x:r.left+r.width/2,y:r.top-8}); }}
-                onMouseLeave={()=>setTip(null)}>
-                <div style={{ width: 40, height: 40, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <Icon size={18} style={{ color: c }} />
+            {t.features.smallCards.map((sc, si) => {
+              const { icon: Icon, c, bg } = SMALL_CARD_ICONS[si];
+              return (
+                <div key={sc.t} className="card" style={{ padding: 20, display: "flex", gap: 14, background: "white", cursor: "help" }}
+                  onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:sc.t,desc:sc.tip,x:r.left+r.width/2,y:r.top-8}); }}
+                  onMouseLeave={()=>setTip(null)}>
+                  <div style={{ width: 40, height: 40, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Icon size={18} style={{ color: c }} />
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 3 }}>{sc.t}</div>
+                    <div style={{ fontSize: 12, color: "#767676" }}>{sc.d}</div>
+                  </div>
                 </div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 3 }}>{t}</div>
-                  <div style={{ fontSize: 12, color: "#767676" }}>{d}</div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -360,58 +364,54 @@ export default function Home() {
       {/* ── AI CONTENT ── */}
       <section className="section-pad" style={{ padding: "100px 32px", maxWidth: "100%", background: "white" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
-          {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <div className="badge" style={{ marginBottom: 20 }}>
               <Brain size={13} style={{ color: "#a855f7" }} />
-              Exclusivo de Plain — no lo hace ninguna otra herramienta
+              {t.ai.badge}
             </div>
             <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 16 }}>
-              Céntate en crear el contenido.<br />
-              <span className="grad-text">El resto lo hace Plain.</span>
+              {t.ai.h2a}<br />
+              <span className="grad-text">{t.ai.h2b}</span>
             </h2>
             <p style={{ fontSize: 20, color: "#666", maxWidth: 680, margin: "0 auto" }}>
-              Plain funciona en automático. Selecciona una carpeta local o de Dropbox y nútrela de imágenes y reels. Plain se encarga de escribir los copys y calendarizar. Te lo deja en borrador para revisión o programado en las mejores horas.
+              {t.ai.p}
             </p>
           </div>
 
           {/* Flow visual */}
           <div className="ai-flow-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, maxWidth: 1100, margin: "0 auto 60px" }}>
-            {[
-              { icon: FolderOpen, color: "#f43f5e", bg: "#fff1f2", step: "01", title: "Señalas la carpeta", desc: "Selecciona una carpeta local o de Dropbox y nútrela de imágenes y reels. Plain accede a todo el contenido del cliente automáticamente." },
-              { icon: Brain, color: "#a855f7", bg: "#faf5ff", step: "02", title: "Tu marca, tu briefing", desc: "Plain tiene un briefing preparado para cada marca y se basa en él para crear el contenido. Listo en 2 minutos y editable cuando quieras." },
-              { icon: PenLine, color: "#6366f1", bg: "#eef2ff", step: "03", title: "Escribe los copys", desc: "Genera copies con la voz de tu marca, hashtags, emojis y CTAs optimizados. Cada texto refleja tu identidad." },
-              { icon: Clock, color: "#06b6d4", bg: "#ecfeff", step: "04", title: "Borrador o programado", desc: "Te lo deja en borrador para revisión o directamente programado en los mejores horarios. Tú decides el nivel de control." },
-            ].map(({ icon: Icon, color, bg, step, title, desc }) => (
-              <div key={step} className="card" style={{ padding: 28, background: "white", position: "relative" }}>
-                <div style={{ position: "absolute", top: 20, right: 20, fontWeight: 900, fontSize: 13, color: "#f0f0f0", letterSpacing: "-0.5px" }}>{step}</div>
-                <div style={{ width: 52, height: 52, borderRadius: 16, background: bg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
-                  <Icon size={24} style={{ color }} />
+            {t.ai.steps.map((step, si) => {
+              const { icon: Icon, color, bg } = AI_STEP_ICONS[si];
+              const stepNum = String(si + 1).padStart(2, "0");
+              return (
+                <div key={stepNum} className="card" style={{ padding: 28, background: "white", position: "relative" }}>
+                  <div style={{ position: "absolute", top: 20, right: 20, fontWeight: 900, fontSize: 13, color: "#f0f0f0", letterSpacing: "-0.5px" }}>{stepNum}</div>
+                  <div style={{ width: 52, height: 52, borderRadius: 16, background: bg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
+                    <Icon size={24} style={{ color }} />
+                  </div>
+                  <h3 style={{ fontWeight: 800, fontSize: 17, marginBottom: 8, letterSpacing: "-0.3px" }}>{step.title}</h3>
+                  <p style={{ fontSize: 13, color: "#777", lineHeight: 1.65 }}>{step.desc}</p>
                 </div>
-                <h3 style={{ fontWeight: 800, fontSize: 17, marginBottom: 8, letterSpacing: "-0.3px" }}>{title}</h3>
-                <p style={{ fontSize: 13, color: "#777", lineHeight: 1.65 }}>{desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Demo card */}
           <div style={{ maxWidth: 900, margin: "0 auto" }}>
             <div className="card" style={{ padding: 0, overflow: "hidden", background: "white", boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-              {/* Top bar */}
               <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 20px", display: "flex", alignItems: "center", gap: 8 }}>
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
-                <span style={{ marginLeft: 10, fontSize: 12, color: "#767676", fontWeight: 500 }}>Plain IA — Generación automática de contenido</span>
+                <span style={{ marginLeft: 10, fontSize: 12, color: "#767676", fontWeight: 500 }}>{t.ai.demoWindowLabel}</span>
                 <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg,rgba(168,85,247,0.1),rgba(6,182,212,0.1))", border: "1px solid rgba(168,85,247,0.2)", borderRadius: 20, padding: "4px 12px" }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", animation: "pulse 2s infinite" }} />
-                  <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 600 }}>IA procesando</span>
+                  <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 600 }}>{t.ai.demoProcessing}</span>
                 </div>
               </div>
               <div className="ai-demo-grid" style={{ padding: 28, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-                {/* Left: folder + selection */}
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 12 }}>Carpeta analizada: /Delio/Marzo 2026</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 12 }}>{t.ai.demoFolderLabel}</div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                     {[
                       { sel: true, score: "9.4" }, { sel: false, score: "6.1" }, { sel: true, score: "8.8" },
@@ -424,12 +424,12 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  <div style={{ marginTop: 12, fontSize: 12, color: "#767676" }}>3 de 6 piezas seleccionadas · Puntuación media: 9.1</div>
+                  <div style={{ marginTop: 12, fontSize: 12, color: "#767676" }}>{t.ai.demoPiecesSelected}</div>
                 </div>
-                {/* Right: generated copy + calendar */}
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                   <div style={{ background: "#fafafa", border: "1px solid #f0f0f0", borderRadius: 14, padding: 16 }}>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 8 }}>Copy generado por IA</div>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 8 }}>{t.ai.demoCopyLabel}</div>
+                    <div style={{ fontSize: 10, color: "#999", marginBottom: 6 }}>{t.ai.demoCopyTone}</div>
                     <p style={{ fontSize: 12, color: "#444", lineHeight: 1.6 }}>
                       ✨ Empieza la semana con energía en Delio 🍽️<br />
                       Nuevos platos de temporada que ya están esperándote.<br />
@@ -438,12 +438,12 @@ export default function Home() {
                     </p>
                   </div>
                   <div style={{ background: "#fafafa", border: "1px solid #f0f0f0", borderRadius: 14, padding: 16 }}>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: "#06b6d4", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 10 }}>Calendarizado automáticamente</div>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: "#06b6d4", textTransform: "uppercase", letterSpacing: "0.8px", marginBottom: 10 }}>{t.ai.demoCalLabel}</div>
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                      {[["Lun 3 Mar","18:30","Post principal","✓"],["Mié 5 Mar","12:00","Story animada","✓"],["Vie 7 Mar","19:00","Reel receta","✓"]].map(([d,h,t,s])=>(
+                      {[["Lun 3 Mar","18:30","Post principal","✓"],["Mié 5 Mar","12:00","Story animada","✓"],["Vie 7 Mar","19:00","Reel receta","✓"]].map(([d,h,ct,s])=>(
                         <div key={d} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11 }}>
                           <span style={{ color: "#767676" }}>{d} · {h}</span>
-                          <span style={{ fontWeight: 600, color: "#444" }}>{t}</span>
+                          <span style={{ fontWeight: 600, color: "#444" }}>{ct}</span>
                           <span style={{ color: "#22c55e", fontWeight: 700 }}>{s}</span>
                         </div>
                       ))}
@@ -462,25 +462,20 @@ export default function Home() {
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div className="badge" style={{ marginBottom: 16 }}>
               <Play size={12} style={{ color: "#a855f7" }} />
-              Cómo funciona — en 4 pasos
+              {t.demo.badge}
             </div>
             <h2 style={{ fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>
-              De la carpeta de Dropbox<br />
-              <span className="grad-text">al post publicado. Solo.</span>
+              {t.demo.h2a}<br />
+              <span className="grad-text">{t.demo.h2b}</span>
             </h2>
             <p style={{ fontSize: 17, color: "#666", maxWidth: 520, margin: "0 auto" }}>
-              Conecta una carpeta, indica el cliente y Plain hace el resto — IA incluida.
+              {t.demo.p}
             </p>
           </div>
 
           {/* Step tabs */}
           <div className="demo-tabs" style={{ display: "flex", justifyContent: "center", gap: 8, marginBottom: 40, flexWrap: "wrap" }}>
-            {[
-              { n: "01", label: "Conectas la carpeta" },
-              { n: "02", label: "La IA selecciona" },
-              { n: "03", label: "Escribe el copy" },
-              { n: "04", label: "Calendariza" },
-            ].map(({ n, label }, i) => (
+            {t.demo.steps.map(({ n, label }, i) => (
               <button key={n} onClick={() => { setDemoStep(i); setDemoPlaying(false); }}
                 style={{ padding: "8px 18px", borderRadius: 100, cursor: "pointer", fontSize: 13, fontWeight: 700, transition: "all 0.2s",
                   background: demoStep === i ? "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)" : "white",
@@ -491,22 +486,20 @@ export default function Home() {
                 <span style={{ opacity: 0.7, marginRight: 6 }}>{n}</span>{label}
               </button>
             ))}
-            <button onClick={() => setDemoPlaying(p => !p)}
+            <button onClick={() => setDemoPlaying(dp => !dp)}
               style={{ padding: "8px 14px", borderRadius: 100, border: "1px solid #e8e8e8", background: "white", cursor: "pointer", color: "#767676", display: "flex", alignItems: "center", gap: 5, fontSize: 12 }}>
               {demoPlaying ? <Pause size={12} /> : <Play size={12} />}
-              {demoPlaying ? "Pausa" : "Auto"}
+              {demoPlaying ? t.demo.pause : t.demo.auto}
             </button>
           </div>
 
           {/* Demo screen */}
           <div style={{ background: "white", border: "1px solid #e8e8e8", borderRadius: 20, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            {/* Window bar */}
             <div style={{ background: "#fafafa", borderBottom: "1px solid #f0f0f0", padding: "12px 20px", display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
-              <span style={{ marginLeft: 12, fontSize: 12, color: "#767676", fontWeight: 500 }}>Plain · Contenido automático</span>
-              {/* Progress bar */}
+              <span style={{ marginLeft: 12, fontSize: 12, color: "#767676", fontWeight: 500 }}>{t.demo.windowLabel}</span>
               <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
                 {[0,1,2,3].map(i => (
                   <div key={i} style={{ width: i === demoStep ? 24 : 8, height: 6, borderRadius: 100, transition: "all 0.4s",
@@ -515,32 +508,31 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Content — step 0: Conectar carpeta */}
+            {/* Step 0 */}
             {demoStep === 0 && (
               <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Almacenamiento conectado</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>{t.demo.storageTitle}</div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    {[
-                      { name: "Dropbox", sub: "Conectado · 3 carpetas", color: "#0061ff", active: true },
-                      { name: "Google Drive", sub: "Conectado · 5 carpetas", color: "#34a853", active: true },
-                      { name: "OneDrive", sub: "No conectado", color: "#0078d4", active: false },
-                    ].map(s => (
-                      <div key={s.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 12, border: `1px solid ${s.active ? "rgba(168,85,247,0.15)" : "#f0f0f0"}`, background: s.active ? "rgba(168,85,247,0.03)" : "#fafafa" }}>
-                        <div style={{ width: 36, height: 36, borderRadius: 10, background: s.active ? s.color : "#f0f0f0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                          <FolderOpen size={16} style={{ color: s.active ? "white" : "#ccc" }} />
+                    {t.demo.storageItems.map((s, si) => {
+                      const cfg = STORAGE_CONFIGS[si];
+                      return (
+                        <div key={s.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 12, border: `1px solid ${cfg.active ? "rgba(168,85,247,0.15)" : "#f0f0f0"}`, background: cfg.active ? "rgba(168,85,247,0.03)" : "#fafafa" }}>
+                          <div style={{ width: 36, height: 36, borderRadius: 10, background: cfg.active ? cfg.color : "#f0f0f0", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <FolderOpen size={16} style={{ color: cfg.active ? "white" : "#ccc" }} />
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: 13, fontWeight: 700 }}>{s.name}</div>
+                            <div style={{ fontSize: 11, color: cfg.active ? "#a855f7" : "#bbb" }}>{s.sub}</div>
+                          </div>
+                          {cfg.active && <Check size={14} style={{ color: "#22c55e" }} />}
                         </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: 13, fontWeight: 700 }}>{s.name}</div>
-                          <div style={{ fontSize: 11, color: s.active ? "#a855f7" : "#bbb" }}>{s.sub}</div>
-                        </div>
-                        {s.active && <Check size={14} style={{ color: "#22c55e" }} />}
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Carpeta seleccionada: /Delio/Abril 2026</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>{t.demo.selectedFolder}</div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
                     {["IMG_001.jpg","VID_002.mp4","IMG_003.jpg","IMG_004.jpg","VID_005.mp4","IMG_006.jpg"].map((f,i) => (
                       <div key={f} style={{ aspectRatio:"1", borderRadius: 10, background: f.includes("VID") ? "#faf5ff" : "#f9fafb", border: "1px solid #f0f0f0", display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "center", gap: 4 }}>
@@ -549,15 +541,15 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  <div style={{ marginTop: 12, fontSize: 12, color: "#767676" }}>6 archivos listos para analizar →</div>
+                  <div style={{ marginTop: 12, fontSize: 12, color: "#767676" }}>{t.demo.filesReady}</div>
                 </div>
               </div>
             )}
 
-            {/* Content — step 1: IA selecciona */}
+            {/* Step 1 */}
             {demoStep === 1 && (
               <div style={{ padding: 32, minHeight: 320 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>IA analizando contenido · Delio / Abril 2026</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>{t.demo.aiAnalyzing}</div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 12, marginBottom: 24 }}>
                   {[
                     { f:"IMG_001.jpg", score:9.4, sel:true, reason:"Alta luminosidad, producto bien centrado" },
@@ -567,8 +559,7 @@ export default function Home() {
                     { f:"VID_005.mp4", score:9.1, sel:true, reason:"Reel dinámico, ritmo perfecto para Instagram" },
                     { f:"IMG_006.jpg", score:7.2, sel:false, reason:"Encuadre correcto pero poco diferencial" },
                   ].map((item,i) => (
-                    <div key={i}
-                      title={item.reason}
+                    <div key={i} title={item.reason}
                       style={{ aspectRatio:"1", borderRadius: 12, position:"relative", overflow:"hidden",
                         border: item.sel ? "2px solid #a855f7" : "2px solid #f0f0f0",
                         background: item.sel ? "linear-gradient(135deg,#faf5ff,#fce7f3)" : "#f9fafb",
@@ -582,25 +573,25 @@ export default function Home() {
                 </div>
                 <div style={{ display:"flex", alignItems:"center", gap:16, padding:"14px 20px", borderRadius:12, background:"linear-gradient(135deg,rgba(168,85,247,0.06),rgba(6,182,212,0.06))", border:"1px solid rgba(168,85,247,0.12)" }}>
                   <div style={{ width:8, height:8, borderRadius:"50%", background:"#a855f7" }} />
-                  <span style={{ fontSize:13, color:"#666" }}>IA seleccionó <strong style={{ color:"#a855f7" }}>3 de 6 piezas</strong> · Puntuación media: <strong>9.1 / 10</strong> · Estimación de alcance: <strong style={{ color:"#22c55e" }}>+34% vs media</strong></span>
+                  <span style={{ fontSize:13, color:"#666" }} dangerouslySetInnerHTML={{ __html: t.demo.aiSummary }} />
                 </div>
               </div>
             )}
 
-            {/* Content — step 2: Escribe copy */}
+            {/* Step 2 */}
             {demoStep === 2 && (
               <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Pieza seleccionada #1</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>{t.demo.selectedPiece}</div>
                   <div style={{ aspectRatio:"4/3", borderRadius:14, background:"linear-gradient(135deg,#fce7f3,#ede9fe)", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:12 }}>
                     <ImageIcon size={40} style={{ color:"#c084fc" }} />
                   </div>
                   <div style={{ fontSize:11, color:"#767676" }}>IMG_001.jpg · Score 9.4 · Feed post</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>Copy generado por IA</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>{t.demo.copyLabel}</div>
                   <div style={{ background:"#fafafa", border:"1px solid #f0f0f0", borderRadius:14, padding:18, marginBottom:12 }}>
-                    <div style={{ fontSize:11, fontWeight:700, color:"#a855f7", marginBottom:10, textTransform:"uppercase", letterSpacing:"0.6px" }}>Tono · Cercano · Español</div>
+                    <div style={{ fontSize:11, fontWeight:700, color:"#a855f7", marginBottom:10, textTransform:"uppercase", letterSpacing:"0.6px" }}>{t.demo.tones[1]} · Español</div>
                     <p style={{ fontSize:13, color:"#333", lineHeight:1.7 }}>
                       🍽️ Abril empieza con sabor en <strong>Delio</strong>.<br />
                       Nuevos platos de temporada que ya están esperándote en nuestra terraza.<br />
@@ -609,24 +600,24 @@ export default function Home() {
                     </p>
                   </div>
                   <div style={{ display:"flex", gap:8 }}>
-                    {["Formal","Cercano","Humorístico"].map((t,i)=>(
-                      <button key={t} style={{ padding:"5px 12px", borderRadius:100, fontSize:11, fontWeight:700, cursor:"pointer",
+                    {t.demo.tones.map((tone,i)=>(
+                      <button key={tone} style={{ padding:"5px 12px", borderRadius:100, fontSize:11, fontWeight:700, cursor:"pointer",
                         background: i===1 ? "linear-gradient(135deg,#f43f5e,#a855f7)" : "white",
                         color: i===1 ? "white" : "#767676",
                         boxShadow: i===1 ? "0 2px 8px rgba(168,85,247,0.3)" : "none",
-                        border: i!==1 ? "1px solid #e8e8e8" : "none" }}>{t}</button>
+                        border: i!==1 ? "1px solid #e8e8e8" : "none" }}>{tone}</button>
                     ))}
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Content — step 3: Calendariza */}
+            {/* Step 3 */}
             {demoStep === 3 && (
               <div style={{ padding: 32, minHeight: 320 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>Calendario de publicación — Abril 2026 · Delio</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>{t.demo.calLabel}</div>
                 <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:8, marginBottom:16 }}>
-                  {["L","M","X","J","V","S","D"].map(d=>(
+                  {DAY_NAMES.map(d=>(
                     <div key={d} style={{ textAlign:"center", fontSize:11, fontWeight:700, color:"#bbb", paddingBottom:4 }}>{d}</div>
                   ))}
                   {Array.from({length:30},(_,i)=>i+1).map(day=>{
@@ -646,17 +637,14 @@ export default function Home() {
                 </div>
                 <div style={{ display:"flex", alignItems:"center", gap:16, padding:"12px 18px", borderRadius:12, background:"rgba(34,197,94,0.06)", border:"1px solid rgba(34,197,94,0.15)" }}>
                   <Check size={16} style={{ color:"#22c55e", flexShrink:0 }} />
-                  <span style={{ fontSize:13, color:"#666" }}>
-                    <strong style={{ color:"#22c55e" }}>3 publicaciones calendarizadas</strong> automáticamente en los mejores horarios · Lun, Jue y Dom a las 18:30
-                    · <strong>0 minutos de tu tiempo</strong>
-                  </span>
+                  <span style={{ fontSize:13, color:"#666" }} dangerouslySetInnerHTML={{ __html: t.demo.calSummary }} />
                 </div>
               </div>
             )}
           </div>
 
           <p style={{ textAlign:"center", fontSize:13, color:"#767676", marginTop:20 }}>
-            Pasa el ratón sobre cada pieza para ver el análisis de la IA · Haz clic en los pasos para explorar
+            {t.demo.hoverHint}
           </p>
         </div>
       </section>
@@ -668,61 +656,57 @@ export default function Home() {
             <div>
               <div className="badge" style={{ marginBottom: 20 }}>
                 <Import size={13} style={{ color: "#f43f5e" }} />
-                Para usuarios de Metricool
+                {t.migration.badge}
               </div>
               <h2 style={{ fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 16 }}>
-                Migra de Metricool<br />
-                <span className="grad-text">en un solo clic.</span>
+                {t.migration.h2a}<br />
+                <span className="grad-text">{t.migration.h2b}</span>
               </h2>
               <p style={{ fontSize: 17, color: "#666", lineHeight: 1.7, marginBottom: 28 }}>
-                Plain importa todo tu histórico de Metricool automáticamente. No pierdes nada, no empiezas de cero. En minutos tienes todo listo con la potencia extra de la IA y las automatizaciones.
+                {t.migration.p}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
-                {[
-                  { icon: BarChart2, color: "#f43f5e", bg: "#fff1f2", t: "Analytics · hasta 12 meses de histórico", d: "Importamos todas tus métricas: seguidores, alcance, engagement y publicaciones." },
-                  { icon: Calendar, color: "#a855f7", bg: "#faf5ff", t: "Publicaciones programadas", d: "Importamos el calendario de contenido pendiente." },
-                  { icon: Users, color: "#06b6d4", bg: "#ecfeff", t: "Clientes y cuentas", d: "Todas tus marcas conectadas, migradas automáticamente." },
-                ].map(({ icon: Icon, color, bg, t, d }) => (
-                  <div key={t} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                    <div style={{ width: 38, height: 38, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
-                      <Icon size={16} style={{ color }} />
+                {t.migration.items.map((item, mi) => {
+                  const { icon: Icon, color, bg } = MIGRATION_ICONS[mi];
+                  return (
+                    <div key={item.t} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                      <div style={{ width: 38, height: 38, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                        <Icon size={16} style={{ color }} />
+                      </div>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{item.t}</div>
+                        <div style={{ fontSize: 13, color: "#767676" }}>{item.d}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{t}</div>
-                      <div style={{ fontSize: 13, color: "#767676" }}>{d}</div>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
               <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 15, fontWeight: 700, padding: "13px 24px", borderRadius: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
-                Migrar desde Metricool <ArrowRight size={17} />
+                {t.migration.cta} <ArrowRight size={17} />
               </a>
             </div>
             {/* Visual */}
             <div className="card" style={{ padding: 28, background: "white" }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: "#767676", marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span>Importar desde Metricool</span>
-                <span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontWeight: 800 }}>1 clic</span>
+                <span>{t.migration.cardTitle}</span>
+                <span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontWeight: 800 }}>{t.migration.cardOneClick}</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {[
-                  { item: "Analytics históricos (12 meses)", count: "importados", status: "✓", done: true },
-                  { item: "Publicaciones programadas", count: "34 posts", status: "✓", done: true },
-                  { item: "Cuentas conectadas", count: "8 clientes", status: "✓", done: true },
-                  { item: "Automatizaciones IA", count: "nuevo", status: "★", done: false },
-                  { item: "Respuestas automáticas DM", count: "nuevo", status: "★", done: false },
-                ].map(({ item, count, status, done }) => (
-                  <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px", borderRadius: 12, background: done ? "#f0fdf4" : "linear-gradient(135deg,rgba(244,63,94,0.04),rgba(168,85,247,0.06))", border: `1px solid ${done ? "#bbf7d0" : "rgba(168,85,247,0.15)"}` }}>
-                    <span style={{ fontWeight: 600, fontSize: 14 }}>{item}</span>
-                    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                      <span style={{ fontSize: 12, color: "#767676" }}>{count}</span>
-                      <span style={{ fontWeight: 800, fontSize: 16, color: done ? "#22c55e" : "#a855f7" }}>{status}</span>
+                {t.migration.cardItems.map(({ item, count }, i) => {
+                  const done = i < 3;
+                  return (
+                    <div key={item} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px", borderRadius: 12, background: done ? "#f0fdf4" : "linear-gradient(135deg,rgba(244,63,94,0.04),rgba(168,85,247,0.06))", border: `1px solid ${done ? "#bbf7d0" : "rgba(168,85,247,0.15)"}` }}>
+                      <span style={{ fontWeight: 600, fontSize: 14 }}>{item}</span>
+                      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                        <span style={{ fontSize: 12, color: "#767676" }}>{count}</span>
+                        <span style={{ fontWeight: 800, fontSize: 16, color: done ? "#22c55e" : "#a855f7" }}>{done ? "✓" : "★"}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
               <div style={{ marginTop: 20, padding: "14px", background: "#0a0a0a", borderRadius: 14, textAlign: "center" }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: "white" }}>Migración completada en 2 min 34 seg ⚡</span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: "white" }}>{t.migration.cardDone}</span>
               </div>
             </div>
           </div>
@@ -733,26 +717,24 @@ export default function Home() {
       <section className="section-pad" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>En marcha en 10 minutos</h2>
-            <p style={{ fontSize: 18, color: "#666" }}>Sin código. Sin consultores. Sin complicaciones.</p>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>{t.howItWorks.h2}</h2>
+            <p style={{ fontSize: 18, color: "#666" }}>{t.howItWorks.p}</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {[
-              ["01","Conecta Instagram","OAuth en 2 clics. Plain conecta la cuenta de Instagram Business de tu cliente.","#f43f5e"],
-              ["02","Define palabras clave","Crea una regla: cuando alguien comente INFO, envía este DM. Tantas reglas como necesites.","#a855f7"],
-              ["03","Programa el contenido","Importa desde Dropbox o Drive, asigna fecha y Plain publica solo.","#06b6d4"],
-              ["04","Los leads llegan solos","Cada comentario con keyword activa el DM, 24/7, sin que muevas un dedo.","#059669"],
-            ].map(([n,t,d,c])=>(
-              <div key={n} className="card" style={{ padding: 24, display: "flex", gap: 20, alignItems: "flex-start", background: "white" }}>
-                <div style={{ width: 52, height: 52, borderRadius: 16, background: `linear-gradient(135deg,${c}22,${c}44)`, border: `1px solid ${c}33`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <span style={{ fontWeight: 900, fontSize: 18, color: c }}>{n}</span>
+            {t.howItWorks.steps.map(([n,title,desc], si) => {
+              const c = HIOW_COLORS[si];
+              return (
+                <div key={n} className="card" style={{ padding: 24, display: "flex", gap: 20, alignItems: "flex-start", background: "white" }}>
+                  <div style={{ width: 52, height: 52, borderRadius: 16, background: `linear-gradient(135deg,${c}22,${c}44)`, border: `1px solid ${c}33`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <span style={{ fontWeight: 900, fontSize: 18, color: c }}>{n}</span>
+                  </div>
+                  <div style={{ paddingTop: 4 }}>
+                    <h3 style={{ fontWeight: 800, fontSize: 18, marginBottom: 4 }}>{title}</h3>
+                    <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6 }}>{desc}</p>
+                  </div>
                 </div>
-                <div style={{ paddingTop: 4 }}>
-                  <h3 style={{ fontWeight: 800, fontSize: 18, marginBottom: 4 }}>{t}</h3>
-                  <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6 }}>{d}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -761,14 +743,14 @@ export default function Home() {
       <section id="comparativa" className="section-pad" style={{ padding: "100px 32px", background: "#0a0a0a", color: "white", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 60 }}>
-            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Plain vs. las alternativas</h2>
-            <p style={{ fontSize: 18, color: "#666" }}>Una sola herramienta que hace lo que Metricool y ManyChat juntos — por menos.</p>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>{t.comparison.h2}</h2>
+            <p style={{ fontSize: 18, color: "#666" }}>{t.comparison.p}</p>
           </div>
           <div className="comparison-wrap" style={{ overflowX: "auto" }}>
             <table className="comparison-table" style={{ width: "100%", maxWidth: 960, margin: "0 auto", borderCollapse: "collapse" }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: "left", padding: "12px 20px", color: "#444", fontWeight: 600, fontSize: 13, width: "32%" }}>Función</th>
+                  <th style={{ textAlign: "left", padding: "12px 20px", color: "#444", fontWeight: 600, fontSize: 13, width: "32%" }}>{t.comparison.functionCol}</th>
                   <th style={{ padding: "12px 20px", textAlign: "center" }}>
                     <span style={{ background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", padding: "6px 16px", borderRadius: 8, fontWeight: 800, fontSize: 13 }}>Plain</span>
                   </th>
@@ -778,25 +760,14 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {[
-                  ["Programar publicaciones Instagram", true, true, false, true],
-                  ["IA selecciona contenido y escribe copys", true, false, false, false],
-                  ["Calendarización automática con IA", true, false, false, false],
-                  ["Automatización comentario → DM", true, false, true, true],
-                  ["Genera contenido desde Dropbox / Drive", true, false, false, false],
-                  ["Migración desde Metricool (1 clic)", true, "—", false, "—"],
-                  ["Gestión multi-cliente agencias", true, "Parcial", false, "Parcial"],
-                  ["Precio fijo · sin contar contactos", true, true, false, false],
-                  ["Soporte en español", true, true, false, true],
-                  ["Precio · 10 marcas + automatización", "€40/mes 🔒", "€29/mes", "€25–65/mes", "€54–94/mes"],
-                ].map((row,i)=>(
-                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)", ...(i===9 ? { background: "rgba(168,85,247,0.05)" } : {}) }}>
-                    <td style={{ padding: "14px 20px", fontSize: 13, fontWeight: i===9 ? 700 : 500, color: i===9 ? "white" : "#ccc" }}>{row[0]}</td>
+                {t.comparison.rows.map((row,i)=>(
+                  <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)", ...(i===t.comparison.rows.length-1 ? { background: "rgba(168,85,247,0.05)" } : {}) }}>
+                    <td style={{ padding: "14px 20px", fontSize: 13, fontWeight: i===t.comparison.rows.length-1 ? 700 : 500, color: i===t.comparison.rows.length-1 ? "white" : "#ccc" }}>{row[0]}</td>
                     {row.slice(1).map((v,j)=>(
                       <td key={j} style={{ padding: "14px 20px", textAlign: "center" }}>
                         {v===true ? <Check size={18} style={{ color: "#a855f7", margin: "0 auto" }} />
                         : v===false ? <X size={18} style={{ color: "#333", margin: "0 auto" }} />
-                        : <span style={{ fontSize: 13, fontWeight: 700, color: j===0 ? "#c084fc" : j===3 ? "#ef4444" : "#555" }}>{v}</span>}
+                        : <span style={{ fontSize: 13, fontWeight: 700, color: j===0 ? "#c084fc" : j===3 ? "#ef4444" : "#555" }}>{v as string}</span>}
                       </td>
                     ))}
                   </tr>
@@ -805,7 +776,7 @@ export default function Home() {
             </table>
           </div>
           <p style={{ textAlign: "center", fontSize: 11, color: "#444", marginTop: 20 }}>
-            🔒 Precio de lanzamiento garantizado. Metricool Starter 10 marcas: €29/mes. ManyChat desde €25/mes (escala según contactos). Precios orientativos.
+            {t.comparison.footnote}
           </p>
         </div>
       </section>
@@ -813,21 +784,17 @@ export default function Home() {
       {/* ── TESTIMONIALS ── */}
       <section className="section-pad" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
-          <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Lo que dicen las agencias</h2>
+          <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>{t.testimonials.h2}</h2>
         </div>
         <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1100, margin: "0 auto" }}>
-          {[
-            { q:"Llevábamos años pagando Metricool y ManyChat por separado. Con Plain cancelamos los dos y ahorramos más de €60 al mes.", a:"María G.", r:"Directora creativa, Barcelona" },
-            { q:"La automatización de comentarios nos genera leads mientras dormimos. Un cliente consiguió 340 DMs en un solo día.", a:"Jordi P.", r:"Social Media Manager, Madrid" },
-            { q:"Gestionar 15 clientes antes era un caos de pestañas. Ahora entro a Plain y lo tengo todo. La integración con Dropbox es clave.", a:"Ana M.", r:"Fundadora agencia digital, México DF" },
-          ].map(t=>(
-            <div key={t.a} className="card" style={{ padding: 28 }}>
+          {t.testimonials.items.map(item=>(
+            <div key={item.a} className="card" style={{ padding: 28 }}>
               <div style={{ display: "flex", gap: 3, marginBottom: 16 }}>
                 {[...Array(5)].map((_,i)=><Star key={i} size={15} style={{ color: "#fbbf24", fill: "#fbbf24" }} />)}
               </div>
-              <p style={{ fontSize: 14, color: "#555", lineHeight: 1.7, marginBottom: 20, fontStyle: "italic" }}>&quot;{t.q}&quot;</p>
-              <div style={{ fontWeight: 700, fontSize: 14 }}>{t.a}</div>
-              <div style={{ fontSize: 12, color: "#767676" }}>{t.r}</div>
+              <p style={{ fontSize: 14, color: "#555", lineHeight: 1.7, marginBottom: 20, fontStyle: "italic" }}>&quot;{item.q}&quot;</p>
+              <div style={{ fontWeight: 700, fontSize: 14 }}>{item.a}</div>
+              <div style={{ fontSize: 12, color: "#767676" }}>{item.r}</div>
             </div>
           ))}
         </div>
@@ -837,22 +804,21 @@ export default function Home() {
       <section id="precios" className="section-pad" style={{ padding: "100px 32px", background: "#fafafa", maxWidth: "100%" }}>
         <div style={{ maxWidth: 1400, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            {/* Launch pricing banner */}
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,rgba(244,63,94,0.08),rgba(168,85,247,0.08))", border: "1px solid rgba(168,85,247,0.25)", borderRadius: 100, padding: "7px 18px", marginBottom: 20 }}>
               <span style={{ fontSize: 14 }}>🔒</span>
-              <span style={{ fontSize: 13, fontWeight: 700, color: "#a855f7" }}>Precios de lanzamiento · Plazas limitadas · En breve subirán</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: "#a855f7" }}>{t.pricing.badge}</span>
             </div>
-            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>Precio fijo. Sin sorpresas.</h2>
+            <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 12 }}>{t.pricing.h2}</h2>
             <p style={{ fontSize: 18, color: "#666", maxWidth: 540, margin: "0 auto 8px" }}>
-              A diferencia de ManyChat, no cobramos por contactos. Mismo precio cada mes.
+              {t.pricing.p}
             </p>
             <p style={{ fontSize: 14, color: "#a855f7", fontWeight: 600, marginBottom: 28 }}>
-              Si contratas ahora, este precio y funcionalidades se mantienen para siempre ✓
+              {t.pricing.guarantee}
             </p>
             {/* Toggle */}
             <div style={{ display: "inline-flex", background: "white", border: "1px solid #e5e7eb", borderRadius: 12, padding: 4, gap: 4 }}>
-              {[["Mensual",false],["Anual — 17% dto.",true]].map(([l,v])=>(
-                <button key={String(v)} onClick={()=>setAnnual(v as boolean)} style={{ padding: "8px 20px", borderRadius: 9, border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14, transition: "all 0.15s", background: annual===(v as boolean) ? "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)" : "transparent", color: annual===(v as boolean) ? "white" : "#666" }}>
+              {([[t.pricing.toggleMonthly,false],[t.pricing.toggleAnnual,true]] as [string,boolean][]).map(([l,v])=>(
+                <button key={String(v)} onClick={()=>setAnnual(v)} style={{ padding: "8px 20px", borderRadius: 9, border: "none", cursor: "pointer", fontWeight: 600, fontSize: 14, transition: "all 0.15s", background: annual===v ? "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)" : "transparent", color: annual===v ? "white" : "#666" }}>
                   {l}
                 </button>
               ))}
@@ -861,7 +827,7 @@ export default function Home() {
 
           {/* Networks row */}
           <div style={{ textAlign: "center", marginBottom: 32 }}>
-            <p style={{ fontSize: 13, color: "#767676", marginBottom: 10, fontWeight: 500 }}>Todas las redes incluidas en cada plan · Cada cliente puede conectar todas simultáneamente</p>
+            <p style={{ fontSize: 13, color: "#767676", marginBottom: 10, fontWeight: 500 }}>{t.pricing.networksLabel}</p>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 14, flexWrap: "nowrap", justifyContent: "center" }}>
               {NET_ICONS.map(({ label, el }) => (
                 <span key={label} title={label} style={{ display:"flex", transform:"scale(1.3)" }}>{el}</span>
@@ -870,79 +836,66 @@ export default function Home() {
           </div>
 
           <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
-            {[
-              { name:"Negocio", desc:"1 marca", price:p.s, hi:false,
-                items:["1 marca / cliente","Todas las redes sociales","Programación de contenido","5 automatizaciones activas","Dropbox / Drive","Soporte por email"] },
-              { name:"Community", desc:"Hasta 10 marcas", price:p.m, hi:true,
-                items:["Hasta 10 marcas / clientes","Todas las redes sociales","Automatizaciones ilimitadas","Programación ilimitada","Todos los almacenamientos","Analytics por cliente","Soporte prioritario"] },
-              { name:"Agencia", desc:"Hasta 100 marcas", price:p.a, hi:false,
-                items:["Hasta 100 marcas / clientes","Todas las redes sociales","Automatizaciones ilimitadas","Usuarios ilimitados","White-label (próx.)","API (próx.)","Onboarding dedicado","Soporte 24/7"] },
-            ].map(pl=>(
-              <div key={pl.name} style={{ borderRadius: 20, padding: 32, position: "relative", background: pl.hi ? "#f5f5f5" : "white", border: pl.hi ? "2px solid #e0e0e0" : "1px solid #e8e8e8", boxShadow: pl.hi ? "0 8px 32px rgba(0,0,0,0.08)" : "none" }}>
-                {pl.hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>Más popular</div>}
-                <div style={{ marginBottom: 20 }}>
-                  <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 4 }}>{pl.name}</h3>
-                  <p style={{ fontSize: 13, color: "#767676" }}>{pl.desc}</p>
-                </div>
-                <div style={{ marginBottom: 16 }}>
-                  <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>{pl.price}€</span>
-                  <span style={{ fontSize: 15, color: "#767676" }}>/mes</span>
-                  {annual && <div style={{ fontSize: 12, color: "#22c55e", marginTop: 3 }}>Facturado anualmente</div>}
-                </div>
-                {/* All networks included — no frame */}
-                <div style={{ marginBottom: 20 }}>
-                  <p style={{ fontSize: 11, fontWeight: 700, color: "#2563eb", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>Todas las redes por cliente</p>
-                  <div style={{ display: "flex", gap: 12, flexWrap: "nowrap", alignItems: "center" }}>
-                    {NET_ICONS.map(n=>(
-                      <span key={n.label} title={n.label} style={{ display:"flex", flexShrink: 0 }}>
-                        {n.el}
-                      </span>
-                    ))}
+            {t.pricing.plans.map((plan, idx) => {
+              const price = [p.s, p.m, p.a][idx];
+              const hi = idx === 1;
+              return (
+                <div key={plan.name} style={{ borderRadius: 20, padding: 32, position: "relative", background: hi ? "#f5f5f5" : "white", border: hi ? "2px solid #e0e0e0" : "1px solid #e8e8e8", boxShadow: hi ? "0 8px 32px rgba(0,0,0,0.08)" : "none" }}>
+                  {hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>{t.pricing.popular}</div>}
+                  <div style={{ marginBottom: 20 }}>
+                    <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 4 }}>{plan.name}</h3>
+                    <p style={{ fontSize: 13, color: "#767676" }}>{plan.desc}</p>
                   </div>
+                  <div style={{ marginBottom: 16 }}>
+                    <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>{price}€</span>
+                    <span style={{ fontSize: 15, color: "#767676" }}>{t.pricing.perMonth}</span>
+                    {annual && <div style={{ fontSize: 12, color: "#22c55e", marginTop: 3 }}>{t.pricing.billedAnnually}</div>}
+                  </div>
+                  <div style={{ marginBottom: 20 }}>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: "#2563eb", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>{t.pricing.networksPerClient}</p>
+                    <div style={{ display: "flex", gap: 12, flexWrap: "nowrap", alignItems: "center" }}>
+                      {NET_ICONS.map(n=>(
+                        <span key={n.label} title={n.label} style={{ display:"flex", flexShrink: 0 }}>
+                          {n.el}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <a href={`${D}/register`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
+                    {t.pricing.ctaBtn}
+                  </a>
+                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                    {plan.items.map(item=>(
+                      <li key={item.label}
+                        onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:item.label,desc:item.tip,x:r.left+r.width/2,y:r.top-8}); }}
+                        onMouseLeave={()=>setTip(null)}
+                        style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: "#555", cursor: "help", borderRadius: 6, padding: "2px 0" }}>
+                        <Check size={14} style={{ color: "#2563eb", flexShrink: 0 }} />{item.label}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <a href={`${D}/register`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(pl.hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
-                  Empezar gratis
-                </a>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                  {pl.items.map(it=>(
-                    <li key={it}
-                      onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:it,desc:TIPS[it]??it,x:r.left+r.width/2,y:r.top-8}); }}
-                      onMouseLeave={()=>setTip(null)}
-                      style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: "#555", cursor: TIPS[it] ? "help" : "default", borderRadius: 6, padding: "2px 0" }}>
-                      <Check size={14} style={{ color: "#2563eb", flexShrink: 0 }} />{it}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              );
+            })}
           </div>
-          {/* vs Metricool callout */}
+
+          {/* vs callout */}
           <div style={{ textAlign: "center", marginTop: 32, padding: "18px 24px", background: "white", border: "1px solid #e8e8e8", borderRadius: 16, maxWidth: 600, margin: "32px auto 0" }}>
             <p style={{ fontSize: 14, fontWeight: 700, color: "#0a0a0a", marginBottom: 4 }}>
-              Plain = Metricool + ManyChat en uno — por menos dinero
+              {t.pricing.vsCallout}
             </p>
-            <p style={{ fontSize: 13, color: "#767676" }}>
-              Metricool Starter 10 marcas (€29) + ManyChat (€25 mín.) = <strong style={{ color: "#ef4444" }}>€54/mes</strong> sin IA de contenido.<br/>
-              Plain Community 10 marcas = <strong style={{ color: "#2563eb" }}>€40/mes</strong> con scheduling + automatización + IA generadora.
-            </p>
+            <p style={{ fontSize: 13, color: "#767676" }} dangerouslySetInnerHTML={{ __html: t.pricing.vsCalloutDesc.replace(/<red>(.*?)<\/red>/g,'<strong style="color:#ef4444">$1</strong>').replace(/<blue>(.*?)<\/blue>/g,'<strong style="color:#2563eb">$1</strong>') }} />
           </div>
-          <p style={{ textAlign: "center", fontSize: 13, color: "#767676", marginTop: 16 }}>14 días de prueba gratis · Sin tarjeta · Cancela cuando quieras</p>
+          <p style={{ textAlign: "center", fontSize: 13, color: "#767676", marginTop: 16 }}>{t.pricing.footnote}</p>
         </div>
       </section>
 
       {/* ── FAQ ── */}
       <section id="faq" className="section-pad" style={{ padding: "100px 32px", maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 48, textAlign: "center" }}>Preguntas frecuentes</h2>
+          <h2 style={{ fontSize: "clamp(32px,4vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 48, textAlign: "center" }}>{t.faq.h2}</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {[
-              ["¿Necesito cuenta de Instagram Business?","Sí. La automatización requiere Instagram Business o Creator conectada a una Página de Facebook. La configuración tarda menos de 5 minutos."],
-              ["¿Plain reemplaza completamente a ManyChat?","Para las funciones de comentario→DM que usan la mayoría de agencias, sí. Modelo más simple, precio fijo, sin contar contactos."],
-              ["¿Cuántos DMs puedo enviar por día?","Plain usa la API oficial de Instagram y respeta los límites de Meta. Para cuentas Business activas, los límites raramente son un problema práctico."],
-              ["¿Puedo migrar mis reglas de ManyChat?","No importamos directamente, pero recrear las reglas es simple: keyword + mensaje + activar. La mayoría de agencias lo hacen en menos de 30 minutos."],
-              ["¿Qué pasa si cancelo?","Tus datos se conservan 30 días y puedes exportarlos. No borramos nada automáticamente."],
-              ["¿Funciona con Facebook?","Estamos optimizados para Instagram. El soporte para Facebook Pages está en el roadmap."],
-            ].map(([q,a],i)=>(
+            {t.faq.items.map(([q,a],i)=>(
               <div key={i} style={{ border: "1px solid #f0f0f0", borderRadius: 14, overflow: "hidden", background: "white" }}>
                 <button onClick={()=>setFaq(faq===i?null:i)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 22px", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}>
                   <span style={{ fontWeight: 600, fontSize: 15 }}>{q}</span>
@@ -963,18 +916,18 @@ export default function Home() {
         <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div className="badge" style={{ marginBottom: 24 }}>
             <Sparkles size={13} style={{ color: "#a855f7" }} />
-            Únete a las agencias que ya usan Plain
+            {t.cta.badge}
           </div>
           <h2 style={{ fontSize: "clamp(36px,5vw,68px)", fontWeight: 900, letterSpacing: "-2px", marginBottom: 16 }}>
-            ¿Listo para unificar tu stack?
+            {t.cta.h2}
           </h2>
           <p style={{ fontSize: 20, color: "#666", maxWidth: 500, margin: "0 auto 36px" }}>
-            Empieza hoy. Las agencias en España y LATAM están migrando a Plain.
+            {t.cta.p}
           </p>
           <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 18, fontWeight: 700, padding: "16px 36px", borderRadius: 14, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
-            Prueba Plain gratis 14 días <ArrowRight size={20} />
+            {t.cta.btn} <ArrowRight size={20} />
           </a>
-          <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>Sin tarjeta de crédito · 10 minutos de configuración · Cancela cuando quieras</p>
+          <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>{t.cta.footnote}</p>
         </div>
       </section>
 
@@ -987,17 +940,13 @@ export default function Home() {
             <div style={{ fontWeight: 900, fontSize: 22, letterSpacing: "-0.5px", marginBottom: 10 }}>
               <img src="/logo.svg" alt="Plain" style={{ height: 34, display: "block" }} />
             </div>
-            <p style={{ fontSize: 13, color: "#767676", lineHeight: 1.7, maxWidth: 280 }}>La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.</p>
+            <p style={{ fontSize: 13, color: "#767676", lineHeight: 1.7, maxWidth: 280 }}>{t.footer.tagline}</p>
           </div>
-          {[
-            { t:"Producto", l:["Funciones","Precios","Comparativa","Changelog"] },
-            { t:"Empresa", l:["Sobre Plain","Blog","Contacto","Partners"] },
-            { t:"Legal", l:[{n:"Privacidad",h:"https://www.addicional.com/politica-de-privacidad/"},{n:"Términos",h:"/terminos"},{n:"Cookies",h:"/cookies"},{n:"Uso aceptable",h:"/uso-aceptable"}] },
-          ].map(col=>(
+          {t.footer.cols.map(col=>(
             <div key={col.t}>
               <h4 style={{ fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "1px", color: "#767676", marginBottom: 16 }}>{col.t}</h4>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                {col.l.map((item: string | {n:string,h:string})=>{
+                {col.l.map((item)=>{
                   const label = typeof item === "string" ? item : item.n;
                   const href = typeof item === "string" ? "#" : item.h;
                   return <li key={label}><a href={href} style={{ fontSize: 14, color: "#767676", textDecoration: "none" }}>{label}</a></li>;
@@ -1008,7 +957,7 @@ export default function Home() {
         </div>
         <div className="sep" style={{ marginBottom: 24 }} />
         <div style={{ textAlign: "center", fontSize: 12, color: "#ccc", letterSpacing: "0.3px" }}>
-          Made in Sabadell
+          {t.footer.made}
         </div>
       </footer>
 
