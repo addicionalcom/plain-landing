@@ -14,6 +14,19 @@ export default function Home() {
   const [lang, setLang] = useState<Lang>("es");
   const p = { s: annual ? 8 : 10, m: annual ? 33 : 40, a: annual ? 166 : 200 };
 
+  interface ApiPlan { id: string; name: string; description: string; price: number; yearlyPrice: number | null; color: string; features: string; limits: string; isActive: boolean; showOnLanding: boolean; sortOrder: number; }
+  const [apiPlans, setApiPlans] = useState<ApiPlan[] | null>(null);
+
+  useEffect(() => {
+    fetch("https://dashboard.plainsocial.app/api/plans")
+      .then(r => r.json())
+      .then((data: ApiPlan[]) => {
+        const filtered = data.filter(pl => pl.showOnLanding).sort((a, b) => a.sortOrder - b.sortOrder);
+        setApiPlans(filtered);
+      })
+      .catch(() => setApiPlans(null));
+  }, []);
+
   useEffect(() => {
     const stored = localStorage.getItem("plain_lang") as Lang | null;
     if (stored === "es" || stored === "en") setLang(stored);
@@ -835,49 +848,108 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
-            {t.pricing.plans.map((plan, idx) => {
-              const price = [p.s, p.m, p.a][idx];
-              const hi = idx === 1;
+          {(() => {
+            if (apiPlans && apiPlans.length > 0) {
+              const plans = apiPlans;
+              const cols = plans.length;
               return (
-                <div key={plan.name} style={{ borderRadius: 20, padding: 32, position: "relative", background: hi ? "#f5f5f5" : "white", border: hi ? "2px solid #e0e0e0" : "1px solid #e8e8e8", boxShadow: hi ? "0 8px 32px rgba(0,0,0,0.08)" : "none" }}>
-                  {hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>{t.pricing.popular}</div>}
-                  <div style={{ marginBottom: 20 }}>
-                    <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 4 }}>{plan.name}</h3>
-                    <p style={{ fontSize: 13, color: "#767676" }}>{plan.desc}</p>
-                  </div>
-                  <div style={{ marginBottom: 16 }}>
-                    <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>{price}€</span>
-                    <span style={{ fontSize: 15, color: "#767676" }}>{t.pricing.perMonth}</span>
-                    {annual && <div style={{ fontSize: 12, color: "#22c55e", marginTop: 3 }}>{t.pricing.billedAnnually}</div>}
-                  </div>
-                  <div style={{ marginBottom: 20 }}>
-                    <p style={{ fontSize: 11, fontWeight: 700, color: "#2563eb", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>{t.pricing.networksPerClient}</p>
-                    <div style={{ display: "flex", gap: 12, flexWrap: "nowrap", alignItems: "center" }}>
-                      {NET_ICONS.map(n=>(
-                        <span key={n.label} title={n.label} style={{ display:"flex", flexShrink: 0 }}>
-                          {n.el}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <a href={`${D}/register`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
-                    {t.pricing.ctaBtn}
-                  </a>
-                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                    {plan.items.map(item=>(
-                      <li key={item.label}
-                        onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:item.label,desc:item.tip,x:r.left+r.width/2,y:r.top-8}); }}
-                        onMouseLeave={()=>setTip(null)}
-                        style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: "#555", cursor: "help", borderRadius: 6, padding: "2px 0" }}>
-                        <Check size={14} style={{ color: "#2563eb", flexShrink: 0 }} />{item.label}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: `repeat(${cols},1fr)`, gap: 20, maxWidth: Math.min(340 * cols, 1400), margin: "0 auto" }}>
+                  {plans.map((plan, idx) => {
+                    const hi = idx === Math.floor(plans.length / 2);
+                    const displayPrice = annual && plan.yearlyPrice != null
+                      ? Math.round(plan.yearlyPrice / 12)
+                      : plan.price;
+                    const savingPct = annual && plan.yearlyPrice != null && plan.price > 0
+                      ? Math.round((1 - plan.yearlyPrice / (plan.price * 12)) * 100)
+                      : null;
+                    let parsedFeatures: string[] = [];
+                    try { parsedFeatures = JSON.parse(plan.features); } catch { parsedFeatures = []; }
+                    return (
+                      <div key={plan.id} style={{ borderRadius: 20, padding: 32, position: "relative", background: hi ? "#f5f5f5" : "white", border: hi ? "2px solid #e0e0e0" : "1px solid #e8e8e8", boxShadow: hi ? "0 8px 32px rgba(0,0,0,0.08)" : "none" }}>
+                        {hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>{t.pricing.popular}</div>}
+                        <div style={{ marginBottom: 20 }}>
+                          <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 4 }}>{plan.name}</h3>
+                          <p style={{ fontSize: 13, color: "#767676" }}>{plan.description}</p>
+                        </div>
+                        <div style={{ marginBottom: 16 }}>
+                          <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>{displayPrice}€</span>
+                          <span style={{ fontSize: 15, color: "#767676" }}>{t.pricing.perMonth}</span>
+                          {annual && savingPct != null && <div style={{ fontSize: 12, color: "#22c55e", marginTop: 3 }}>{t.pricing.billedAnnually} ({savingPct}% off)</div>}
+                          {annual && savingPct == null && <div style={{ fontSize: 12, color: "#22c55e", marginTop: 3 }}>{t.pricing.billedAnnually}</div>}
+                        </div>
+                        <div style={{ marginBottom: 20 }}>
+                          <p style={{ fontSize: 11, fontWeight: 700, color: "#2563eb", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>{t.pricing.networksPerClient}</p>
+                          <div style={{ display: "flex", gap: 12, flexWrap: "nowrap", alignItems: "center" }}>
+                            {NET_ICONS.map(n=>(
+                              <span key={n.label} title={n.label} style={{ display:"flex", flexShrink: 0 }}>
+                                {n.el}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <a href={`${D}/subscribe?plan=${plan.id}`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
+                          {t.pricing.ctaBtn}
+                        </a>
+                        <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                          {parsedFeatures.map(feat => (
+                            <li key={feat} style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: "#555", borderRadius: 6, padding: "2px 0" }}>
+                              <Check size={14} style={{ color: "#2563eb", flexShrink: 0 }} />{feat}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
                 </div>
               );
-            })}
-          </div>
+            }
+            // Fallback to hardcoded plans while loading or on error
+            return (
+              <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1000, margin: "0 auto" }}>
+                {t.pricing.plans.map((plan, idx) => {
+                  const price = [p.s, p.m, p.a][idx];
+                  const hi = idx === 1;
+                  return (
+                    <div key={plan.name} style={{ borderRadius: 20, padding: 32, position: "relative", background: hi ? "#f5f5f5" : "white", border: hi ? "2px solid #e0e0e0" : "1px solid #e8e8e8", boxShadow: hi ? "0 8px 32px rgba(0,0,0,0.08)" : "none" }}>
+                      {hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>{t.pricing.popular}</div>}
+                      <div style={{ marginBottom: 20 }}>
+                        <h3 style={{ fontWeight: 800, fontSize: 20, marginBottom: 4 }}>{plan.name}</h3>
+                        <p style={{ fontSize: 13, color: "#767676" }}>{plan.desc}</p>
+                      </div>
+                      <div style={{ marginBottom: 16 }}>
+                        <span style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-2px" }}>{price}€</span>
+                        <span style={{ fontSize: 15, color: "#767676" }}>{t.pricing.perMonth}</span>
+                        {annual && <div style={{ fontSize: 12, color: "#22c55e", marginTop: 3 }}>{t.pricing.billedAnnually}</div>}
+                      </div>
+                      <div style={{ marginBottom: 20 }}>
+                        <p style={{ fontSize: 11, fontWeight: 700, color: "#2563eb", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.5px" }}>{t.pricing.networksPerClient}</p>
+                        <div style={{ display: "flex", gap: 12, flexWrap: "nowrap", alignItems: "center" }}>
+                          {NET_ICONS.map(n=>(
+                            <span key={n.label} title={n.label} style={{ display:"flex", flexShrink: 0 }}>
+                              {n.el}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <a href={`${D}/register`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
+                        {t.pricing.ctaBtn}
+                      </a>
+                      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                        {plan.items.map(item=>(
+                          <li key={item.label}
+                            onMouseEnter={e=>{ const r=(e.currentTarget as HTMLElement).getBoundingClientRect(); setTip({label:item.label,desc:item.tip,x:r.left+r.width/2,y:r.top-8}); }}
+                            onMouseLeave={()=>setTip(null)}
+                            style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: "#555", cursor: "help", borderRadius: 6, padding: "2px 0" }}>
+                            <Check size={14} style={{ color: "#2563eb", flexShrink: 0 }} />{item.label}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
 
           {/* vs callout */}
           <div style={{ textAlign: "center", marginTop: 32, padding: "18px 24px", background: "white", border: "1px solid #e8e8e8", borderRadius: 16, maxWidth: 600, margin: "32px auto 0" }}>
