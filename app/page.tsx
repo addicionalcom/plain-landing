@@ -18,7 +18,7 @@ export default function Home() {
   const [apiPlans, setApiPlans] = useState<ApiPlan[] | null>(null);
 
   useEffect(() => {
-    fetch("https://dashboard.plainsocial.app/api/plans")
+    fetch("https://dashboard.plainsocial.app/api/plans", { cache: "no-store" })
       .then(r => r.json())
       .then((data: ApiPlan[]) => {
         const filtered = data.filter(pl => pl.showOnLanding).sort((a, b) => a.sortOrder - b.sortOrder);
