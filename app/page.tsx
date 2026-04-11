@@ -14,7 +14,7 @@ export default function Home() {
   const [lang, setLang] = useState<Lang>("es");
   const p = { s: annual ? 8 : 10, m: annual ? 33 : 40, a: annual ? 166 : 200 };
 
-  interface ApiPlan { id: string; name: string; description: string; price: number; yearlyPrice: number | null; color: string; features: string; limits: string; isActive: boolean; showOnLanding: boolean; sortOrder: number; }
+  interface ApiPlan { id: string; name: string; description: string; price: number; yearlyPrice: number | null; color: string; features: string; limits: string; isActive: boolean; showOnLanding: boolean; sortOrder: number; generatedFeatures?: string[]; }
   const [apiPlans, setApiPlans] = useState<ApiPlan[] | null>(null);
 
   useEffect(() => {
@@ -864,6 +864,7 @@ export default function Home() {
                       : null;
                     let parsedFeatures: string[] = [];
                     try { parsedFeatures = JSON.parse(plan.features); } catch { parsedFeatures = []; }
+                    const displayFeatures = plan.generatedFeatures ?? parsedFeatures;
                     return (
                       <div key={plan.id} style={{ borderRadius: 20, padding: 32, position: "relative", background: hi ? "#f5f5f5" : "white", border: hi ? "2px solid #e0e0e0" : "1px solid #e8e8e8", boxShadow: hi ? "0 8px 32px rgba(0,0,0,0.08)" : "none" }}>
                         {hi && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg,#f43f5e,#a855f7)", color: "white", fontSize: 11, fontWeight: 800, padding: "5px 16px", borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.8px", whiteSpace: "nowrap" }}>{t.pricing.popular}</div>}
@@ -891,7 +892,7 @@ export default function Home() {
                           {t.pricing.ctaBtn}
                         </a>
                         <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-                          {parsedFeatures.map(feat => (
+                          {displayFeatures.map(feat => (
                             <li key={feat} style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: "#555", borderRadius: 6, padding: "2px 0" }}>
                               <Check size={14} style={{ color: "#2563eb", flexShrink: 0 }} />{feat}
                             </li>
