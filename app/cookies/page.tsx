@@ -129,7 +129,7 @@ export default function CookiesPage() {
 
         <H2>Contacto</H2>
         <Section>
-          Para cualquier consulta sobre el uso de cookies: <a href="mailto:dpo@addicional.com" style={{ color: "#111" }}>dpo@addicional.com</a> · Addicional Marketing, S.L., Sabadell, Barcelona, España.
+          Para cualquier consulta sobre el uso de cookies: <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a> · Addicional Marketing, S.L., Sabadell, Barcelona, España.
         </Section>
       </div>
 

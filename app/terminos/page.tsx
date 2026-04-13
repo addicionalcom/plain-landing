@@ -67,7 +67,7 @@ export default function TerminosPage() {
 
         <H2>7. Privacidad y protección de datos</H2>
         <Section>
-          El tratamiento de datos personales se rige por nuestra <a href="/privacidad" style={{ color: "#111" }}>Política de Privacidad</a>. En la medida en que trates datos personales de tus clientes finales a través del Servicio, actuarás como responsable del tratamiento y Plain como encargado del tratamiento en los términos del Reglamento (UE) 2016/679 (RGPD). Las condiciones de este encargo se desarrollan en el Acuerdo de Encargo de Tratamiento disponible previa solicitud a <a href="mailto:dpo@addicional.com" style={{ color: "#111" }}>dpo@addicional.com</a>.
+          El tratamiento de datos personales se rige por nuestra <a href="/privacidad" style={{ color: "#111" }}>Política de Privacidad</a>. En la medida en que trates datos personales de tus clientes finales a través del Servicio, actuarás como responsable del tratamiento y Plain como encargado del tratamiento en los términos del Reglamento (UE) 2016/679 (RGPD). Las condiciones de este encargo se desarrollan en el Acuerdo de Encargo de Tratamiento disponible previa solicitud a <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a>.
         </Section>
 
         <H2>8. Disponibilidad y mantenimiento</H2>

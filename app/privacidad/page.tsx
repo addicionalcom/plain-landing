@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy · Plain",
+  title: "Política de Privacidad · Plain",
   description: "Política de privacidad y protección de datos de Plain Social. Cómo recogemos, usamos y protegemos tu información.",
   robots: { index: true, follow: true },
 };
@@ -51,7 +51,7 @@ export default function PrivacidadPage() {
 
         <h3 style={{ fontSize: 16, fontWeight: 700, marginTop: 28, marginBottom: 10, color: "#111" }}>1.5 Datos técnicos y de navegación</h3>
         <Section>
-          Recogemos automáticamente dirección IP, tipo y versión de navegador, sistema operativo, páginas visitadas, tiempo de sesión y datos de diagnóstico de errores. Usamos cookies esenciales para el funcionamiento del Servicio; consulta nuestra <a href="/cookie-policy" style={{ color: "#111" }}>Política de Cookies</a> para más detalle.
+          Recogemos automáticamente dirección IP, tipo y versión de navegador, sistema operativo, páginas visitadas, tiempo de sesión y datos de diagnóstico de errores. Usamos cookies esenciales para el funcionamiento del Servicio; consulta nuestra <a href="/cookies" style={{ color: "#111" }}>Política de Cookies</a> para más detalle.
         </Section>
 
         <H2>2. Finalidades y base jurídica del tratamiento</H2>
@@ -148,7 +148,7 @@ export default function PrivacidadPage() {
 
         <H2>11. Cookies</H2>
         <Section>
-          Usamos cookies estrictamente necesarias para el funcionamiento del Servicio. Consulta nuestra <a href="/cookie-policy" style={{ color: "#111" }}>Política de Cookies</a> para información detallada sobre los tipos de cookies utilizadas y cómo gestionarlas.
+          Usamos cookies estrictamente necesarias para el funcionamiento del Servicio. Consulta nuestra <a href="/cookies" style={{ color: "#111" }}>Política de Cookies</a> para información detallada sobre los tipos de cookies utilizadas y cómo gestionarlas.
         </Section>
 
         <H2>12. Cambios en esta Política</H2>
@@ -182,10 +182,10 @@ function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #f0f0f0", padding: "32px", textAlign: "center" }}>
       <p style={{ fontSize: 12, color: "#ccc", margin: 0 }}>
-        <a href="/privacy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
-        <a href="/terms" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
-        <a href="/cookie-policy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
-        <a href="/acceptable-use" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
+        <a href="/privacidad" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
+        <a href="/terminos" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
+        <a href="/cookies" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
+        <a href="/uso-aceptable" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
       </p>
       <p style={{ fontSize: 11, color: "#ddd", marginTop: 8 }}>© 2026 Addicional Marketing, S.L. · Made in Sabadell</p>
     </footer>
