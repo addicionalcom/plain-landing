@@ -294,7 +294,7 @@ const translations = {
       cols: [
         { t: "Producto", l: ["Funciones", "Precios", "Comparativa", "Changelog"] },
         { t: "Empresa", l: ["Sobre Plain", "Blog", "Contacto", "Partners"] },
-        { t: "Legal", l: [{ n: "Privacidad", h: "/privacy" }, { n: "Términos", h: "/terms" }, { n: "Cookies", h: "/cookie-policy" }, { n: "Uso aceptable", h: "/acceptable-use" }] },
+        { t: "Legal", l: [{ n: "Privacidad", h: "/es/privacy" }, { n: "Términos", h: "/es/terms" }, { n: "Cookies", h: "/es/cookie-policy" }, { n: "Uso aceptable", h: "/es/acceptable-use" }] },
       ] as { t: string; l: (string | { n: string; h: string })[] }[],
       made: "Made in Sabadell",
     },
