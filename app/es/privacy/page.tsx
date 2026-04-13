@@ -159,7 +159,6 @@ export default function PrivacidadPage() {
         <H2>13. Contacto y Delegado de Protección de Datos</H2>
         <Section>
           Para cualquier consulta sobre privacidad o ejercicio de derechos:<br />
-          <strong>Eloi Coll</strong> — Delegado de Protección de Datos (DPO)<br />
           <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a><br />
           Addicional Marketing, S.L. · Sabadell, Barcelona, España
         </Section>

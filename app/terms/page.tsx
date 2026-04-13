@@ -20,7 +20,7 @@ export default function TermsPage() {
         <p style={{ fontSize: 13, color: "#aaa", marginBottom: 8 }}>Last updated: April 13, 2026</p>
         <h1 style={{ fontSize: 36, fontWeight: 800, lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.02em" }}>Terms of Service</h1>
         <Section>
-          These Terms of Service ("Terms") govern access to and use of <strong>Plain Social</strong> ("the Service"), a social media management platform for marketing and communications agencies, operated by <strong>Addicional Marketing, S.L.</strong> ("Plain", "we", "us"), with registered address in Sabadell, Barcelona, Spain, and contact address <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>.
+          These Terms of Service ("Terms") govern access to and use of <strong>Plain Social</strong> ("the Service"), a social media management platform for marketing and communications agencies, operated by <strong>Addicional Marketing, S.L.</strong> ("Plain", "we", "us"), with registered address in Sabadell, Barcelona, Spain, and contact address <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a>.
         </Section>
         <Section>
           By registering for or using the Service, you agree to be bound by these Terms, our <a href="/privacy" style={{ color: "#111" }}>Privacy Policy</a>, and our <a href="/acceptable-use" style={{ color: "#111" }}>Acceptable Use Policy</a>. If you are contracting the Service on behalf of a company or organisation, you represent that you have authority to bind that entity. If you disagree, do not use the Service.
@@ -33,7 +33,7 @@ export default function TermsPage() {
 
         <H2>2. Eligibility and registration</H2>
         <Section>
-          To use the Service you must be at least 18 years old and have legal capacity to enter into contracts. When creating an account you provide truthful, up-to-date information. You are responsible for maintaining the confidentiality of your credentials and for all actions taken under your account. Notify us immediately of any unauthorised access at <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>.
+          To use the Service you must be at least 18 years old and have legal capacity to enter into contracts. When creating an account you provide truthful, up-to-date information. You are responsible for maintaining the confidentiality of your credentials and for all actions taken under your account. Notify us immediately of any unauthorised access at <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a>.
         </Section>
 
         <H2>3. Plans and payments</H2>
@@ -106,7 +106,7 @@ export default function TermsPage() {
 
         <H2>13. Contact</H2>
         <Section>
-          For any questions about these Terms, write to us at <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a> or <strong>Addicional Marketing, S.L., Sabadell, Barcelona, Spain</strong>.
+          For any questions about these Terms, write to us at <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a> or <strong>Addicional Marketing, S.L., Sabadell, Barcelona, Spain</strong>.
         </Section>
       </div>
 

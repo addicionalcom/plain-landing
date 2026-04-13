@@ -107,7 +107,7 @@ export default function AcceptableUsePage() {
 
         <H2>6. Reporting violations</H2>
         <Section>
-          If you detect use of the Service that violates this AUP, please report it to <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>. We will investigate all reports diligently and take appropriate action.
+          If you detect use of the Service that violates this AUP, please report it to <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a>. We will investigate all reports diligently and take appropriate action.
         </Section>
 
         <H2>7. Consequences of non-compliance</H2>
@@ -122,7 +122,7 @@ export default function AcceptableUsePage() {
 
         <H2>9. Contact</H2>
         <Section>
-          For queries about this Policy or to report violations: <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a> · Addicional Marketing, S.L., Sabadell, Barcelona, Spain.
+          For queries about this Policy or to report violations: <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a> · Addicional Marketing, S.L., Sabadell, Barcelona, Spain.
         </Section>
       </div>
 

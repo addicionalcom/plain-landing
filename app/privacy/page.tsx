@@ -159,7 +159,6 @@ export default function PrivacyPage() {
         <H2>13. Contact and Data Protection Officer</H2>
         <Section>
           For any privacy queries or to exercise your rights:<br />
-          <strong>Eloi Coll</strong> — Data Protection Officer (DPO)<br />
           <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a><br />
           Addicional Marketing, S.L. · Sabadell, Barcelona, Spain
         </Section>
