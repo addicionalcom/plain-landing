@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Términos de Servicio · Plain",
+  title: "Terms of Service · Plain",
   description: "Términos y condiciones de uso del servicio Plain Social, la plataforma de gestión de redes sociales para agencias.",
   robots: { index: true, follow: true },
 };
@@ -23,7 +23,7 @@ export default function TerminosPage() {
           Estos Términos de Servicio («Términos») regulan el acceso y uso de <strong>Plain Social</strong> («el Servicio»), una plataforma de gestión de redes sociales para agencias de marketing y comunicación, operada por <strong>Addicional Marketing, S.L.</strong> («Plain», «nosotros», «nos»), con domicilio en Sabadell, Barcelona, España, y dirección de contacto <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a>.
         </Section>
         <Section>
-          Al registrarte o usar el Servicio, aceptas quedar vinculado por estos Términos y por nuestra <a href="/privacidad" style={{ color: "#111" }}>Política de Privacidad</a> y <a href="/uso-aceptable" style={{ color: "#111" }}>Política de Uso Aceptable</a>. Si contratas el Servicio en nombre de una empresa u organización, declaras tener autorización para obligar a dicha entidad. Si no estás de acuerdo, no uses el Servicio.
+          Al registrarte o usar el Servicio, aceptas quedar vinculado por estos Términos y por nuestra <a href="/privacy" style={{ color: "#111" }}>Política de Privacidad</a> y <a href="/acceptable-use" style={{ color: "#111" }}>Política de Uso Aceptable</a>. Si contratas el Servicio en nombre de una empresa u organización, declaras tener autorización para obligar a dicha entidad. Si no estás de acuerdo, no uses el Servicio.
         </Section>
 
         <H2>1. Descripción del Servicio</H2>
@@ -49,7 +49,7 @@ export default function TerminosPage() {
           Eres el único responsable del contenido que publiques o programes a través del Servicio en redes sociales de terceros (Meta, LinkedIn, TikTok, X/Twitter, etc.), así como del cumplimiento de los términos de uso de cada plataforma. Plain actúa como herramienta técnica y no revisa ni aprueba el contenido publicado.
         </Section>
         <Section>
-          Como agencia que gestiona cuentas de clientes finales, eres responsable de obtener todas las autorizaciones necesarias de tus clientes para conectar sus cuentas de redes sociales a Plain, tratar sus datos y publicar contenido en su nombre. Debes informar a tus clientes sobre el uso de Plain y asegurarte de que cumplen con estos Términos y con nuestra <a href="/uso-aceptable" style={{ color: "#111" }}>Política de Uso Aceptable</a>.
+          Como agencia que gestiona cuentas de clientes finales, eres responsable de obtener todas las autorizaciones necesarias de tus clientes para conectar sus cuentas de redes sociales a Plain, tratar sus datos y publicar contenido en su nombre. Debes informar a tus clientes sobre el uso de Plain y asegurarte de que cumplen con estos Términos y con nuestra <a href="/acceptable-use" style={{ color: "#111" }}>Política de Uso Aceptable</a>.
         </Section>
 
         <H2>5. Inteligencia Artificial</H2>
@@ -67,7 +67,7 @@ export default function TerminosPage() {
 
         <H2>7. Privacidad y protección de datos</H2>
         <Section>
-          El tratamiento de datos personales se rige por nuestra <a href="/privacidad" style={{ color: "#111" }}>Política de Privacidad</a>. En la medida en que trates datos personales de tus clientes finales a través del Servicio, actuarás como responsable del tratamiento y Plain como encargado del tratamiento en los términos del Reglamento (UE) 2016/679 (RGPD). Las condiciones de este encargo se desarrollan en el Acuerdo de Encargo de Tratamiento disponible previa solicitud a <a href="mailto:dpo@addicional.com" style={{ color: "#111" }}>dpo@addicional.com</a>.
+          El tratamiento de datos personales se rige por nuestra <a href="/privacy" style={{ color: "#111" }}>Política de Privacidad</a>. En la medida en que trates datos personales de tus clientes finales a través del Servicio, actuarás como responsable del tratamiento y Plain como encargado del tratamiento en los términos del Reglamento (UE) 2016/679 (RGPD). Las condiciones de este encargo se desarrollan en el Acuerdo de Encargo de Tratamiento disponible previa solicitud a <a href="mailto:dpo@addicional.com" style={{ color: "#111" }}>dpo@addicional.com</a>.
         </Section>
 
         <H2>8. Disponibilidad y mantenimiento</H2>
@@ -127,10 +127,10 @@ function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #f0f0f0", padding: "32px", textAlign: "center" }}>
       <p style={{ fontSize: 12, color: "#ccc", margin: 0 }}>
-        <a href="/privacidad" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
-        <a href="/terminos" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
-        <a href="/cookies" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
-        <a href="/uso-aceptable" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
+        <a href="/privacy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
+        <a href="/terms" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
+        <a href="/cookie-policy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
+        <a href="/acceptable-use" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
       </p>
       <p style={{ fontSize: 11, color: "#ddd", marginTop: 8 }}>© 2026 Addicional Marketing, S.L. · Made in Sabadell</p>
     </footer>

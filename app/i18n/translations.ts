@@ -294,7 +294,7 @@ const translations = {
       cols: [
         { t: "Producto", l: ["Funciones", "Precios", "Comparativa", "Changelog"] },
         { t: "Empresa", l: ["Sobre Plain", "Blog", "Contacto", "Partners"] },
-        { t: "Legal", l: [{ n: "Privacidad", h: "https://www.addicional.com/politica-de-privacidad/" }, { n: "Términos", h: "/terminos" }, { n: "Cookies", h: "/cookies" }, { n: "Uso aceptable", h: "/uso-aceptable" }] },
+        { t: "Legal", l: [{ n: "Privacidad", h: "/privacy" }, { n: "Términos", h: "/terms" }, { n: "Cookies", h: "/cookie-policy" }, { n: "Uso aceptable", h: "/acceptable-use" }] },
       ] as { t: string; l: (string | { n: string; h: string })[] }[],
       made: "Made in Sabadell",
     },
@@ -588,7 +588,7 @@ const translations = {
       cols: [
         { t: "Product", l: ["Features", "Pricing", "Comparison", "Changelog"] },
         { t: "Company", l: ["About Plain", "Blog", "Contact", "Partners"] },
-        { t: "Legal", l: [{ n: "Privacy", h: "https://www.addicional.com/politica-de-privacidad/" }, { n: "Terms", h: "/terminos" }, { n: "Cookies", h: "/cookies" }, { n: "Acceptable Use", h: "/uso-aceptable" }] },
+        { t: "Legal", l: [{ n: "Privacy", h: "/privacy" }, { n: "Terms", h: "/terms" }, { n: "Cookies", h: "/cookie-policy" }, { n: "Acceptable Use", h: "/acceptable-use" }] },
       ] as { t: string; l: (string | { n: string; h: string })[] }[],
       made: "Made in Sabadell",
     },

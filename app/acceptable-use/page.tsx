@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Política de Uso Aceptable · Plain",
+  title: "Acceptable Use Policy · Plain",
   description: "Política de uso aceptable de Plain Social. Qué usos están permitidos y cuáles están prohibidos.",
   robots: { index: true, follow: true },
 };
@@ -21,7 +21,7 @@ export default function UsoAceptablePage() {
         <h1 style={{ fontSize: 36, fontWeight: 800, lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.02em" }}>Política de uso aceptable</h1>
 
         <Section>
-          Esta Política de Uso Aceptable («PUA») forma parte de los <a href="/terminos" style={{ color: "#111" }}>Términos de Servicio</a> de <strong>Plain Social</strong>, operado por <strong>Addicional Marketing, S.L.</strong> («Plain»). Establece qué usos del Servicio están permitidos y cuáles están prohibidos, con el objetivo de garantizar un entorno seguro, profesional y conforme a la ley para todas las agencias y usuarios.
+          Esta Política de Uso Aceptable («PUA») forma parte de los <a href="/terms" style={{ color: "#111" }}>Términos de Servicio</a> de <strong>Plain Social</strong>, operado por <strong>Addicional Marketing, S.L.</strong> («Plain»). Establece qué usos del Servicio están permitidos y cuáles están prohibidos, con el objetivo de garantizar un entorno seguro, profesional y conforme a la ley para todas las agencias y usuarios.
         </Section>
         <Section>
           Al usar el Servicio, aceptas cumplir esta PUA. El incumplimiento puede resultar en la suspensión o cancelación inmediata de tu cuenta, sin perjuicio de las acciones legales que pudieran corresponder.
@@ -143,10 +143,10 @@ function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #f0f0f0", padding: "32px", textAlign: "center" }}>
       <p style={{ fontSize: 12, color: "#ccc", margin: 0 }}>
-        <a href="/privacidad" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
-        <a href="/terminos" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
-        <a href="/cookies" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
-        <a href="/uso-aceptable" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
+        <a href="/privacy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
+        <a href="/terms" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
+        <a href="/cookie-policy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
+        <a href="/acceptable-use" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
       </p>
       <p style={{ fontSize: 11, color: "#ddd", marginTop: 8 }}>© 2026 Addicional Marketing, S.L. · Made in Sabadell</p>
     </footer>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Política de Cookies · Plain",
+  title: "Cookie Policy · Plain",
   description: "Política de cookies de Plain Social. Qué cookies usamos y cómo gestionarlas.",
   robots: { index: true, follow: true },
 };
@@ -150,10 +150,10 @@ function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #f0f0f0", padding: "32px", textAlign: "center" }}>
       <p style={{ fontSize: 12, color: "#ccc", margin: 0 }}>
-        <a href="/privacidad" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
-        <a href="/terminos" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
-        <a href="/cookies" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
-        <a href="/uso-aceptable" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
+        <a href="/privacy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
+        <a href="/terms" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
+        <a href="/cookie-policy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
+        <a href="/acceptable-use" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
       </p>
       <p style={{ fontSize: 11, color: "#ddd", marginTop: 8 }}>© 2026 Addicional Marketing, S.L. · Made in Sabadell</p>
     </footer>
