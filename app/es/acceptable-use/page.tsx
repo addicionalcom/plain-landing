@@ -107,7 +107,7 @@ export default function UsoAceptablePage() {
 
         <H2>6. Notificación de infracciones</H2>
         <Section>
-          Si detectas un uso del Servicio que infrinja esta PUA, te pedimos que lo reportes a <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a>. Investigaremos todas las notificaciones con diligencia y tomaremos las medidas adecuadas.
+          Si detectas un uso del Servicio que infrinja esta PUA, te pedimos que lo reportes a <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>. Investigaremos todas las notificaciones con diligencia y tomaremos las medidas adecuadas.
         </Section>
 
         <H2>7. Consecuencias del incumplimiento</H2>
@@ -122,7 +122,7 @@ export default function UsoAceptablePage() {
 
         <H2>9. Contacto</H2>
         <Section>
-          Para consultas sobre esta Política o para reportar infracciones: <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a> · Addicional Marketing, S.L., Sabadell, Barcelona, España.
+          Para consultas sobre esta Política o para reportar infracciones: <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a> · Addicional Marketing, S.L., Sabadell, Barcelona, España.
         </Section>
       </div>
 

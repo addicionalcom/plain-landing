@@ -2,111 +2,111 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service · Plain",
-  description: "Términos y condiciones de uso del servicio Plain Social, la plataforma de gestión de redes sociales para agencias.",
-  robots: { index: true, follow: true },
+  description: "Terms and conditions governing access to and use of Plain Social, the social media management platform for agencies.",
+  robots: { index: false, follow: false },
 };
 
-export default function TerminosPage() {
+export default function TermsPage() {
   return (
     <div style={{ fontFamily: "var(--font-geist, system-ui, sans-serif)", background: "#fff", minHeight: "100vh" }}>
       <nav style={{ borderBottom: "1px solid #f0f0f0", padding: "0 32px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", zIndex: 100 }}>
         <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img src="/logo.svg" alt="Plain" style={{ height: 22 }} />
         </a>
-        <a href="/" style={{ fontSize: 13, color: "#888", textDecoration: "none" }}>← Volver</a>
+        <a href="/" style={{ fontSize: 13, color: "#888", textDecoration: "none" }}>← Back</a>
       </nav>
 
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "64px 32px 96px" }}>
-        <p style={{ fontSize: 13, color: "#aaa", marginBottom: 8 }}>Última actualización: 13 de abril de 2026</p>
-        <h1 style={{ fontSize: 36, fontWeight: 800, lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.02em" }}>Términos de servicio</h1>
+        <p style={{ fontSize: 13, color: "#aaa", marginBottom: 8 }}>Last updated: April 13, 2026</p>
+        <h1 style={{ fontSize: 36, fontWeight: 800, lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.02em" }}>Terms of Service</h1>
         <Section>
-          Estos Términos de Servicio («Términos») regulan el acceso y uso de <strong>Plain Social</strong> («el Servicio»), una plataforma de gestión de redes sociales para agencias de marketing y comunicación, operada por <strong>Addicional Marketing, S.L.</strong> («Plain», «nosotros», «nos»), con domicilio en Sabadell, Barcelona, España, y dirección de contacto <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a>.
+          These Terms of Service ("Terms") govern access to and use of <strong>Plain Social</strong> ("the Service"), a social media management platform for marketing and communications agencies, operated by <strong>Addicional Marketing, S.L.</strong> ("Plain", "we", "us"), with registered address in Sabadell, Barcelona, Spain, and contact address <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>.
         </Section>
         <Section>
-          Al registrarte o usar el Servicio, aceptas quedar vinculado por estos Términos y por nuestra <a href="/privacy" style={{ color: "#111" }}>Política de Privacidad</a> y <a href="/acceptable-use" style={{ color: "#111" }}>Política de Uso Aceptable</a>. Si contratas el Servicio en nombre de una empresa u organización, declaras tener autorización para obligar a dicha entidad. Si no estás de acuerdo, no uses el Servicio.
-        </Section>
-
-        <H2>1. Descripción del Servicio</H2>
-        <Section>
-          Plain Social es una plataforma SaaS (Software as a Service) que permite a agencias y profesionales del marketing gestionar la presencia en redes sociales de sus clientes: planificar y publicar contenido, analizar métricas, gestionar comentarios y mensajes directos, generar informes de resultados y utilizar funciones asistidas por inteligencia artificial. El Servicio se presta a través de <strong>dashboard.plainsocial.app</strong>.
+          By registering for or using the Service, you agree to be bound by these Terms, our <a href="/privacy" style={{ color: "#111" }}>Privacy Policy</a>, and our <a href="/acceptable-use" style={{ color: "#111" }}>Acceptable Use Policy</a>. If you are contracting the Service on behalf of a company or organisation, you represent that you have authority to bind that entity. If you disagree, do not use the Service.
         </Section>
 
-        <H2>2. Elegibilidad y registro</H2>
+        <H2>1. Description of the Service</H2>
         <Section>
-          Para usar el Servicio debes tener al menos 18 años y capacidad legal para suscribir contratos. Al crear una cuenta proporcionas información veraz y actualizada. Eres responsable de mantener la confidencialidad de tus credenciales y de todas las acciones realizadas bajo tu cuenta. Notifícanos de inmediato ante cualquier acceso no autorizado a <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a>.
+          Plain Social is a SaaS (Software as a Service) platform that enables agencies and marketing professionals to manage their clients' social media presence: plan and publish content, analyse metrics, manage comments and direct messages, generate performance reports, and use AI-assisted features. The Service is delivered via <strong>dashboard.plainsocial.app</strong>.
         </Section>
 
-        <H2>3. Planes y pagos</H2>
+        <H2>2. Eligibility and registration</H2>
         <Section>
-          Plain Social se ofrece mediante planes de suscripción mensual o anual. Los precios vigentes están publicados en <strong>plainsocial.app/#precios</strong>. El pago se procesa a través de <strong>Stripe</strong>, un proveedor externo de servicios de pago. Plain no almacena datos de tarjeta de crédito.
-        </Section>
-        <Section>
-          La suscripción se renueva automáticamente al final de cada período salvo que la canceles antes de la fecha de renovación. Las cancelaciones surten efecto al término del período de facturación en curso; no se realizan reembolsos prorrateados por el período no consumido, salvo obligación legal o acuerdo expreso por escrito. Plain se reserva el derecho de modificar precios con un preaviso mínimo de 30 días comunicado por correo electrónico.
+          To use the Service you must be at least 18 years old and have legal capacity to enter into contracts. When creating an account you provide truthful, up-to-date information. You are responsible for maintaining the confidentiality of your credentials and for all actions taken under your account. Notify us immediately of any unauthorised access at <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>.
         </Section>
 
-        <H2>4. Uso del Servicio y responsabilidades del usuario</H2>
+        <H2>3. Plans and payments</H2>
         <Section>
-          Eres el único responsable del contenido que publiques o programes a través del Servicio en redes sociales de terceros (Meta, LinkedIn, TikTok, X/Twitter, etc.), así como del cumplimiento de los términos de uso de cada plataforma. Plain actúa como herramienta técnica y no revisa ni aprueba el contenido publicado.
+          Plain Social is offered through monthly or annual subscription plans. Current pricing is published at <strong>plainsocial.app/#pricing</strong>. Payments are processed by <strong>Stripe</strong>, a third-party payment service provider. Plain does not store credit card data.
         </Section>
         <Section>
-          Como agencia que gestiona cuentas de clientes finales, eres responsable de obtener todas las autorizaciones necesarias de tus clientes para conectar sus cuentas de redes sociales a Plain, tratar sus datos y publicar contenido en su nombre. Debes informar a tus clientes sobre el uso de Plain y asegurarte de que cumplen con estos Términos y con nuestra <a href="/acceptable-use" style={{ color: "#111" }}>Política de Uso Aceptable</a>.
-        </Section>
-
-        <H2>5. Inteligencia Artificial</H2>
-        <Section>
-          Algunas funciones del Servicio utilizan modelos de inteligencia artificial proporcionados por <strong>Anthropic</strong> para asistir en la generación y mejora de contenido. El contenido generado por IA se facilita como sugerencia; su revisión, aprobación final y publicación son responsabilidad exclusiva del usuario. Plain no garantiza la exactitud, adecuación ni ausencia de sesgos del contenido generado por IA.
+          Subscriptions renew automatically at the end of each billing period unless cancelled before the renewal date. Cancellations take effect at the end of the current billing period; no pro-rated refunds are issued for unused portions of a period, except as required by law or agreed in writing. Plain reserves the right to modify pricing with at least 30 days' notice communicated by email.
         </Section>
 
-        <H2>6. Propiedad intelectual</H2>
+        <H2>4. Use of the Service and user responsibilities</H2>
         <Section>
-          <strong>Tu contenido.</strong> Mantienes todos los derechos de propiedad intelectual sobre el contenido que introduces en el Servicio. Nos concedes una licencia limitada, no exclusiva y revocable para almacenarlo y procesarlo con el único fin de prestarte el Servicio.
+          You are solely responsible for the content you publish or schedule through the Service on third-party social networks (Meta, LinkedIn, TikTok, X/Twitter, etc.), and for complying with each platform's terms of use. Plain acts as a technical tool and does not review or approve published content.
         </Section>
         <Section>
-          <strong>Nuestro Servicio.</strong> Plain Social, incluyendo su software, diseño, marca, documentación y datos analíticos agregados, es propiedad de Addicional Marketing, S.L. y está protegido por la legislación de propiedad intelectual e industrial. No adquieres ningún derecho sobre el Servicio más allá de los expresamente concedidos en estos Términos.
-        </Section>
-
-        <H2>7. Privacidad y protección de datos</H2>
-        <Section>
-          El tratamiento de datos personales se rige por nuestra <a href="/privacy" style={{ color: "#111" }}>Política de Privacidad</a>. En la medida en que trates datos personales de tus clientes finales a través del Servicio, actuarás como responsable del tratamiento y Plain como encargado del tratamiento en los términos del Reglamento (UE) 2016/679 (RGPD). Las condiciones de este encargo se desarrollan en el Acuerdo de Encargo de Tratamiento disponible previa solicitud a <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a>.
+          As an agency managing end-client accounts, you are responsible for obtaining all necessary authorisations from your clients to connect their social media accounts to Plain, process their data, and publish content on their behalf. You must inform your clients about the use of Plain and ensure they comply with these Terms and our <a href="/acceptable-use" style={{ color: "#111" }}>Acceptable Use Policy</a>.
         </Section>
 
-        <H2>8. Disponibilidad y mantenimiento</H2>
+        <H2>5. Artificial Intelligence</H2>
         <Section>
-          Nos esforzamos por mantener una disponibilidad del Servicio superior al 99,5 % mensual. Sin embargo, no garantizamos disponibilidad ininterrumpida. Podemos realizar tareas de mantenimiento programado, preferentemente en horario de baja demanda, con aviso previo cuando sea posible. No somos responsables de interrupciones causadas por terceros (plataformas de redes sociales, proveedores de infraestructura, etc.).
+          Some features of the Service use artificial intelligence models provided by <strong>Anthropic</strong> to assist in content generation and improvement. AI-generated content is provided as a suggestion; review, final approval, and publication are the user's sole responsibility. Plain does not warrant the accuracy, suitability, or freedom from bias of AI-generated content.
         </Section>
 
-        <H2>9. Limitación de responsabilidad</H2>
+        <H2>6. Intellectual property</H2>
         <Section>
-          En la máxima medida permitida por la ley aplicable, Plain no será responsable de daños indirectos, incidentales, especiales, consecuentes o punitivos (incluyendo pérdida de beneficios, datos o reputación). La responsabilidad total acumulada de Plain frente a ti por cualquier reclamación no superará el importe pagado por el Servicio en los 12 meses anteriores al evento que dio origen a la reclamación.
+          <strong>Your content.</strong> You retain all intellectual property rights over the content you input into the Service. You grant us a limited, non-exclusive, revocable licence to store and process it solely for the purpose of providing the Service.
         </Section>
         <Section>
-          Plain no garantiza los resultados de negocio derivados del uso del Servicio ni el comportamiento de las plataformas de redes sociales de terceros, que pueden modificar sus APIs o políticas en cualquier momento.
-        </Section>
-
-        <H2>10. Suspensión y resolución</H2>
-        <Section>
-          Podemos suspender o cancelar tu acceso al Servicio, con o sin previo aviso, si incumples estos Términos, la Política de Uso Aceptable o cualquier ley aplicable. Tras la cancelación, eliminaremos tus datos según lo establecido en nuestra Política de Privacidad, salvo que debamos conservarlos por obligación legal.
-        </Section>
-        <Section>
-          Puedes cancelar tu suscripción en cualquier momento desde la configuración de tu cuenta. La cancelación no da derecho a reembolso del período en curso salvo en los casos previstos por la normativa de consumo aplicable.
+          <strong>Our Service.</strong> Plain Social, including its software, design, brand, documentation, and aggregated analytics data, is owned by Addicional Marketing, S.L. and is protected by intellectual and industrial property law. You acquire no rights over the Service beyond those expressly granted in these Terms.
         </Section>
 
-        <H2>11. Cambios en los Términos</H2>
+        <H2>7. Privacy and data protection</H2>
         <Section>
-          Podemos modificar estos Términos en cualquier momento. Te notificaremos los cambios materiales por correo electrónico con al menos 30 días de antelación. El uso continuado del Servicio tras la entrada en vigor de los cambios implica su aceptación. Si no aceptas los nuevos términos, puedes cancelar tu suscripción antes de la fecha de entrada en vigor.
+          The processing of personal data is governed by our <a href="/privacy" style={{ color: "#111" }}>Privacy Policy</a>. To the extent that you process personal data of your end clients through the Service, you will act as data controller and Plain as data processor within the meaning of Regulation (EU) 2016/679 (GDPR). The terms of this processing arrangement are set out in the Data Processing Agreement available on request at <a href="mailto:privacy@plainsocial.app" style={{ color: "#111" }}>privacy@plainsocial.app</a>.
         </Section>
 
-        <H2>12. Legislación aplicable y resolución de conflictos</H2>
+        <H2>8. Availability and maintenance</H2>
         <Section>
-          Estos Términos se rigen por la legislación española y, en lo que resulte aplicable, por el Derecho de la Unión Europea. Las partes se someten a la jurisdicción de los Juzgados y Tribunales de Barcelona, con renuncia a cualquier otro fuero que pudiera corresponderles, sin perjuicio de los derechos que la normativa de consumo reconoce a los usuarios que tengan la condición de consumidores.
-        </Section>
-        <Section>
-          Para usuarios en la Unión Europea: puedes acceder a la plataforma de resolución de litigios en línea de la Comisión Europea en <a href="https://ec.europa.eu/consumers/odr" style={{ color: "#111" }} target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
+          We strive to maintain Service availability above 99.5% per month. However, we do not guarantee uninterrupted availability. We may carry out scheduled maintenance, preferably during low-demand hours, with advance notice where possible. We are not liable for interruptions caused by third parties (social media platforms, infrastructure providers, etc.).
         </Section>
 
-        <H2>13. Contacto</H2>
+        <H2>9. Limitation of liability</H2>
         <Section>
-          Para cualquier consulta sobre estos Términos, escríbenos a <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a> o a <strong>Addicional Marketing, S.L., Sabadell, Barcelona, España</strong>.
+          To the maximum extent permitted by applicable law, Plain shall not be liable for indirect, incidental, special, consequential, or punitive damages (including loss of profits, data, or reputation). Plain's total aggregate liability to you for any claim shall not exceed the amounts paid for the Service in the 12 months preceding the event giving rise to the claim.
+        </Section>
+        <Section>
+          Plain does not warrant any particular business outcomes from use of the Service, nor the behaviour of third-party social media platforms, which may modify their APIs or policies at any time.
+        </Section>
+
+        <H2>10. Suspension and termination</H2>
+        <Section>
+          We may suspend or terminate your access to the Service, with or without notice, if you breach these Terms, the Acceptable Use Policy, or any applicable law. Upon termination, we will delete your data as set out in our Privacy Policy, unless we are required to retain it by law.
+        </Section>
+        <Section>
+          You may cancel your subscription at any time from your account settings. Cancellation does not entitle you to a refund for the current billing period except as provided by applicable consumer law.
+        </Section>
+
+        <H2>11. Changes to the Terms</H2>
+        <Section>
+          We may modify these Terms at any time. We will notify you of material changes by email at least 30 days in advance. Continued use of the Service after the changes take effect constitutes acceptance. If you do not accept the new terms, you may cancel your subscription before the effective date.
+        </Section>
+
+        <H2>12. Governing law and dispute resolution</H2>
+        <Section>
+          These Terms are governed by Spanish law and, where applicable, by European Union law. The parties submit to the jurisdiction of the Courts and Tribunals of Barcelona, waiving any other jurisdiction to which they may be entitled, without prejudice to the rights that consumer regulations grant to users who qualify as consumers.
+        </Section>
+        <Section>
+          For users in the European Union: you may access the European Commission's online dispute resolution platform at <a href="https://ec.europa.eu/consumers/odr" style={{ color: "#111" }} target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a>.
+        </Section>
+
+        <H2>13. Contact</H2>
+        <Section>
+          For any questions about these Terms, write to us at <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a> or <strong>Addicional Marketing, S.L., Sabadell, Barcelona, Spain</strong>.
         </Section>
       </div>
 
@@ -127,10 +127,10 @@ function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #f0f0f0", padding: "32px", textAlign: "center" }}>
       <p style={{ fontSize: 12, color: "#ccc", margin: 0 }}>
-        <a href="/privacy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de privacidad</a>
-        <a href="/terms" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Términos de servicio</a>
-        <a href="/cookie-policy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Política de cookies</a>
-        <a href="/acceptable-use" style={{ color: "#ccc", textDecoration: "none" }}>Uso aceptable</a>
+        <a href="/privacy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Privacy Policy</a>
+        <a href="/terms" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Terms of Service</a>
+        <a href="/cookie-policy" style={{ color: "#ccc", textDecoration: "none", marginRight: 16 }}>Cookie Policy</a>
+        <a href="/acceptable-use" style={{ color: "#ccc", textDecoration: "none" }}>Acceptable Use</a>
       </p>
       <p style={{ fontSize: 11, color: "#ddd", marginTop: 8 }}>© 2026 Addicional Marketing, S.L. · Made in Sabadell</p>
     </footer>

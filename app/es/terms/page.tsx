@@ -20,7 +20,7 @@ export default function TerminosPage() {
         <p style={{ fontSize: 13, color: "#aaa", marginBottom: 8 }}>Última actualización: 13 de abril de 2026</p>
         <h1 style={{ fontSize: 36, fontWeight: 800, lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.02em" }}>Términos de servicio</h1>
         <Section>
-          Estos Términos de Servicio («Términos») regulan el acceso y uso de <strong>Plain Social</strong> («el Servicio»), una plataforma de gestión de redes sociales para agencias de marketing y comunicación, operada por <strong>Addicional Marketing, S.L.</strong> («Plain», «nosotros», «nos»), con domicilio en Sabadell, Barcelona, España, y dirección de contacto <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a>.
+          Estos Términos de Servicio («Términos») regulan el acceso y uso de <strong>Plain Social</strong> («el Servicio»), una plataforma de gestión de redes sociales para agencias de marketing y comunicación, operada por <strong>Addicional Marketing, S.L.</strong> («Plain», «nosotros», «nos»), con domicilio en Sabadell, Barcelona, España, y dirección de contacto <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>.
         </Section>
         <Section>
           Al registrarte o usar el Servicio, aceptas quedar vinculado por estos Términos y por nuestra <a href="/es/privacy" style={{ color: "#111" }}>Política de Privacidad</a> y <a href="/es/acceptable-use" style={{ color: "#111" }}>Política de Uso Aceptable</a>. Si contratas el Servicio en nombre de una empresa u organización, declaras tener autorización para obligar a dicha entidad. Si no estás de acuerdo, no uses el Servicio.
@@ -33,7 +33,7 @@ export default function TerminosPage() {
 
         <H2>2. Elegibilidad y registro</H2>
         <Section>
-          Para usar el Servicio debes tener al menos 18 años y capacidad legal para suscribir contratos. Al crear una cuenta proporcionas información veraz y actualizada. Eres responsable de mantener la confidencialidad de tus credenciales y de todas las acciones realizadas bajo tu cuenta. Notifícanos de inmediato ante cualquier acceso no autorizado a <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a>.
+          Para usar el Servicio debes tener al menos 18 años y capacidad legal para suscribir contratos. Al crear una cuenta proporcionas información veraz y actualizada. Eres responsable de mantener la confidencialidad de tus credenciales y de todas las acciones realizadas bajo tu cuenta. Notifícanos de inmediato ante cualquier acceso no autorizado a <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a>.
         </Section>
 
         <H2>3. Planes y pagos</H2>
@@ -106,7 +106,7 @@ export default function TerminosPage() {
 
         <H2>13. Contacto</H2>
         <Section>
-          Para cualquier consulta sobre estos Términos, escríbenos a <a href="mailto:hola@addicional.com" style={{ color: "#111" }}>hola@addicional.com</a> o a <strong>Addicional Marketing, S.L., Sabadell, Barcelona, España</strong>.
+          Para cualquier consulta sobre estos Términos, escríbenos a <a href="mailto:hola@plainsocial.app" style={{ color: "#111" }}>hola@plainsocial.app</a> o a <strong>Addicional Marketing, S.L., Sabadell, Barcelona, España</strong>.
         </Section>
       </div>
 
