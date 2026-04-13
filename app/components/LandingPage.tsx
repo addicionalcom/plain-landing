@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles, Brain, Import, BarChart2, ImageIcon, PenLine, Clock, Play, Pause } from "lucide-react";
-import translations, { Lang, LANGS } from "./i18n/translations";
+import translations, { Lang, LANGS } from "../i18n/translations";
 
 const D = "https://dashboard.plainsocial.app";
 
