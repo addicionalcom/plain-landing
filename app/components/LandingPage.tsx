@@ -633,30 +633,33 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
               </div>
             )}
 
-            {/* Step 3 */}
+            {/* Step 3 — week view */}
             {demoStep === 3 && (
-              <div style={{ padding: 32, minHeight: "clamp(420px, 55vw, 640px)" }}>
+              <div style={{ padding: 32, minHeight: "clamp(420px, 55vw, 640px)", display: "flex", flexDirection: "column" }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>{t.demo.calLabel}</div>
-                <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:8, marginBottom:16 }}>
-                  {DAY_NAMES.map(d=>(
-                    <div key={d} style={{ textAlign:"center", fontSize:11, fontWeight:700, color:"#bbb", paddingBottom:4 }}>{d}</div>
-                  ))}
-                  {Array.from({length:30},(_,i)=>i+1).map(day=>{
-                    const scheduled = [2,5,8,10,12,15,17,19,22,24,26,29].includes(day);
-                    const isNew = [2,8,15].includes(day);
+                <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:10, marginBottom: 20 }}>
+                  {DAY_NAMES.map((d, i) => {
+                    const dayNum = 15 + i;
+                    const scheduled = [0, 3, 6].includes(i);
                     return (
-                      <div key={day} style={{ aspectRatio:"1", borderRadius:8, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:600,
-                        background: isNew ? "linear-gradient(135deg,#f43f5e,#a855f7)" : scheduled ? "rgba(168,85,247,0.08)" : "#f9fafb",
-                        color: isNew ? "white" : scheduled ? "#a855f7" : "#ccc",
-                        border: scheduled && !isNew ? "1px solid rgba(168,85,247,0.2)" : "1px solid transparent",
-                        position:"relative" }}>
-                        {day}
-                        {isNew && <div style={{ position:"absolute", top:-4, right:-4, fontSize:8, background:"#22c55e", color:"white", borderRadius:100, padding:"1px 4px", fontWeight:800 }}>NEW</div>}
+                      <div key={d} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                        <div style={{ fontSize: 11, fontWeight: 700, color: "#bbb" }}>{d}</div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: scheduled ? "#a855f7" : "#bbb" }}>{dayNum}</div>
+                        <div style={{ width: "100%", aspectRatio: "1", borderRadius: 12, position: "relative",
+                          background: scheduled ? "linear-gradient(135deg,#f43f5e,#a855f7)" : "#f9fafb",
+                          border: scheduled ? "none" : "1px solid #f0f0f0",
+                          display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          {scheduled && <ImageIcon size={20} style={{ color: "white", opacity: 0.9 }} />}
+                          {scheduled && <div style={{ position:"absolute", top:-6, right:-6, fontSize:8, background:"#22c55e", color:"white", borderRadius:100, padding:"2px 6px", fontWeight:800 }}>NEW</div>}
+                        </div>
+                        <div style={{ fontSize: 10, fontWeight: 600, color: scheduled ? "#a855f7" : "#d1d5db" }}>
+                          {scheduled ? "18:30" : "—"}
+                        </div>
                       </div>
                     );
                   })}
                 </div>
-                <div style={{ display:"flex", alignItems:"center", gap:16, padding:"12px 18px", borderRadius:12, background:"rgba(34,197,94,0.06)", border:"1px solid rgba(34,197,94,0.15)" }}>
+                <div style={{ marginTop: "auto", display:"flex", alignItems:"center", gap:16, padding:"12px 18px", borderRadius:12, background:"rgba(34,197,94,0.06)", border:"1px solid rgba(34,197,94,0.15)" }}>
                   <Check size={16} style={{ color:"#22c55e", flexShrink:0 }} />
                   <span style={{ fontSize:13, color:"#666" }} dangerouslySetInnerHTML={{ __html: t.demo.calSummary }} />
                 </div>
