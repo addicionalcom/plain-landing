@@ -531,7 +531,7 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
 
             {/* Step 0 */}
             {demoStep === 0 && (
-              <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
+              <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: "clamp(420px, 55vw, 640px)" }}>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>{t.demo.storageTitle}</div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -569,7 +569,7 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
 
             {/* Step 1 */}
             {demoStep === 1 && (
-              <div style={{ padding: 32, minHeight: 320 }}>
+              <div style={{ padding: 32, minHeight: "clamp(420px, 55vw, 640px)" }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>{t.demo.aiAnalyzing}</div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 12, marginBottom: 24 }}>
                   {[
@@ -601,7 +601,7 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
 
             {/* Step 2 */}
             {demoStep === 2 && (
-              <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: 320 }}>
+              <div className="demo-step-grid" style={{ padding: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, minHeight: "clamp(420px, 55vw, 640px)" }}>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 16 }}>{t.demo.selectedPiece}</div>
                   <div style={{ aspectRatio:"4/3", borderRadius:14, background:"linear-gradient(135deg,#fce7f3,#ede9fe)", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:12 }}>
@@ -635,7 +635,7 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
 
             {/* Step 3 */}
             {demoStep === 3 && (
-              <div style={{ padding: 32, minHeight: 320 }}>
+              <div style={{ padding: 32, minHeight: "clamp(420px, 55vw, 640px)" }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "#767676", textTransform: "uppercase", letterSpacing: "1px", marginBottom: 20 }}>{t.demo.calLabel}</div>
                 <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:8, marginBottom:16 }}>
                   {DAY_NAMES.map(d=>(
