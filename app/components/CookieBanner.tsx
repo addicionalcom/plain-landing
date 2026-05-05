@@ -22,6 +22,7 @@ function getStoredConsent(): ConsentValue {
 function storeConsent(choice: "all" | "necessary") {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ v: STORAGE_VERSION, choice }));
+    window.dispatchEvent(new CustomEvent("plain:consent-changed", { detail: { choice } }));
   } catch { /* ignore */ }
 }
 

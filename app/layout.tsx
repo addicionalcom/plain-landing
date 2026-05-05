@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "./components/CookieBanner";
+import Analytics from "./components/Analytics";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
@@ -47,6 +48,7 @@ export default function RootLayout({
       <body className={`${geist.variable} ${geistMono.variable}`} style={{ fontFamily: "var(--font-geist), system-ui, sans-serif" }}>
         {children}
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );
