@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles, Brain, Import, BarChart2, ImageIcon, PenLine, Clock, Play, Pause } from "lucide-react";
 import translations, { Lang, LANGS } from "../i18n/translations";
 import SignupForm from "./SignupForm";
+import SignupModal from "./SignupModal";
 
 const D = "https://dashboard.plainsocial.app";
 
@@ -13,6 +14,8 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
   const [demoStep, setDemoStep] = useState(0);
   const [demoPlaying, setDemoPlaying] = useState(true);
   const [lang, setLang] = useState<Lang>(initialLang);
+  const [signupOpen, setSignupOpen] = useState(false);
+  const openSignup = () => setSignupOpen(true);
   const p = { s: annual ? 8 : 10, m: annual ? 33 : 40, a: annual ? 166 : 200 };
 
   interface ApiPlan { id: string; name: string; description: string; price: number; yearlyPrice: number | null; color: string; features: string; limits: string; isActive: boolean; showOnLanding: boolean; sortOrder: number; generatedFeatures?: string[]; }
@@ -112,9 +115,9 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
               ))}
             </div>
             <a href={`${D}/login`} className="nav-login" style={{ fontSize: 14, fontWeight: 500, color: "#555", textDecoration: "none" }}>{t.nav.login}</a>
-            <a href={`${D}/register`} className="grad-btn nav-cta" style={{ fontSize: 14, fontWeight: 600, padding: "9px 20px", borderRadius: 10, textDecoration: "none", display: "inline-block" }}>
+            <button onClick={openSignup} type="button" className="grad-btn nav-cta" style={{ fontSize: 14, fontWeight: 600, padding: "9px 20px", borderRadius: 10, border: "none", cursor: "pointer", fontFamily: "inherit", display: "inline-block" }}>
               {t.nav.cta}
-            </a>
+            </button>
           </div>
         </div>
       </nav>
@@ -156,9 +159,9 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
           </div>
 
           <div className="anim-up-3" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 16, fontWeight: 700, padding: "14px 28px", borderRadius: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <button onClick={openSignup} type="button" className="grad-btn" style={{ fontSize: 16, fontWeight: 700, padding: "14px 28px", borderRadius: 12, border: "none", cursor: "pointer", fontFamily: "inherit", display: "inline-flex", alignItems: "center", gap: 8 }}>
               {t.hero.ctaPrimary} <ArrowRight size={18} />
-            </a>
+            </button>
             <a href="#features" style={{ fontSize: 16, fontWeight: 600, padding: "14px 28px", borderRadius: 12, textDecoration: "none", border: "1px solid #e5e7eb", color: "#333", display: "inline-block", background: "white" }}>
               {t.hero.ctaSecondary}
             </a>
@@ -699,9 +702,9 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
                   );
                 })}
               </div>
-              <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 15, fontWeight: 700, padding: "13px 24px", borderRadius: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <button onClick={openSignup} type="button" className="grad-btn" style={{ fontSize: 15, fontWeight: 700, padding: "13px 24px", borderRadius: 12, border: "none", cursor: "pointer", fontFamily: "inherit", display: "inline-flex", alignItems: "center", gap: 8 }}>
                 {t.migration.cta} <ArrowRight size={17} />
-              </a>
+              </button>
             </div>
             {/* Visual */}
             <div className="card" style={{ padding: 28, background: "white" }}>
@@ -893,9 +896,9 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
                             ))}
                           </div>
                         </div>
-                        <a href={`${D}/subscribe?plan=${plan.id}`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
+                        <button onClick={openSignup} type="button" style={{ display: "block", width: "100%", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, border: "none", cursor: "pointer", fontFamily: "inherit", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
                           {t.pricing.ctaBtn}
-                        </a>
+                        </button>
                         <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                           {displayFeatures.map(feat => (
                             <li key={feat} style={{ display: "flex", gap: 10, alignItems: "center", fontSize: 13, color: "#555", borderRadius: 6, padding: "2px 0" }}>
@@ -937,9 +940,9 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
                           ))}
                         </div>
                       </div>
-                      <a href={`${D}/register`} style={{ display: "block", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, textDecoration: "none", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
+                      <button onClick={openSignup} type="button" style={{ display: "block", width: "100%", textAlign: "center", fontWeight: 700, fontSize: 15, padding: "13px", borderRadius: 12, border: "none", cursor: "pointer", fontFamily: "inherit", marginBottom: 24, ...(hi ? { background: "linear-gradient(135deg,#f43f5e,#a855f7,#06b6d4)", color: "white" } : { background: "#0a0a0a", color: "white" }) }}>
                         {t.pricing.ctaBtn}
-                      </a>
+                      </button>
                       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                         {plan.items.map(item=>(
                           <li key={item.label}
@@ -1021,9 +1024,9 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
           <p style={{ fontSize: 20, color: "#666", maxWidth: 500, margin: "0 auto 36px" }}>
             {t.cta.p}
           </p>
-          <a href={`${D}/register`} className="grad-btn" style={{ fontSize: 18, fontWeight: 700, padding: "16px 36px", borderRadius: 14, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}>
+          <button onClick={openSignup} type="button" className="grad-btn" style={{ fontSize: 18, fontWeight: 700, padding: "16px 36px", borderRadius: 14, border: "none", cursor: "pointer", fontFamily: "inherit", display: "inline-flex", alignItems: "center", gap: 10 }}>
             {t.cta.btn} <ArrowRight size={20} />
-          </a>
+          </button>
           <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>{t.cta.footnote}</p>
         </div>
       </section>
@@ -1068,6 +1071,8 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
           <div style={{ width:0, height:0, borderLeft:"6px solid transparent", borderRight:"6px solid transparent", borderTop:"6px solid #0a0a0a", margin:"0 auto" }} />
         </div>
       )}
+
+      <SignupModal lang={lang} open={signupOpen} onClose={() => setSignupOpen(false)} />
     </div>
   );
 }
