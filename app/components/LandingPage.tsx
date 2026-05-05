@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Check, X, ArrowRight, MessageCircle, Calendar, Users, Zap, ChevronDown, Star, TrendingUp, FolderOpen, Shield, Sparkles, Brain, Import, BarChart2, ImageIcon, PenLine, Clock, Play, Pause } from "lucide-react";
 import translations, { Lang, LANGS } from "../i18n/translations";
+import SignupForm from "./SignupForm";
 
 const D = "https://dashboard.plainsocial.app";
 
@@ -163,6 +164,14 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
             </a>
           </div>
           <p style={{ marginTop: 14, fontSize: 13, color: "#767676" }}>{t.hero.footnote}</p>
+
+          {/* Pre-launch email capture (compact) */}
+          <div className="anim-up-3" style={{ marginTop: 36, paddingTop: 28, borderTop: "1px dashed #e5e7eb", maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>
+            <p style={{ margin: "0 0 12px", fontSize: 13, fontWeight: 600, color: "#555", textAlign: "center" }}>
+              {t.signup.heroLabel}
+            </p>
+            <SignupForm lang={lang} variant="hero" />
+          </div>
 
           {/* Hero card mockup */}
           <div aria-hidden="true" className="float hero-card" style={{ marginTop: 60, maxWidth: 860, marginLeft: "auto", marginRight: "auto" }}>
@@ -978,6 +987,25 @@ export default function LandingPage({ initialLang = "es" }: { initialLang?: Lang
           </div>
         </div>
       </section>
+
+      {/* ── Pre-launch signup ── */}
+      <section className="section-pad" style={{ padding: "100px 32px", textAlign: "center", background: "#fafafa", borderTop: "1px solid #f0f0f0", borderBottom: "1px solid #f0f0f0" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
+          <div className="badge" style={{ marginBottom: 24 }}>
+            <Sparkles size={13} style={{ color: "#a855f7" }} />
+            {t.signup.badge}
+          </div>
+          <h2 style={{ fontSize: "clamp(32px,4.5vw,56px)", fontWeight: 900, letterSpacing: "-1.5px", marginBottom: 16, lineHeight: 1.1 }}>
+            {t.signup.h2}
+          </h2>
+          <p style={{ fontSize: 18, color: "#555", maxWidth: 560, margin: "0 auto 32px", lineHeight: 1.55 }}>
+            {t.signup.p}
+          </p>
+          <SignupForm lang={lang} variant="section" />
+        </div>
+      </section>
+
+      <div className="sep" />
 
       {/* ── CTA ── */}
       <section className="section-pad" style={{ padding: "100px 32px", textAlign: "center", position: "relative", overflow: "hidden" }}>
