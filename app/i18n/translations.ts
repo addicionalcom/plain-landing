@@ -307,7 +307,7 @@ const translations = {
       tagline: "La herramienta de gestión de redes sociales para agencias de marketing en España y LATAM.",
       cols: [
         { t: "Producto", l: ["Funciones", "Precios", "Comparativa", "Changelog"] },
-        { t: "Empresa", l: ["Sobre Plain", "Blog", "Contacto", "Partners"] },
+        { t: "Empresa", l: ["Sobre Plain", "Blog", "Contacto", { n: "Ayuda", h: "/support" }, "Partners"] },
         { t: "Legal", l: [{ n: "Privacidad", h: "/es/privacy" }, { n: "Términos", h: "/es/terms" }, { n: "Cookies", h: "/es/cookie-policy" }, { n: "Uso aceptable", h: "/es/acceptable-use" }] },
       ] as { t: string; l: (string | { n: string; h: string })[] }[],
       made: "Made in Sabadell",
@@ -615,7 +615,7 @@ const translations = {
       tagline: "The social media management tool for marketing agencies.",
       cols: [
         { t: "Product", l: ["Features", "Pricing", "Comparison", "Changelog"] },
-        { t: "Company", l: ["About Plain", "Blog", "Contact", "Partners"] },
+        { t: "Company", l: ["About Plain", "Blog", "Contact", { n: "Help", h: "/support" }, "Partners"] },
         { t: "Legal", l: [{ n: "Privacy", h: "/privacy" }, { n: "Terms", h: "/terms" }, { n: "Cookies", h: "/cookie-policy" }, { n: "Acceptable Use", h: "/acceptable-use" }] },
       ] as { t: string; l: (string | { n: string; h: string })[] }[],
       made: "Made in Sabadell",
